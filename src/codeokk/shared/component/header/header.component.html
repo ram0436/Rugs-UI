@@ -39,11 +39,7 @@
         </div>
         <div class="header--panel-right">
           <div class="trade-join">
-            <a
-              href="https://www.therugcompany.com/trade/account/apply/"
-              class="trade-button"
-              ><span>Trade</span> Login</a
-            >
+            <a class="trade-button"><span>Trade</span> Login</a>
           </div>
 
           <div class="header-actions-section">
@@ -162,7 +158,16 @@
               <li
                 class="level0 nav-1 first level-top megamenu_all all with-dropdown"
               >
-                <a class="level-top"><span>All</span></a>
+                <a class="level-top"
+                  ><span
+                    [routerLink]="['/filtered-posts']"
+                    [queryParams]="{
+                      parent: 1,
+                      category: 1
+                    }"
+                    >All</span
+                  ></a
+                >
                 <ul class="megamenu-dropdown submenu">
                   <li class="megamenu-dropdown-container">
                     <div class="nn--content-wrapper">
@@ -357,7 +362,7 @@
                               title="New In: Discover Collage by The Rug Company"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/new_in/668x372---CC_REVERIE-MIST_R_LANDSCAPE.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png"
                                 class="nn--image form-lazy is-loaded"
                                 sizes="(max-width: 375px) 295px,
                                                     (max-width: 540px) 460px,
@@ -650,7 +655,7 @@
                               title="All in stock rugs shipped in 5-16 days"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/in_stock/668x372---CC_RAMBLE_R_LANDSCAPE.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-2.png"
                                 class="nn--image form-lazy is-loaded"
                                 sizes="(max-width: 375px) 295px,
                                             (max-width: 540px) 460px,
@@ -841,7 +846,7 @@
                               title="Projects Gallery | Staircases &amp; Hallways"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/custom/668x372---ChristinaKim_KipsBay2022_0637_Final_2_.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-5.png"
                                 class="nn--image form-lazy is-loaded"
                               />
                               <figcaption>
@@ -877,7 +882,7 @@
                               title="Bestsellers: Channels Indigo by Kelly Wearstler"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/4592-kellywearstler-channelsindigo-rug-1200x1800-flatshot.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-5.png"
                                 class="nn--image form-lazy is-loaded seller-img"
                                 alt="Bestsellers: Channels Indigo by Kelly Wearstler"
                               />
@@ -902,7 +907,7 @@
                               title="Bestsellers: Channels Copper by Kelly Wearstler"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/channels-copper.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-1.png"
                                 class="nn--image form-lazy is-loaded seller-img"
                                 alt="Bestsellers: Channels Copper by Kelly Wearstler"
                               />
@@ -927,7 +932,7 @@
                               title="Bestsellers: Monarch Fire by Alexander McQueen"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/cropped_4316-alexandermcqueen-monarchfire-rug-1200x1800-flatshot_copy_2.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png"
                                 class="nn--image form-lazy is-loaded seller-img"
                                 alt="Bestsellers: Monarch Fire by Alexander McQueen"
                               />
@@ -950,7 +955,7 @@
                           >
                             <figure title="Bestsellers: Carnival by Paul Smith">
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/carnival.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png"
                                 class="nn--image form-lazy is-loaded seller-img"
                                 alt="Bestsellers: Carnival by Paul Smith"
                               />
@@ -972,7 +977,7 @@
                               title="Bestsellers: Glasswings by Alexander McQueen"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/glasswings.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png"
                                 class="nn--image form-lazy is-loaded seller-img"
                                 alt="Bestsellers: Glasswings by Alexander McQueen"
                               />
@@ -997,7 +1002,7 @@
                               title="Bestsellers: Caldera by The Rug Company"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/caldera.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png"
                                 class="nn--image form-lazy is-loaded seller-img"
                                 alt="Bestsellers: Caldera by The Rug Company"
                               />
@@ -1022,7 +1027,7 @@
                               title="Bestsellers: Framis by Mary Katrantzou"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/framis.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png"
                                 class="nn--image form-lazy is-loaded seller-img"
                                 alt="Bestsellers: Framis by Mary Katrantzou"
                               />
@@ -1047,7 +1052,7 @@
                               title="Bestsellers: Coco by The Rug Company"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/2286-therugcompany-coco-rug-1200x1800-flatshot.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-1.png"
                                 class="nn--image form-lazy is-loaded seller-img"
                                 alt="Bestsellers: Coco by The Rug Company"
                               />
@@ -1295,7 +1300,7 @@
                               title="Discover Supertextures by The Rug Company"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/new_in/668x372---CC_FOSSIL_TAN_R_LANDSCAPE.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-4.png"
                                 class="nn--image form-lazy is-loaded"
                                 alt="Discover the Supertextures Collection. Contemporary Textured Rugs with Undyed Wool"
                               />
@@ -1431,7 +1436,7 @@
                               title="Discover the New Farrow &amp; Ball Collection"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/lower_priced/688x372---DC_FaB_TEXTURE_SILK-BORDER.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-5.png"
                                 class="nn--image form-lazy is-loaded"
                                 alt="Discover the New Farrow &amp; Ball Collection"
                               />
@@ -1715,7 +1720,7 @@
                               title="New In: Discover the New Paul Smith Designs"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/new_in/668x372DC_PS_PRISMA_R.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-2.png"
                                 class="nn--image form-lazy is-loaded"
                                 alt="New In: Discover the New Paul Smith Designs"
                               />
@@ -2010,7 +2015,7 @@
                           >
                             <figure title="Style: Discover our Rug Visualizer">
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/style/Room_Visualiser_2.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png"
                                 class="nn--image form-lazy is-loaded"
                                 alt="Style: Discover our Rug Visualizer"
                               />
@@ -2510,7 +2515,7 @@
                           >
                             <figure title="Type: Materials: Spotlight on Silk">
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/type/spotlight-on-silk.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png"
                                 class="nn--image form-lazy is-loaded"
                                 alt="Type: Materials: Spotlight on Silk"
                               />
@@ -2651,7 +2656,7 @@
                           <a class="nn--link" title="Sale">
                             <figure title="Sale">
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/archive/668x372---2346-inkwell.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-5.png"
                                 class="nn--image form-lazy is-loaded"
                                 alt="Archive Edit"
                               />
@@ -2880,7 +2885,7 @@
                               title="The Rug Company LAB: Projects &amp; Applications Booklet"
                             >
                               <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/projects/projects.jpg"
+                                src="https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-1.png"
                                 class="nn--image form-lazy is-loaded"
                                 alt="The Rug Company LAB: Projects &amp; Applications Booklet"
                               />

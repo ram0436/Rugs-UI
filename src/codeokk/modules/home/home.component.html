@@ -1,0 +1,214 @@
+<div class="home">
+  <div class="main-img">
+    <div class="img-inner">
+      <div class="img-wrapper">
+        <div
+          class="img-animate"
+          (mouseenter)="onMouseEnter()"
+          (mouseleave)="onMouseLeave()"
+          [ngClass]="{ hovered: isHovered }"
+        >
+          <div
+            class="box-bg loaded"
+            style="
+              background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/BigRugs.jpg.webp');
+            "
+          ></div>
+          <div class="inner">
+            <div class="heading-wrap" style="transform: translateY(0px)">
+              <h3 style="text-align: center">C U S T O M &nbsp;M A D E</h3>
+              <hr />
+              <h3 style="text-align: center"></h3>
+            </div>
+          </div>
+          <a href="/" class="box-link"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="collections">
+    <div class="collections-wrapper">
+      <div class="collections-text">
+        <div class="text-wrapper">
+          <h3 style="text-align: center"><u>C O L L E C T I O N S</u></h3>
+        </div>
+      </div>
+      <div class="collections-content">
+        <div class="collections-row">
+          <div
+            class="collection"
+            style="
+              background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-1.png');
+              background-position: center center;
+            "
+          >
+            <div class="bg">
+              <div class="inner">
+                <div class="heading-wrap" style="transform: translateY(0px)">
+                  <h3 style="text-align: center">M O D E R N</h3>
+                  <hr />
+                  <h3 style="text-align: center"></h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="collection"
+            style="
+              background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-2.png');
+              background-position: center center;
+            "
+          >
+            <div class="bg">
+              <div class="inner">
+                <div class="heading-wrap" style="transform: translateY(0px)">
+                  <h3 style="text-align: center">C L A S S I C</h3>
+                  <hr />
+                  <h3 style="text-align: center"></h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="collection"
+            style="
+              background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png');
+              background-position: center center;
+            "
+          >
+            <div class="bg">
+              <div class="inner">
+                <div class="heading-wrap" style="transform: translateY(0px)">
+                  <h3 style="text-align: center">T R I B A L</h3>
+                  <hr />
+                  <h3 style="text-align: center"></h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="collection"
+            style="
+              background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-4.png');
+              background-position: center center;
+            "
+          >
+            <div class="bg">
+              <div class="inner">
+                <div class="heading-wrap" style="transform: translateY(0px)">
+                  <h3 style="text-align: center">M A S T E R P I E C E S</h3>
+                  <hr />
+                  <h3 style="text-align: center"></h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-container">
+    <div class="main-wrapper">
+      <div class="main-text">
+        <div class="text-wrapper main-text-wrapper">
+          <h3 style="text-align: center"><u>P R O J E C T S</u></h3>
+        </div>
+      </div>
+      <div class="arrow left-arrow" (click)="scrollToLeft()">
+        <span class="material-icons-outlined"> arrow_back</span>
+      </div>
+      <div
+        class="main-content"
+        (mousedown)="startDrag($event)"
+        (mouseup)="stopDrag()"
+        (mousemove)="onDrag($event)"
+      >
+        <div class="main-row" #scrollContainer>
+          <div class="main-item">
+            <div class="main-item-inner">
+              <div
+                class="main-item-image"
+                style="
+                  background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-1.png');
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="main-item">
+            <div class="main-item-inner">
+              <div
+                class="main-item-image"
+                style="
+                  background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-2.png');
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="main-item">
+            <div class="main-item-inner">
+              <div
+                class="main-item-image"
+                style="
+                  background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png');
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="main-item">
+            <div class="main-item-inner">
+              <div
+                class="main-item-image"
+                style="
+                  background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-4.png');
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="main-item">
+            <div class="main-item-inner">
+              <div
+                class="main-item-image"
+                style="
+                  background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-2.png');
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="main-item">
+            <div class="main-item-inner">
+              <div
+                class="main-item-image"
+                style="
+                  background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png');
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="main-item">
+            <div class="main-item-inner">
+              <div
+                class="main-item-image"
+                style="
+                  background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-4.png');
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="main-item">
+            <div class="main-item-inner">
+              <div
+                class="main-item-image"
+                style="
+                  background-image: url('https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-5.png');
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="arrow right-arrow" (click)="scrollToRight()">
+        <span class="material-icons-outlined"> arrow_forward </span>
+      </div>
+    </div>
+  </div>
+</div>

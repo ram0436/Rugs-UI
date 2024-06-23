@@ -1,0 +1,329 @@
+.home {
+  max-width: 1900px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px 70px;
+}
+
+.home .main-img {
+  padding-left: 1%;
+  padding-right: 1%;
+  margin: 30px 0 !important;
+}
+
+.img-inner {
+  position: relative;
+}
+
+.img-animate {
+  min-height: 900px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 11%;
+  transition: transform 0.65s cubic-bezier(0.05, 0.2, 0.1, 1),
+    box-shadow 0.65s cubic-bezier(0.05, 0.2, 0.1, 1);
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.img-animate.hovered {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.22);
+}
+
+.box-bg {
+  transition: transform 1s ease, opacity 0.5s ease 0.25s;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100.2%;
+  width: 100.2%;
+  background-size: cover;
+  z-index: 1;
+  background-position: bottom;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: all 0.6s cubic-bezier(0.24, 1, 0.3, 1);
+  -webkit-transition: all 0.6s cubic-bezier(0.24, 1, 0.3, 1);
+}
+
+.hovered .box-bg {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transition: all 0.6s cubic-bezier(0.1, 0.2, 0.7, 1);
+  -webkit-transition: all 0.6s cubic-bezier(0.1, 0.2, 0.7, 1);
+}
+
+.box-bg:before {
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  display: block;
+  z-index: 10;
+  content: "";
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 15, 15, 0),
+    rgba(15, 15, 15, 0.75) 100%
+  );
+  transition: opacity 0.65s cubic-bezier(0.05, 0.2, 0.1, 1);
+}
+
+.hovered .box-bg::before {
+  opacity: 1;
+}
+
+.box-bg::after {
+  background-color: initial !important;
+}
+
+.hovered .box-bg:before {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000 100%);
+}
+
+.hovered .box-bg::after {
+  opacity: 0;
+}
+
+.inner {
+  position: absolute;
+  bottom: 20px;
+  width: 80%;
+  padding: 0;
+  align-self: flex-end;
+  color: #fff;
+  z-index: 10;
+}
+
+.heading-wrap {
+  transition: opacity 0.65s cubic-bezier(0.05, 0.2, 0.1, 1),
+    transform 0.65s cubic-bezier(0.05, 0.2, 0.1, 1);
+}
+
+.box-link {
+  position: absolute;
+  z-index: 90;
+  top: 1px;
+  left: 1px;
+  height: calc(100% - 2px);
+  width: calc(100% - 2px);
+  display: block;
+}
+
+.collections,
+.main-container {
+  margin-top: 60px;
+  position: relative;
+}
+
+.collections-text,
+.main-text {
+  margin-bottom: 1.5em;
+}
+
+.collections-text h3,
+.main-text h3 {
+  font-family: Crimson Text;
+  text-transform: none;
+  letter-spacing: -0.2px;
+  font-size: 28px;
+  line-height: 40px;
+  font-weight: 400;
+  color: #454545;
+}
+
+.collections-content,
+.main-content {
+  position: relative;
+  padding-bottom: 30px;
+  overflow-x: hidden;
+}
+
+.collections-row {
+  display: flex;
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  float: none;
+  z-index: 10;
+  margin-left: 1%;
+  margin-right: 1%;
+  gap: 20px;
+  justify-content: center;
+}
+
+.collection,
+.main-item {
+  height: 470px;
+  width: 23.8%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.collection .bg:before,
+.main-item .bg:before {
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 15, 15, 0),
+    rgba(15, 15, 15, 0.1) 100%
+  );
+}
+
+.collection .bg:after,
+.main-item .bg:after {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #ededed 100%);
+}
+
+.collection .inner,
+.main-item .inner {
+  position: absolute;
+  bottom: 20px;
+  width: 80%;
+  left: 10%;
+  padding: 0;
+  margin-left: auto;
+  color: #fff;
+  margin-right: auto;
+  z-index: 10;
+}
+
+.collection:hover,
+.main-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.22);
+}
+
+.collection .bg,
+.main-item .bg {
+  transition: transform 1s ease, opacity 0.5s ease 0.25s;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100.2%;
+  width: 100.2%;
+  background-size: cover;
+  z-index: 1;
+  background-position: bottom;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: all 0.6s cubic-bezier(0.24, 1, 0.3, 1);
+  -webkit-transition: all 0.6s cubic-bezier(0.24, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.collection .bg:before,
+.main-item .bg:before {
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  display: block;
+  z-index: 10;
+  content: "";
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 15, 15, 0),
+    rgba(15, 15, 15, 0.75) 100%
+  );
+  transition: opacity 0.65s cubic-bezier(0.05, 0.2, 0.1, 1);
+}
+
+.collection .bg::after,
+.main-item .bg::after {
+  background-color: initial !important;
+}
+
+.collection .bg:before,
+.main-item .bg:before {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000 100%);
+}
+
+.collection .inner h3,
+.main-item .inner h3 {
+  font-family: Crimson Text;
+  text-transform: none;
+  letter-spacing: -0.2px;
+  font-size: 26px;
+  line-height: 36px;
+  font-weight: 400;
+}
+
+.main-item-inner {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.main-item-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  transition: transform 0.5s ease;
+}
+
+.main-item:hover .main-item-image {
+  transform: scale(1.1);
+}
+
+.main-row {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  transition: transform 0.5s ease;
+}
+
+.main-row::-webkit-scrollbar {
+  display: none;
+}
+
+.main-item {
+  min-width: 318px;
+  height: 470px;
+  margin-right: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.main-content {
+  user-select: none;
+}
+
+.arrow {
+  cursor: pointer;
+  font-size: 2rem;
+  color: #333;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  top: 50%;
+  padding: 10px;
+  position: absolute;
+  z-index: 10;
+  user-select: none;
+}
+
+.left-arrow {
+  left: 40px;
+}
+
+.right-arrow {
+  right: 40px;
+}
