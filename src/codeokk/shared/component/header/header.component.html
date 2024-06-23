@@ -1,0 +1,2927 @@
+<div class="header-container flex-col">
+  <header
+    class="header header--sticky"
+    (mouseenter)="toggleActive(true)"
+    (mouseleave)="toggleActive(false)"
+    [class.active]="isActive"
+    [class.scrolled]="isScrolledDown"
+  >
+    <div class="panel wrapper">
+      <div class="panel header">
+        <div class="header--panel-left">
+          <div class="sections nav-sections">
+            <div class="section-items nav-sections-items"></div>
+          </div>
+          <div class="nav-block block-showrooms">
+            <div class="nav-block-item nav-icon nav-icon-locator">
+              <span class="material-icons-outlined section-icon">
+                location_on
+              </span>
+              <span class="nav-icon-label">Showrooms</span>
+            </div>
+          </div>
+          <div class="nav-block block-phone" style="display: none">
+            <div class="nav-block-item nav-icon nav-icon-phone">
+              <span class="material-icons-outlined section-icon">
+                location_on
+              </span>
+              <span class="nav-icon-label">+1 (646) 490-1614</span>
+            </div>
+          </div>
+          <div class="nav-block block-catalog">
+            <div class="nav-block-item nav-icon nav-icon-catalog">
+              <span class="material-icons-outlined section-icon">
+                collections
+              </span>
+              <span class="nav-icon-label">View Our Catalog</span>
+            </div>
+          </div>
+        </div>
+        <div class="header--panel-right">
+          <div class="trade-join">
+            <a
+              href="https://www.therugcompany.com/trade/account/apply/"
+              class="trade-button"
+              ><span>Trade</span> Login</a
+            >
+          </div>
+
+          <div class="header-actions-section">
+            <div class="minicart-wrapper">
+              <span
+                class="material-icons-outlined section-icon bag-icon"
+                (click)="toggleCart()"
+              >
+                shopping_bag
+              </span>
+              <div
+                class="block block-minicart empty active"
+                [ngClass]="{ 'display-none': !isCartActive }"
+              >
+                <div id="minicart-content-wrapper">
+                  <div class="block-content">
+                    <span
+                      class="material-icons-outlined section-icon close-icon"
+                      (click)="toggleCart()"
+                    >
+                      close
+                    </span>
+                    <strong class="subtitle empty"
+                      ><span>You have no items in your shopping cart.</span>
+                    </strong>
+                  </div>
+                </div>
+              </div>
+              <!-- <span class="counter-number">0</span> -->
+            </div>
+            <div class="customer-account-menu js-customer-account-menu">
+              <span class="material-icons-outlined section-icon bag-icon">
+                person_outline
+              </span>
+            </div>
+            <div class="block block-search algolia-search-block">
+              <span
+                class="material-icons-outlined section-icon search-icon"
+                (click)="toggleSearch()"
+              >
+                search
+              </span>
+              <div
+                class="block block-content"
+                [ngClass]="{ 'display-none': !isSearchActive }"
+              >
+                <form id="search_mini_form">
+                  <div id="algolia-searchbox">
+                    <span
+                      class="algolia-autocomplete"
+                      [ngClass]="{ active: isSearchActive }"
+                      style="
+                        position: relative;
+                        display: inline-block;
+                        direction: ltr;
+                      "
+                      id="algolia-autocomplete-tt"
+                      ><input
+                        id="search"
+                        type="text"
+                        name="query"
+                        class="input-text algolia-search-input aa-input"
+                        placeholder="Search for products, categories, ..."
+                        dir="auto"
+                        style="position: relative; vertical-align: top"
+                      />
+                      <pre
+                        aria-hidden="true"
+                        style="
+                          position: absolute;
+                          visibility: hidden;
+                          white-space: pre;
+                          font-family: AkziendGroteskBe, 'Helvetica Neue',
+                            Helvetica, Arial, sans-serif;
+                          font-size: 18px;
+                          font-style: normal;
+                          font-variant: normal;
+                          font-weight: 400;
+                          word-spacing: 0px;
+                          letter-spacing: 0.75px;
+                          text-indent: 0px;
+                          text-rendering: auto;
+                          text-transform: none;
+                        "
+                      ></pre>
+                    </span>
+
+                    <span class="clear-cross clear-query-autocomplete"></span>
+                    <span
+                      id="algolia-glass"
+                      class="magnifying-glass"
+                      width="24"
+                      height="24"
+                    ></span>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- <div class="nav-block block-catalog">
+              <a
+                class="nav-block-item nav-icon nav-icon-catalog"
+                href="/"
+                title="Catalogue"
+              >
+                <span class="nav-icon-label">Catalogue</span>
+              </a>
+            </div>
+            <div class="block block-showrooms">
+              <a href="/" class="showrooms-link showrooms-new">Showrooms</a>
+            </div> -->
+          </div>
+        </div>
+        <div class="header--panel-bottom nav-sections">
+          <nav class="navigation">
+            <ul>
+              <li
+                class="level0 nav-1 first level-top megamenu_all all with-dropdown"
+              >
+                <a class="level-top"><span>All</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span1">
+                          <a class="nn--link nn--trigger">
+                            <span class="nn--caption">PRODUCTS</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="All: Products: All Rugs"
+                              >
+                                <span class="nn--caption">All Rugs</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="All: Products: Solid Rugs"
+                              >
+                                <span class="nn--caption">Solid Rugs</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="All: Products: Textured Rugs"
+                              >
+                                <span class="nn--caption">Textured Rugs</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="All: Products: Cushions"
+                              >
+                                <span class="nn--caption">Cushions</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="All: Products: Wallhangings"
+                              >
+                                <span class="nn--caption">Wallhangings</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="The Archive: Categories: Archive Edit"
+                              >
+                                <span class="nn--caption">Archive Edit</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a class="nn--link nn--trigger" title="All: Styles">
+                            <span class="nn--caption">STYLES</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="All: Styles: Abstract">
+                                <span class="nn--caption">Abstract</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="All: Styles: Bright">
+                                <span class="nn--caption">Bright</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="All: Styles: Neutral">
+                                <span class="nn--caption">Neutral</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="All: Styles: Geometric"
+                              >
+                                <span class="nn--caption">Geometric</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="All: Styles: High Pile Rugs"
+                              >
+                                <span class="nn--caption">High Pile</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="All: Styles: All Styles"
+                              >
+                                <span class="nn--caption">All Styles</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">&nbsp;</li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link nn--trigger nn--blog"
+                            title="All: Inspiration"
+                          >
+                            <span class="nn--caption">INSPIRATION</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="All: Inspiration: Designer Spotlight: Elena Frampton"
+                              >
+                                <span class="nn--caption"
+                                  >Designer Spotlight: Elena Frampton</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="All: Inspiration: Inside RuPaul's Beverly Hills Mansion"
+                              >
+                                <span class="nn--caption"
+                                  >Inside RuPaul's Beverly Hills Mansion</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="All: Inspiration: Spring Showhouse Highlights"
+                              >
+                                <span class="nn--caption"
+                                  >Spring Showhouse Highlights</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="All: Inspiration: Choose The Perfect Rug: Children's Room Edition"
+                              >
+                                <span class="nn--caption"
+                                  >Choose The Perfect Rug: Children's Room
+                                  Edition</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="All: Inspiration: Exploring The Archives At Liberty"
+                              >
+                                <span class="nn--caption"
+                                  >Exploring The Archives At Liberty</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="All: Inspiration: Project Tours: 53 West 53"
+                              >
+                                <span class="nn--caption"
+                                  >Project Tours: 53 West 53</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="All: Inspiration: All Articles"
+                              >
+                                <span class="nn--caption">All Articles</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link"
+                            title="New In: Discover Collage by The Rug Company"
+                          >
+                            <figure
+                              title="New In: Discover Collage by The Rug Company"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/new_in/668x372---CC_REVERIE-MIST_R_LANDSCAPE.jpg"
+                                class="nn--image form-lazy is-loaded"
+                                sizes="(max-width: 375px) 295px,
+                                                    (max-width: 540px) 460px,
+                                                    (max-width: 768px) 688px,
+                                                    (max-width: 1024px) 256px,
+                                                    368px"
+                                alt="New In: Discover Collage by The Rug Company"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >New In: Discover Collage by The Rug
+                                    Company</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="level0 nav-2 level-top megamenu_in-stock in-stock with-dropdown"
+              >
+                <a class="level-top"><span>In Stock</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span1 nn--with-unit-toggle">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="In Stock: Small Rugs"
+                          >
+                            <span class="nn--caption">SMALL</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Small Rugs: 6' x 4'"
+                              >
+                                <span class="nn--caption">6' x 4'</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Small Rugs: 7'6&quot; x 5'"
+                              >
+                                <span class="nn--caption">7'6" x 5'</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Small Rugs: 9' x 6'"
+                              >
+                                <span class="nn--caption">9' x 6'</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: All Small Rugs"
+                              >
+                                <span class="nn--caption">All Small</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item nn--mobile-unit">
+                              <!-- <div class="nn--unit-toggle">
+                                <span class="nn--unit">
+                                  <a href="#" class="nn--unit-set nn--unit-sqm"
+                                    ><span>See sizes in m</span></a
+                                  >
+                                </span>
+                                <span class="nn--unit nn--unit-selected">
+                                  <a href="#" class="nn--unit-set nn--unit-sqft"
+                                    ><span>See sizes in ft</span></a
+                                  >
+                                </span>
+                              </div> -->
+                            </li>
+                          </ul>
+                          <!-- <div class="nn--unit-toggle">
+                            <span class="nn--unit">
+                              <a href="#" class="nn--unit-set nn--unit-sqm"
+                                ><span>See sizes in m</span></a
+                              >
+                            </span>
+                            <span class="nn--unit nn--unit-selected">
+                              <a href="#" class="nn--unit-set nn--unit-sqft"
+                                ><span>See sizes in ft</span></a
+                              >
+                            </span>
+                          </div> -->
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="In Stock: Medium Rugs"
+                          >
+                            <span class="nn--caption">MEDIUM</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Medium Rugs: 10' x 7'"
+                              >
+                                <span class="nn--caption">10' x 7'</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Medium Rugs: 10' x 8'"
+                              >
+                                <span class="nn--caption">10' x 8'</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Medium Rugs: 12' x 9'"
+                              >
+                                <span class="nn--caption">12' x 9'</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: All Medium Rugs"
+                              >
+                                <span class="nn--caption">All Medium</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item nn--mobile-unit">
+                              <!-- <div class="nn--unit-toggle">
+                                <span class="nn--unit">
+                                  <a href="#" class="nn--unit-set nn--unit-sqm"
+                                    ><span>See sizes in m</span></a
+                                  >
+                                </span>
+                                <span class="nn--unit nn--unit-selected">
+                                  <a href="#" class="nn--unit-set nn--unit-sqft"
+                                    ><span>See sizes in ft</span></a
+                                  >
+                                </span>
+                              </div> -->
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="In Stock: Large Rugs"
+                          >
+                            <span class="nn--caption">LARGE</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Large Rugs: 14' x 10'"
+                              >
+                                <span class="nn--caption">14' x 10'</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Large Rugs: 16' x 12'"
+                              >
+                                <span class="nn--caption">16' x 12'</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Large Rugs: 18' x 12'"
+                              >
+                                <span class="nn--caption">18' x 12'</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: All Large Rugs"
+                              >
+                                <span class="nn--caption">All Large</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item nn--mobile-unit">
+                              <!-- <div class="nn--unit-toggle">
+                                <span class="nn--unit">
+                                  <a href="#" class="nn--unit-set nn--unit-sqm"
+                                    ><span>See sizes in m</span></a
+                                  >
+                                </span>
+                                <span class="nn--unit nn--unit-selected">
+                                  <a href="#" class="nn--unit-set nn--unit-sqft"
+                                    ><span>See sizes in ft</span></a
+                                  >
+                                </span>
+                              </div> -->
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="In Stock: Runners"
+                          >
+                            <span class="nn--caption">RUNNERS</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Runners: 10' x 2'9&quot;"
+                              >
+                                <span class="nn--caption">10' x 2'9"</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Runners: 12' x 2'9&quot;"
+                              >
+                                <span class="nn--caption">12' x 2'9"</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="In Stock: All Runners">
+                                <span class="nn--caption">All Runners</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item nn--mobile-unit">
+                              <!-- <div class="nn--unit-toggle">
+                                <span class="nn--unit">
+                                  <a href="#" class="nn--unit-set nn--unit-sqm"
+                                    ><span>See sizes in m</span></a
+                                  >
+                                </span>
+                                <span class="nn--unit nn--unit-selected">
+                                  <a href="#" class="nn--unit-set nn--unit-sqft"
+                                    ><span>See sizes in ft</span></a
+                                  >
+                                </span>
+                              </div> -->
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="In Stock: Lower Priced Rugs"
+                          >
+                            <span class="nn--caption">LOWER PRICED</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Lower Priced Rugs: Archive Edit"
+                              >
+                                <span class="nn--caption">Archive Edit</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="In Stock: Lower Priced Rugs"
+                              >
+                                <span class="nn--caption">Lower Priced</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link"
+                            title="All in stock rugs shipped in 5-16 days"
+                          >
+                            <figure
+                              title="All in stock rugs shipped in 5-16 days"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/in_stock/668x372---CC_RAMBLE_R_LANDSCAPE.jpg"
+                                class="nn--image form-lazy is-loaded"
+                                sizes="(max-width: 375px) 295px,
+                                            (max-width: 540px) 460px,
+                                            (max-width: 768px) 688px,
+                                            (max-width: 1024px) 256px,
+                                            368px"
+                                alt="All in stock rugs shipped in 5-16 days"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >All in stock rugs shipped in 5-16
+                                    days</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="level0 nav-3 level-top megamenu_custom-rugs custom-rugs with-dropdown"
+              >
+                <a class="level-top"><span>Custom</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Build Your Own"
+                          >
+                            <span class="nn--caption">BUILD YOUR OWN</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Build Your Own: The Process"
+                              >
+                                <span class="nn--caption">The Process</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Build Your Own: Staircases"
+                              >
+                                <span class="nn--caption">Staircases</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Build Your Own: Wall-to-Wall"
+                              >
+                                <span class="nn--caption">Wall-to-Wall</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Type: Shape: Runner">
+                                <span class="nn--caption">Runner</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Type: Shape: Round">
+                                <span class="nn--caption">Round</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Build Your Own: Inspiration"
+                              >
+                                <span class="nn--caption">Inspiration</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Custom: Bespoke"
+                          >
+                            <span class="nn--caption">BESPOKE</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Custom: Bespoke: The Process"
+                              >
+                                <span class="nn--caption">The Process</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Custom: Bespoke: Contact Us"
+                              >
+                                <span class="nn--caption">Contact Us</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span3">
+                          <a
+                            class="nn--link nn--trigger nn--blog"
+                            title="All: Inspiration"
+                          >
+                            <span class="nn--caption">INSPIRATION</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Custom: Inspiration: How to Create a Bespoke Rug with Beata Heuman"
+                              >
+                                <span class="nn--caption"
+                                  >How to Create a Bespoke Rug with Beata
+                                  Heuman</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Custom: Inspiration: Climbing Leopard Staircase Installation"
+                              >
+                                <span class="nn--caption"
+                                  >Climbing Leopard Staircase Installation</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Custom: Inspiration: Tailored Alligators Staircase at The Chloe Hotel"
+                              >
+                                <span class="nn--caption"
+                                  >Tailored Alligators Staircase at The Chloe
+                                  Hotel</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Custom: Inspiration: Bespoke Beetle Rug with Samantha Todhunter"
+                              >
+                                <span class="nn--caption"
+                                  >Bespoke Beetle Rug with Samantha
+                                  Todhunter</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Custom: Inspiration: Designs Reimagined as Round"
+                              >
+                                <span class="nn--caption"
+                                  >Designs Reimagined as Round</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Custom: Inspiration: All Articles"
+                              >
+                                <span class="nn--caption">All Articles</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link"
+                            title="Projects Gallery | Staircases &amp; Hallways"
+                          >
+                            <figure
+                              title="Projects Gallery | Staircases &amp; Hallways"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/custom/668x372---ChristinaKim_KipsBay2022_0637_Final_2_.jpg"
+                                class="nn--image form-lazy is-loaded"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >Projects Gallery | Staircases &amp;
+                                    Hallways</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="level0 nav-4 level-top megamenu_bestsellers bestsellers with-dropdown"
+              >
+                <a class="level-top"><span>Bestsellers</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row">
+                        <li class="nn--col">
+                          <a
+                            class="nn--link"
+                            title="Bestsellers: Channels Indigo by Kelly Wearstler"
+                          >
+                            <figure
+                              title="Bestsellers: Channels Indigo by Kelly Wearstler"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/4592-kellywearstler-channelsindigo-rug-1200x1800-flatshot.jpg"
+                                class="nn--image form-lazy is-loaded seller-img"
+                                alt="Bestsellers: Channels Indigo by Kelly Wearstler"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first">Channels Indigo</span>
+                                  <span class="nn--second"
+                                    >by Kelly Wearstler</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+
+                        <li class="nn--col">
+                          <a
+                            class="nn--link"
+                            title="Bestsellers: Channels Copper by Kelly Wearstler"
+                          >
+                            <figure
+                              title="Bestsellers: Channels Copper by Kelly Wearstler"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/channels-copper.jpg"
+                                class="nn--image form-lazy is-loaded seller-img"
+                                alt="Bestsellers: Channels Copper by Kelly Wearstler"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first">Channels Copper</span>
+                                  <span class="nn--second"
+                                    >by Kelly Wearstler</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+
+                        <li class="nn--col">
+                          <a
+                            class="nn--link"
+                            title="Bestsellers: Monarch Fire by Alexander McQueen"
+                          >
+                            <figure
+                              title="Bestsellers: Monarch Fire by Alexander McQueen"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/cropped_4316-alexandermcqueen-monarchfire-rug-1200x1800-flatshot_copy_2.jpg"
+                                class="nn--image form-lazy is-loaded seller-img"
+                                alt="Bestsellers: Monarch Fire by Alexander McQueen"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first">Monarch Fire</span>
+                                  <span class="nn--second"
+                                    >by Alexander McQueen</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+
+                        <li class="nn--col">
+                          <a
+                            class="nn--link"
+                            title="Bestsellers: Carnival by Paul Smith"
+                          >
+                            <figure title="Bestsellers: Carnival by Paul Smith">
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/carnival.jpg"
+                                class="nn--image form-lazy is-loaded seller-img"
+                                alt="Bestsellers: Carnival by Paul Smith"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first">Carnival</span>
+                                  <span class="nn--second">by Paul Smith</span>
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                        <li class="nn--col">
+                          <a
+                            class="nn--link"
+                            title="Bestsellers: Glasswings by Alexander McQueen"
+                          >
+                            <figure
+                              title="Bestsellers: Glasswings by Alexander McQueen"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/glasswings.jpg"
+                                class="nn--image form-lazy is-loaded seller-img"
+                                alt="Bestsellers: Glasswings by Alexander McQueen"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first">Glasswings</span>
+                                  <span class="nn--second"
+                                    >by Alexander McQueen</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+
+                        <li class="nn--col">
+                          <a
+                            class="nn--link"
+                            title="Bestsellers: Caldera by The Rug Company"
+                          >
+                            <figure
+                              title="Bestsellers: Caldera by The Rug Company"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/caldera.jpg"
+                                class="nn--image form-lazy is-loaded seller-img"
+                                alt="Bestsellers: Caldera by The Rug Company"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first">Caldera</span>
+                                  <span class="nn--second"
+                                    >by The Rug Company</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+
+                        <li class="nn--col">
+                          <a
+                            class="nn--link"
+                            title="Bestsellers: Framis by Mary Katrantzou"
+                          >
+                            <figure
+                              title="Bestsellers: Framis by Mary Katrantzou"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/framis.jpg"
+                                class="nn--image form-lazy is-loaded seller-img"
+                                alt="Bestsellers: Framis by Mary Katrantzou"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first">Framis</span>
+                                  <span class="nn--second"
+                                    >by Mary Katrantzou</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+
+                        <li class="nn--col">
+                          <a
+                            class="nn--link"
+                            title="Bestsellers: Coco by The Rug Company"
+                          >
+                            <figure
+                              title="Bestsellers: Coco by The Rug Company"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/bestsellers/2286-therugcompany-coco-rug-1200x1800-flatshot.jpg"
+                                class="nn--image form-lazy is-loaded seller-img"
+                                alt="Bestsellers: Coco by The Rug Company"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first">Coco</span>
+                                  <span class="nn--second"
+                                    >by The Rug Company</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+
+                        <li class="nn--col nn--last nn--rotated">
+                          <a class="nn--link" title="See All">
+                            <span class="nn--see-all">See All</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="level0 nav-5 level-top megamenu_new-in new-in with-dropdown"
+              >
+                <a class="level-top"><span>New In</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="New In: Collections"
+                          >
+                            <span class="nn--caption">COLLECTIONS</span>
+                          </a>
+                          <ul class="nn--submenu nn--split2">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Collections: Latest Arrivals"
+                              >
+                                <span class="nn--caption">Latest Arrivals</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Collections: Divine Inspiration"
+                              >
+                                <span class="nn--caption"
+                                  >Divine Inspiration</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Collections: Collage"
+                              >
+                                <span class="nn--caption">Collage</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Collections: Tidal Silks"
+                              >
+                                <span class="nn--caption">Tidal Silks</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Collections: New Paul Smith Designs"
+                              >
+                                <span class="nn--caption"
+                                  >New Paul Smith Designs</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Collections: The Liberty Collection"
+                              >
+                                <span class="nn--caption"
+                                  >The Liberty Collection</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Collections: Supertextures"
+                              >
+                                <span class="nn--caption">Supertextures</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Collections: Tonal Textures"
+                              >
+                                <span class="nn--caption">Tonal Textures</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Collections: Softscapes"
+                              >
+                                <span class="nn--caption">Softscapes</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Collections: Future Forms"
+                              >
+                                <span class="nn--caption">Future Forms</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="New In: Designers"
+                          >
+                            <span class="nn--caption">DESIGNERS</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: New In: Ken Fulk"
+                              >
+                                <span class="nn--caption">Ken Fulk</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Designers: Liberty"
+                              >
+                                <span class="nn--caption">Liberty</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Designers: Guo Pei"
+                              >
+                                <span class="nn--caption">Guo Pei</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Kelly Wearstler"
+                              >
+                                <span class="nn--caption">Kelly Wearstler</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: New In: Sarabande"
+                              >
+                                <span class="nn--caption">Sarabande</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="New In: Designers: The Rug Company"
+                              >
+                                <span class="nn--caption">The Rug Company</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link nn--trigger nn--blog"
+                            title="New In: Highlights"
+                          >
+                            <span class="nn--caption">INSPIRATION</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="New In: Stairways To Heaven"
+                              >
+                                <span class="nn--caption"
+                                  >Stairways To Heaven</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a title="New In: Our Stories: Stylish Studies">
+                                <span class="nn--caption">Stylish Studies</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="New In: Our Stories: Wall-to-Wall Rugs"
+                              >
+                                <span class="nn--caption"
+                                  >Wall-to-Wall Rugs</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="New In: Our Stories: Custom Shaped"
+                              >
+                                <span class="nn--caption">Custom Shaped</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="New In: Our Stories: All Stories"
+                              >
+                                <span class="nn--caption">All Stories</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link"
+                            title="Discover Supertextures by The Rug Company"
+                          >
+                            <figure
+                              title="Discover Supertextures by The Rug Company"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/new_in/668x372---CC_FOSSIL_TAN_R_LANDSCAPE.jpg"
+                                class="nn--image form-lazy is-loaded"
+                                alt="Discover the Supertextures Collection. Contemporary Textured Rugs with Undyed Wool"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >Discover Supertextures by The Rug
+                                    Company</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="level0 nav-6 level-top megamenu_lower-priced lower-priced with-dropdown"
+              >
+                <a class="level-top"><span>Lower Priced</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Lower Priced: Categories"
+                          >
+                            <span class="nn--caption">CATEGORIES</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Lower Priced Rugs">
+                                <span class="nn--caption"
+                                  >Lower Priced Rugs</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Archive Edit">
+                                <span class="nn--caption">Archive Edit</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Lower Priced: Categories: Farrow &amp; Ball"
+                              >
+                                <span class="nn--caption"
+                                  >Farrow &amp; Ball</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Lower Priced: Categories: Colour Blocking"
+                              >
+                                <span class="nn--caption">Colour Blocking</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Lower Priced: by Price"
+                          >
+                            <span class="nn--caption">PRICE</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Lower Priced: by Price: Up to $1,500"
+                              >
+                                <span class="nn--caption">Up to $1,500</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Lower Priced: by Price: Up to $2,000"
+                              >
+                                <span class="nn--caption">Up to $2,000</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Lower Priced: by Price: Up to $3,000"
+                              >
+                                <span class="nn--caption">Up to $3,000</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Lower Priced: by Price: Up to $4,000"
+                              >
+                                <span class="nn--caption">Up to $4,000</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Lower Priced: by Price: Up to $5,000"
+                              >
+                                <span class="nn--caption">Up to $5,000</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Lower Priced: All Prices"
+                              >
+                                <span class="nn--caption">All Prices</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span3">&nbsp;</li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link"
+                            title="Discover the New Farrow &amp; Ball Collection"
+                          >
+                            <figure
+                              title="Discover the New Farrow &amp; Ball Collection"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/lower_priced/688x372---DC_FaB_TEXTURE_SILK-BORDER.jpg"
+                                class="nn--image form-lazy is-loaded"
+                                alt="Discover the New Farrow &amp; Ball Collection"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >Discover the New Farrow &amp; Ball
+                                    Collection</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+
+              <li
+                class="level0 nav-7 level-top megamenu_designer designer with-dropdown"
+              >
+                <a class="level-top"><span>Designer</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Designers: Shop by Designer"
+                          >
+                            <span class="nn--caption">SHOP BY DESIGNER</span>
+                          </a>
+                          <ul class="nn--submenu nn--split2">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: Paul Smith"
+                              >
+                                <span class="nn--caption">Paul Smith</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: Farrow &amp; Ball"
+                              >
+                                <span class="nn--caption"
+                                  >Farrow &amp; Ball</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: Kelly Weastler"
+                              >
+                                <span class="nn--caption">Kelly Wearstler</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: David Rockwell"
+                              >
+                                <span class="nn--caption">David Rockwell</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: Alexander McQueen"
+                              >
+                                <span class="nn--caption"
+                                  >Alexander McQueen</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: Mary Katrantzou"
+                              >
+                                <span class="nn--caption">Mary Katrantzou</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: Diane von Furstenberg"
+                              >
+                                <span class="nn--caption"
+                                  >Diane von Furstenberg</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: Martyn Lawrence Bullard"
+                              >
+                                <span class="nn--caption"
+                                  >Martyn Lawrence Bullard</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: Vivienne Westwood"
+                              >
+                                <span class="nn--caption"
+                                  >Vivienne Westwood</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: Winch Design"
+                              >
+                                <span class="nn--caption">Winch Design</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: Chihuly"
+                              >
+                                <span class="nn--caption">Chihuly</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: Popular: All Designers"
+                              >
+                                <span class="nn--caption">All Designers</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Designers: New In"
+                          >
+                            <span class="nn--caption">NEW IN</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: New In: Ken Fulk"
+                              >
+                                <span class="nn--caption">Ken Fulk</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: New In: Liberty"
+                              >
+                                <span class="nn--caption">Liberty</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: New In: Helen Amy Murray"
+                              >
+                                <span class="nn--caption"
+                                  >Helen Amy Murray</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: New In: Guo Pei"
+                              >
+                                <span class="nn--caption">Guo Pei</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: New In: Sarabande"
+                              >
+                                <span class="nn--caption">Sarabande</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Designers: New In: The Rug Company"
+                              >
+                                <span class="nn--caption">The Rug Company</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link nn--trigger nn--blog"
+                            title="Designers: Inspiration"
+                          >
+                            <span class="nn--caption">INSPIRATION</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Designers: The Thread: Exploring the Archives at Liberty"
+                              >
+                                <span class="nn--caption"
+                                  >Exploring the Archives at Liberty</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Designers: The Thread: Sarabande: 5 Visionaries, 5 Crafts, 1 Collective"
+                              >
+                                <span class="nn--caption"
+                                  >Sarabande: 5 Visionaries, 5 Crafts, 1
+                                  Collective</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Designers: The Thread: Meet the Designer: Rayman Boozer of Apartment 48"
+                              >
+                                <span class="nn--caption"
+                                  >Meet the Designer: Rayman Boozer of Apartment
+                                  48</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Designers: The Thread: Designer Spotlight Ghislaine Viñas"
+                              >
+                                <span class="nn--caption"
+                                  >Designer Spotlight: Ghislaine Viñas
+                                </span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Designers: The Thread: Bold, Brave, Brudnizki"
+                              >
+                                <span class="nn--caption"
+                                  >Bold, Brave, Brudnizki</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Designers: The Thread: All Articles"
+                              >
+                                <span class="nn--caption">All Articles</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link"
+                            title="New In: Discover the New Paul Smith Designs"
+                          >
+                            <figure
+                              title="New In: Discover the New Paul Smith Designs"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/new_in/668x372DC_PS_PRISMA_R.jpg"
+                                class="nn--image form-lazy is-loaded"
+                                alt="New In: Discover the New Paul Smith Designs"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >New In: Discover the New Paul Smith
+                                    Designs</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="level0 nav-8 level-top megamenu_style style with-dropdown"
+              >
+                <a class="level-top"><span>Style</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span3">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Style: Categories"
+                          >
+                            <span class="nn--caption">CATEGORIES</span>
+                          </a>
+                          <ul class="nn--submenu nn--split3">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Abstract"
+                              >
+                                <span class="nn--caption">Abstract</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Solid Rugs"
+                              >
+                                <span class="nn--caption">Solid Rugs</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Floral"
+                              >
+                                <span class="nn--caption">Floral</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Art Deco"
+                              >
+                                <span class="nn--caption">Art Deco</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Textured Rugs"
+                              >
+                                <span class="nn--caption">Textured Rugs</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Minimalist"
+                              >
+                                <span class="nn--caption">Minimalist</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: High Pile Rugs"
+                              >
+                                <span class="nn--caption">High Pile Rugs</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Inspired by Nature"
+                              >
+                                <span class="nn--caption"
+                                  >Inspired by Nature</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Bright"
+                              >
+                                <span class="nn--caption">Bright</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Low Pile Rugs"
+                              >
+                                <span class="nn--caption">Low Pile Rugs</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Metallic"
+                              >
+                                <span class="nn--caption">Metallic</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Animal Print"
+                              >
+                                <span class="nn--caption">Animal Print</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                aria-label="View rugs in our Contemporary Geometric Rugs collection"
+                                class="nn--link"
+                                title="Style: Categories: Geometric"
+                              >
+                                <span class="nn--caption">Geometric</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Ombré"
+                              >
+                                <span class="nn--caption">Ombré</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                aria-label="View rugs designed by Farrow and Ball"
+                                class="nn--link"
+                                title="Style: Categories: Farrow &amp; Ball"
+                              >
+                                <span class="nn--caption"
+                                  >Farrow &amp; Ball</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Classical"
+                              >
+                                <span class="nn--caption">Classical</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Monochrome"
+                              >
+                                <span class="nn--caption">Monochrome</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Vintage &amp; Traditional"
+                              >
+                                <span class="nn--caption"
+                                  >Vintage &amp; Traditional</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Neutral"
+                              >
+                                <span class="nn--caption">Neutral</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: Bordered"
+                              >
+                                <span class="nn--caption">Bordered</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Style: Categories: All Contemporary Rugs"
+                              >
+                                <span class="nn--caption"
+                                  >All Contemporary Rugs</span
+                                >
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link nn--trigger nn--blog"
+                            title="Style: Inspiration"
+                          >
+                            <span class="nn--caption">INSPIRATION</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Style: The Thread: Bold, Brave, Brudnizki"
+                              >
+                                <span class="nn--caption"
+                                  >Bold, Brave, Brudnizki</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Style: The Thread: From Fauna to Rug with Alexander McQueen"
+                              >
+                                <span class="nn--caption"
+                                  >From Fauna to Rug with Alexander
+                                  McQueen</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Style: The Thread: Paul Smith: The Legacy of Color &amp; Irreverent Design"
+                              >
+                                <span class="nn--caption"
+                                  >Paul Smith: The Legacy of Color &amp;
+                                  Irreverent Design</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Style: The Thread: Kelly Wearstler: Raw and Refined With a Soulful Vibe"
+                              >
+                                <span class="nn--caption"
+                                  >Kelly Wearstler: Raw and Refined With a
+                                  Soulful Vibe</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Style: The Thread: The Timeless Appeal of Vintage &amp; Traditional Rugs"
+                              >
+                                <span class="nn--caption"
+                                  >The Timeless Appeal of Vintage &amp;
+                                  Traditional Rugs</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Designers: The Thread: All Articles"
+                              >
+                                <span class="nn--caption">All Articles</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link nn--blog"
+                            title="Style: Discover our Rug Visualizer"
+                          >
+                            <figure title="Style: Discover our Rug Visualizer">
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/style/Room_Visualiser_2.jpg"
+                                class="nn--image form-lazy is-loaded"
+                                alt="Style: Discover our Rug Visualizer"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >Discover our Rug Visualizer</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- <li
+                class="level0 nav-9 level-top megamenu_colour colour with-dropdown"
+              >
+                <a class="level-top"><span>Color</span></a>
+                <ul class="megamenu-dropdown level0 submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span4">
+                          <a class="nn--link nn--trigger" title="Colors">
+                            <span class="nn--caption">COLORS</span>
+                          </a>
+                          <ul class="nn--submenu nn--split4">
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Blue">
+                                <span class="nn--caption nn--icon nn--icon-blue"
+                                  >Blue</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Neutral">
+                                <span
+                                  class="nn--caption nn--icon nn--icon-neutral"
+                                  >Neutral</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Yellow">
+                                <span
+                                  class="nn--caption nn--icon nn--icon-yellow"
+                                  >Yellow</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Silver">
+                                <span
+                                  class="nn--caption nn--icon nn--icon-silver"
+                                  >Silver</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Green">
+                                <span
+                                  class="nn--caption nn--icon nn--icon-green"
+                                  >Green</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: White">
+                                <span
+                                  class="nn--caption nn--icon nn--icon-white"
+                                  >White</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Orange">
+                                <span
+                                  class="nn--caption nn--icon nn--icon-orange"
+                                  >Orange</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Gold">
+                                <span
+                                  class="nn--caption nn--icon nn--icon-gold-bronze"
+                                  >Gold</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Grey">
+                                <span class="nn--caption nn--icon nn--icon-grey"
+                                  >Grey</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Colors: Cream &amp; Beige"
+                              >
+                                <span
+                                  class="nn--caption nn--icon nn--icon-cream-beige"
+                                  >Cream &amp; Beige</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Pink">
+                                <span class="nn--caption nn--icon nn--icon-pink"
+                                  >Pink</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Custom">
+                                <span
+                                  class="nn--caption nn--icon nn--icon-custom"
+                                  >Custom</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Black">
+                                <span
+                                  class="nn--caption nn--icon nn--icon-black"
+                                  >Black</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Multicolor">
+                                <span
+                                  class="nn--caption nn--icon nn--icon-multicolor"
+                                  >Multicolor</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: Red">
+                                <span class="nn--caption nn--icon nn--icon-red"
+                                  >Red</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Colors: All Colors">
+                                <span class="nn--caption nn--icon nn--icon-none"
+                                  >All Colors</span
+                                >
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Colour: Farrow &amp; Ball"
+                          >
+                            <span class="nn--caption">FARROW &amp; BALL</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Colour: Farrow &amp; Ball: Holland Stone"
+                              >
+                                <span
+                                  class="nn--caption nn--icon nn--icon-holland-stone"
+                                  >Holland Stone</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Colour: Farrow &amp; Ball: Portland Pink"
+                              >
+                                <span
+                                  class="nn--caption nn--icon nn--icon-portland-pink"
+                                  >Portland Pink</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Colour: Farrow &amp; Ball: Bay Blue"
+                              >
+                                <span
+                                  class="nn--caption nn--icon nn--icon-bay-blue"
+                                  >Bay Blue</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Colour: Farrow &amp; Ball: Leighton Teal"
+                              >
+                                <span
+                                  class="nn--caption nn--icon nn--icon-leighton-teal"
+                                  >Leighton Teal</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Colour: Farrow &amp; Ball: All Farrow &amp; Ball"
+                              >
+                                <span class="nn--caption nn--icon nn--icon-none"
+                                  >All Farrow &amp; Ball</span
+                                >
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link nn--blog"
+                            title="Color Picking: Meet the Dye Master"
+                          >
+                            <figure title="Color Picking: Meet the Dye Master">
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/colour/catalogue.jpg"
+                                class="nn--image form-lazy is-loaded"
+                                alt="Color Picking: Meet the Dye Master"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >Color Picking: Meet the Dye Master</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li> -->
+              <li
+                class="level0 nav-10 level-top megamenu_type type with-dropdown"
+              >
+                <a class="level-top"><span>Type</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span1">
+                          <!-- SHAPE -->
+                          <a class="nn--link nn--trigger" title="Type: Shape">
+                            <span class="nn--caption">SHAPE</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Shape: Rectangle"
+                              >
+                                <span class="nn--caption">Rectangle</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Type: Shape: Runner">
+                                <span class="nn--caption">Runner</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Type: Shape: Round">
+                                <span class="nn--caption">Round</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Type: Shape: Custom">
+                                <span class="nn--caption">Custom</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Shape: All Shapes"
+                              >
+                                <span class="nn--caption">All Shapes</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <!-- ROOM -->
+                          <a class="nn--link nn--trigger" title="Type: Room">
+                            <span class="nn--caption">ROOM</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Room: Living Room"
+                              >
+                                <span class="nn--caption">Living Room</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Type: Room: Bedroom">
+                                <span class="nn--caption">Bedroom</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Room: Dining Room"
+                              >
+                                <span class="nn--caption">Dining Room</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Room: Hallway &amp; Stairs"
+                              >
+                                <span class="nn--caption"
+                                  >Hallway &amp; Stairs</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Room: Children's Room"
+                              >
+                                <span class="nn--caption">Children's Room</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Type: Room: Outdoor">
+                                <span class="nn--caption">Outdoor</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <!-- MATERIAL -->
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Type: Material"
+                          >
+                            <span class="nn--caption">MATERIAL</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Type: Material: Wool">
+                                <span class="nn--caption">Wool</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Type: Material: Silk">
+                                <span class="nn--caption">Silk</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Material: Wool &amp; Silk"
+                              >
+                                <span class="nn--caption">Wool &amp; Silk</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Material: Mohair"
+                              >
+                                <span class="nn--caption">Mohair</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Material: Alpaca"
+                              >
+                                <span class="nn--caption">Alpaca</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Material: All Materials"
+                              >
+                                <span class="nn--caption">All Materials</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <!-- QUALITY -->
+                          <a class="nn--link nn--trigger" title="Type: Quality">
+                            <span class="nn--caption">QUALITY</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Quality: Handknotted"
+                              >
+                                <span class="nn--caption">Handknotted</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Quality: Handloomed"
+                              >
+                                <span class="nn--caption">Handloomed</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Quality: Handtufted"
+                              >
+                                <span class="nn--caption">Handtufted</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Quality: Aubusson"
+                              >
+                                <span class="nn--caption">Aubusson</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Quality: Carving"
+                              >
+                                <span class="nn--caption">Carving</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Quality: All Qualities"
+                              >
+                                <span class="nn--caption">All Qualities</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <!-- ACCESSORIES -->
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Type: Accessories"
+                          >
+                            <span class="nn--caption">ACCESSORIES</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Accessories: Cushions"
+                              >
+                                <span class="nn--caption">Cushions</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Accessories: Wallhangings"
+                              >
+                                <span class="nn--caption">Wallhangings</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Type: Accessories: All Accessories"
+                              >
+                                <span class="nn--caption">All Accessories</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link nn--blog"
+                            title="Type: Materials: Spotlight on Silk"
+                          >
+                            <figure title="Type: Materials: Spotlight on Silk">
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/type/spotlight-on-silk.jpg"
+                                class="nn--image form-lazy is-loaded"
+                                alt="Type: Materials: Spotlight on Silk"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >Materials: Spotlight on Silk</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="level0 nav-11 level-top megamenu_archive archive with-dropdown"
+              >
+                <a class="level-top"><span>Sale</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Sale: Shop Sale Rugs by Size"
+                          >
+                            <span class="nn--caption">BY SIZE</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Small">
+                                <span class="nn--caption">Small</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Medium">
+                                <span class="nn--caption">Medium</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Large">
+                                <span class="nn--caption">Large</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: All Sizes">
+                                <span class="nn--caption">All Sizes</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Sale: Shop Sale by Color"
+                          >
+                            <span class="nn--caption">BY COLOR</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Blue">
+                                <span class="nn--caption">Blue</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Green">
+                                <span class="nn--caption">Green</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Multicolour">
+                                <span class="nn--caption">Multicolor</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Grey">
+                                <span class="nn--caption">Grey</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Pink">
+                                <span class="nn--caption">Pink</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: All Colors">
+                                <span class="nn--caption">All Colors</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Salet: Shop Sale by Style"
+                          >
+                            <span class="nn--caption">BY STYLE</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Abstract">
+                                <span class="nn--caption">Abstract</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Neutral">
+                                <span class="nn--caption">Neutral</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Geometric">
+                                <span class="nn--caption">Geometric</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Textured">
+                                <span class="nn--caption">Textured</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: Bright">
+                                <span class="nn--caption">Bright</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a class="nn--link" title="Sale: All Styles">
+                                <span class="nn--caption">All Styles</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a class="nn--link" title="Sale">
+                            <figure title="Sale">
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/archive/668x372---2346-inkwell.jpg"
+                                class="nn--image form-lazy is-loaded"
+                                alt="Archive Edit"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >Shop Sale: Timeless Designs, Up to 70%
+                                    Off</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="level0 nav-12 last level-top megamenu_projects projects with-dropdown"
+              >
+                <a class="level-top"><span>Trade Services</span></a>
+                <ul class="megamenu-dropdown submenu">
+                  <li class="megamenu-dropdown-container">
+                    <div class="nn--content-wrapper">
+                      <ul class="nn--row nn--6cols">
+                        <li class="nn--col nn--span1">
+                          <a class="nn--link nn--trigger" title="Projects">
+                            <span class="nn--caption">LAB</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Lab: Inspiration"
+                              >
+                                <span class="nn--caption">Inspiration</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Trade Services: Lab: Products"
+                              >
+                                <span class="nn--caption">Products</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Lab: Services"
+                              >
+                                <span class="nn--caption">Services</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Lab: Manufacturing"
+                              >
+                                <span class="nn--caption">Manufacturing</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Lab: Sustainability"
+                              >
+                                <span class="nn--caption">Sustainability</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Lab: Installation"
+                              >
+                                <span class="nn--caption">Installation</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Lab: LAB Toolbox"
+                              >
+                                <span class="nn--caption">LAB Toolbox</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span1">
+                          <a
+                            class="nn--link nn--trigger"
+                            title="Projects: Environment"
+                          >
+                            <span class="nn--caption">ENVIRONMENT</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Environments: Corporate"
+                              >
+                                <span class="nn--caption">Corporate</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Environments: Retail"
+                              >
+                                <span class="nn--caption">Retail</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Environments: Hospitality"
+                              >
+                                <span class="nn--caption">Hospitality</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Environments: Residential"
+                              >
+                                <span class="nn--caption">Residential</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Environments: Yacht"
+                              >
+                                <span class="nn--caption">Yacht</span>
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link"
+                                title="Projects: Environments: Aviation"
+                              >
+                                <span class="nn--caption">Aviation</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span3">
+                          <a
+                            class="nn--link nn--trigger nn--blog"
+                            title="Projects: Case Studies"
+                          >
+                            <span class="nn--caption">CASE STUDIES</span>
+                          </a>
+                          <ul class="nn--submenu">
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Projects: Case Studies: Miami Dolphins Training Complex, Miami, USA"
+                              >
+                                <span class="nn--caption"
+                                  >Miami Dolphins Training Complex, Miami,
+                                  USA</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Projects: Case Studies: Manolo Blahnik Showrooms Around The World"
+                              >
+                                <span class="nn--caption"
+                                  >Manolo Blahnik Showrooms Around The
+                                  World</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Projects: Case Studies: Equinox Hotel, New York, USA"
+                              >
+                                <span class="nn--caption"
+                                  >Equinox Hotel, New York, USA</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Projects: Case Studies: 1228 Madison Living Gallery, New York, USA"
+                              >
+                                <span class="nn--caption"
+                                  >1228 Madison Living Gallery, New York,
+                                  USA</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Projects: Case Studies: Stormbreaker Yacht by Winch Design"
+                              >
+                                <span class="nn--caption"
+                                  >Stormbreaker Yacht by Winch Design</span
+                                >
+                              </a>
+                            </li>
+                            <li class="nn--submenu-item">
+                              <a
+                                class="nn--link nn--blog"
+                                title="Projects: Case Studies: All Projects"
+                              >
+                                <span class="nn--caption">All Projects</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nn--col nn--span2">
+                          <a
+                            class="nn--link"
+                            title="Projects: The Rug Company LAB: Projects &amp; Applications Booklet"
+                          >
+                            <figure
+                              title="The Rug Company LAB: Projects &amp; Applications Booklet"
+                            >
+                              <img
+                                src="https://static.therugcompany.com/media/wysiwyg/newnav/projects/projects.jpg"
+                                class="nn--image form-lazy is-loaded"
+                                alt="The Rug Company LAB: Projects &amp; Applications Booklet"
+                              />
+                              <figcaption>
+                                <span class="nn--caption">
+                                  <span class="nn--first"
+                                    >The Rug Company LAB: Projects &amp;
+                                    Applications Booklet</span
+                                  >
+                                </span>
+                              </figcaption>
+                            </figure>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="header content">
+      <div class="logo-wrapper">
+        <a class="logo" href="/" title="The Rug Company">
+          <img
+            src="https://www.therugcompany.com/static/version1717746379/frontend/trc/trc/en_US/images/TRC-logo.svg"
+            alt="The Rug Company logo - black version"
+            class="logo-dark"
+            *ngIf="!isActive"
+          />
+          <img
+            src="https://www.therugcompany.com/static/version1717746379/frontend/trc/trc/en_US/images/TRC-logo-white.svg"
+            alt="The Rug Company logo - white version"
+            class="form-lazy logo-white is-loaded"
+            *ngIf="isActive"
+          />
+        </a>
+      </div>
+    </div>
+  </header>
+</div>
