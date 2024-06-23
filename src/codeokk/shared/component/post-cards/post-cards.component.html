@@ -1,0 +1,58 @@
+<div class="products-container row-base">
+  <section style="width: 98%">
+    <div class="products-cotainer" [class.w-100]="filteredPostsRoute">
+      <div class="products">
+        <div class="product" *ngFor="let product of currentPageProducts">
+          <div class="image-container">
+            <img
+              [src]="product.productImageList[0].imageUrl"
+              class="product-img"
+            />
+          </div>
+          <div class="product-info">
+            <a>
+              <p class="product-name">{{ product.productName }}</p>
+              <p class="product-desc">{{ product.productDesc }}</p>
+              <p class="product-size">{{ product.productSize }}</p>
+              <p class="product-price">{{ product.productPrice }}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pagination-btns" *ngIf="products.length !== 0">
+      <div
+        class="prev-btn pgn-btn"
+        (click)="previousPage()"
+        [class.disabled]="currentPage === 1"
+      >
+        <span class="material-icons pgn-icon-prev"> navigate_before </span>
+        <span class="btn-text">Previous</span>
+      </div>
+      <div class="page-nos">
+        <ng-container *ngFor="let page of pageNumbers">
+          <ng-container *ngIf="isNumber(page); else ellipsis">
+            <button
+              class="page-no"
+              [ngClass]="{ 'active-page': page === currentPage }"
+              (click)="goToPage(page)"
+            >
+              {{ page }}
+            </button>
+          </ng-container>
+          <ng-template #ellipsis>
+            <button class="page-no disabled">...</button>
+          </ng-template>
+        </ng-container>
+      </div>
+      <div
+        class="next-btn pgn-btn"
+        (click)="nextPage()"
+        [class.disabled]="currentPage === totalPages"
+      >
+        <span class="btn-text pgn-icon-next">Next</span>
+        <span class="material-icons"> navigate_next </span>
+      </div>
+    </div>
+  </section>
+</div>

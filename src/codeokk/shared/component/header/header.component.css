@@ -22,7 +22,7 @@
   min-height: 100%;
   position: relative;
   transition: margin 0.3s ease-out 0s;
-  z-index: 5;
+  z-index: 100;
 }
 
 .header-container:before {
@@ -376,7 +376,7 @@
   visibility: visible !important;
 } */
 
-.level-top {
+.level-top a {
   cursor: pointer;
 }
 
@@ -588,6 +588,8 @@ nav .megamenu-dropdown-container:after {
 
 .nn--6cols .nn--col:last-child .nn--image {
   width: 368px;
+  height: 280px;
+  object-fit: cover;
 }
 
 .is-loaded {
