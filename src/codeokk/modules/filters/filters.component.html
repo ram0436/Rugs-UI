@@ -58,7 +58,7 @@
   </div>
 
   <!-- Price Filter -->
-  <div class="slider-container">
+  <!-- <div class="slider-container">
     <span class="filter-title price-title">Price</span>
     <mat-slider
       [min]="sliderMin"
@@ -104,6 +104,32 @@
     >
       Apply
     </button>
+  </div> -->
+
+  <div class="filter-collection filter-main">
+    <span class="filter-title">Prices</span>
+    <ul class="color-list">
+      <li
+        *ngFor="let price of prices; let i = index"
+        [ngClass]="{ hidden: !showAllPrices && i >= initialItemCount }"
+      >
+        <label class="custom-checkbox">
+          <input
+            type="checkbox"
+            [value]="price.id"
+            (change)="togglePrice(price.id)"
+          />
+          {{ price.range }}
+          <div class="checkbox-indicator"></div>
+        </label>
+      </li>
+      <li *ngIf="shouldShowShowMoreLink(prices, 'prices')">
+        <a class="show-more" (click)="showMoreItems('prices')"> Show More </a>
+      </li>
+      <li *ngIf="shouldShowShowLessLink('prices')">
+        <a class="show-less" (click)="showLessItems('prices')"> Show Less </a>
+      </li>
+    </ul>
   </div>
 
   <div class="filter-collection filter-main">

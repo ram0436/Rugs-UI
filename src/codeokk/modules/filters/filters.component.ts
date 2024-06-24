@@ -19,6 +19,7 @@ export class FiltersComponent implements OnInit {
   showAllCollections: boolean = false;
   showAllSizes: boolean = false;
   showAllAvailabilities: boolean = false;
+  showAllPrices: boolean = false;
 
   subCategoryId = 0;
 
@@ -31,7 +32,16 @@ export class FiltersComponent implements OnInit {
     // Add more as needed
   ];
 
-  discounts = [
+  prices = [
+    { id: 1, range: "Under - $200" },
+    { id: 2, range: "$200 - $500" },
+    { id: 3, range: "$500 - $1000" },
+    { id: 4, range: "$1000 - $2000" },
+    { id: 5, range: "$2000 - $3000" },
+    // Add more as needed
+  ];
+
+  discount = [
     { id: 1, percent: "10%" },
     { id: 2, percent: "20%" },
     { id: 3, percent: "30%" },
@@ -144,6 +154,7 @@ export class FiltersComponent implements OnInit {
   selectedPatterns: number[] = [];
   selectedDesigners: number[] = [];
   selectedCollections: number[] = [];
+  selectedPrices: number[] = [];
 
   brandsExpanded: boolean = false;
   colorsExpanded: boolean = false;
@@ -232,6 +243,16 @@ export class FiltersComponent implements OnInit {
       this.selectedColors.push(colorId);
     } else {
       this.selectedColors.splice(index, 1);
+    }
+    this.applyFilters();
+  }
+
+  togglePrice(priceId: number) {
+    const index = this.selectedPrices.indexOf(priceId);
+    if (index === -1) {
+      this.selectedPrices.push(priceId);
+    } else {
+      this.selectedPrices.splice(index, 1);
     }
     this.applyFilters();
   }
@@ -379,6 +400,9 @@ export class FiltersComponent implements OnInit {
       case "availabilities":
         this.showAllAvailabilities = true;
         break;
+      case "prices":
+        this.showAllPrices = true;
+        break;
       case "colors":
         this.showAllColors = true;
         break;
@@ -413,6 +437,9 @@ export class FiltersComponent implements OnInit {
 
   showLessItems(filterType: string) {
     switch (filterType) {
+      case "prices":
+        this.showAllPrices = false;
+        break;
       case "availabilities":
         this.showAllAvailabilities = false;
         break;
@@ -450,6 +477,8 @@ export class FiltersComponent implements OnInit {
 
   shouldShowShowMoreLink(items: any[], filterType: string): boolean {
     switch (filterType) {
+      case "prices":
+        return !this.showAllPrices && items.length > this.initialItemCount;
       case "availabilities":
         return (
           !this.showAllAvailabilities && items.length > this.initialItemCount
@@ -483,6 +512,8 @@ export class FiltersComponent implements OnInit {
     switch (filterType) {
       case "availabilities":
         return this.showAllAvailabilities;
+      case "prices":
+        return this.showAllPrices;
       case "colors":
         return this.showAllColors;
       case "sizes":

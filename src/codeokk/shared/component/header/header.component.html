@@ -1,9 +1,8 @@
 <div class="header-container flex-col">
   <header
-    class="header header--sticky"
+    class="header header--sticky active"
     (mouseenter)="toggleActive(true)"
     (mouseleave)="toggleActive(false)"
-    [class.active]="isActive"
     [class.scrolled]="isScrolledDown"
   >
     <div class="panel wrapper">
@@ -2034,237 +2033,7 @@
                   </li>
                 </ul>
               </li>
-              <!-- <li
-                class="level0 nav-9 level-top megamenu_colour colour with-dropdown"
-              >
-                <a class="level-top"><span>Color</span></a>
-                <ul class="megamenu-dropdown level0 submenu">
-                  <li class="megamenu-dropdown-container">
-                    <div class="nn--content-wrapper">
-                      <ul class="nn--row nn--6cols">
-                        <li class="nn--col nn--span4">
-                          <a class="nn--link nn--trigger" title="Colors">
-                            <span class="nn--caption">COLORS</span>
-                          </a>
-                          <ul class="nn--submenu nn--split4">
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Blue">
-                                <span class="nn--caption nn--icon nn--icon-blue"
-                                  >Blue</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Neutral">
-                                <span
-                                  class="nn--caption nn--icon nn--icon-neutral"
-                                  >Neutral</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Yellow">
-                                <span
-                                  class="nn--caption nn--icon nn--icon-yellow"
-                                  >Yellow</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Silver">
-                                <span
-                                  class="nn--caption nn--icon nn--icon-silver"
-                                  >Silver</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Green">
-                                <span
-                                  class="nn--caption nn--icon nn--icon-green"
-                                  >Green</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: White">
-                                <span
-                                  class="nn--caption nn--icon nn--icon-white"
-                                  >White</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Orange">
-                                <span
-                                  class="nn--caption nn--icon nn--icon-orange"
-                                  >Orange</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Gold">
-                                <span
-                                  class="nn--caption nn--icon nn--icon-gold-bronze"
-                                  >Gold</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Grey">
-                                <span class="nn--caption nn--icon nn--icon-grey"
-                                  >Grey</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Colors: Cream &amp; Beige"
-                              >
-                                <span
-                                  class="nn--caption nn--icon nn--icon-cream-beige"
-                                  >Cream &amp; Beige</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Pink">
-                                <span class="nn--caption nn--icon nn--icon-pink"
-                                  >Pink</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Custom">
-                                <span
-                                  class="nn--caption nn--icon nn--icon-custom"
-                                  >Custom</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Black">
-                                <span
-                                  class="nn--caption nn--icon nn--icon-black"
-                                  >Black</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Multicolor">
-                                <span
-                                  class="nn--caption nn--icon nn--icon-multicolor"
-                                  >Multicolor</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: Red">
-                                <span class="nn--caption nn--icon nn--icon-red"
-                                  >Red</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a class="nn--link" title="Colors: All Colors">
-                                <span class="nn--caption nn--icon nn--icon-none"
-                                  >All Colors</span
-                                >
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="nn--col nn--span1">
-                          <a
-                            class="nn--link nn--trigger"
-                            title="Colour: Farrow &amp; Ball"
-                          >
-                            <span class="nn--caption">FARROW &amp; BALL</span>
-                          </a>
-                          <ul class="nn--submenu">
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Colour: Farrow &amp; Ball: Holland Stone"
-                              >
-                                <span
-                                  class="nn--caption nn--icon nn--icon-holland-stone"
-                                  >Holland Stone</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Colour: Farrow &amp; Ball: Portland Pink"
-                              >
-                                <span
-                                  class="nn--caption nn--icon nn--icon-portland-pink"
-                                  >Portland Pink</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Colour: Farrow &amp; Ball: Bay Blue"
-                              >
-                                <span
-                                  class="nn--caption nn--icon nn--icon-bay-blue"
-                                  >Bay Blue</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Colour: Farrow &amp; Ball: Leighton Teal"
-                              >
-                                <span
-                                  class="nn--caption nn--icon nn--icon-leighton-teal"
-                                  >Leighton Teal</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Colour: Farrow &amp; Ball: All Farrow &amp; Ball"
-                              >
-                                <span class="nn--caption nn--icon nn--icon-none"
-                                  >All Farrow &amp; Ball</span
-                                >
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="nn--col nn--span2">
-                          <a
-                            class="nn--link nn--blog"
-                            title="Color Picking: Meet the Dye Master"
-                          >
-                            <figure title="Color Picking: Meet the Dye Master">
-                              <img
-                                src="https://static.therugcompany.com/media/wysiwyg/newnav/colour/catalogue.jpg"
-                                class="nn--image form-lazy is-loaded"
-                                alt="Color Picking: Meet the Dye Master"
-                              />
-                              <figcaption>
-                                <span class="nn--caption">
-                                  <span class="nn--first"
-                                    >Color Picking: Meet the Dye Master</span
-                                  >
-                                </span>
-                              </figcaption>
-                            </figure>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-              </li> -->
+
               <li
                 class="level0 nav-10 level-top megamenu_type type with-dropdown"
               >
@@ -2913,7 +2682,8 @@
     <div class="header content">
       <div class="logo-wrapper">
         <a class="logo" href="/" title="The Rug Company">
-          <img
+          <span class="logo-text">Khushi Enterprises</span>
+          <!-- <img
             src="https://www.therugcompany.com/static/version1717746379/frontend/trc/trc/en_US/images/TRC-logo.svg"
             alt="The Rug Company logo - black version"
             class="logo-dark"
@@ -2924,7 +2694,7 @@
             alt="The Rug Company logo - white version"
             class="form-lazy logo-white is-loaded"
             *ngIf="isActive"
-          />
+          /> -->
         </a>
       </div>
     </div>

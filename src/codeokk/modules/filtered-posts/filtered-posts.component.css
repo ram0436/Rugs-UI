@@ -1,5 +1,6 @@
 .filtered-posts {
-  margin: 0 5%;
+  max-width: 1396px;
+  margin: 0 auto;
 }
 
 .breadcrumb {
