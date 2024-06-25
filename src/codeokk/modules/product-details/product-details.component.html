@@ -1,0 +1,215 @@
+<div class="product-details-container">
+  <div class="spinner__loading" *ngIf="isLoading">
+    <div>
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+  <div *ngIf="!isLoading">
+    <div class="product-details-wrapper">
+      <div class="product-img-container">
+        <div class="small-images">
+          <div
+            class="small-image"
+            *ngFor="let image of productDetails.productImageList"
+          >
+            <img
+              [src]="image.imageURL"
+              alt="Product Image"
+              (click)="updateLargeImageUrl(image.imageURL)"
+            />
+          </div>
+        </div>
+        <div
+          class="large-image"
+          (mouseenter)="onMouseEnter($event)"
+          (mousemove)="onMouseMove($event)"
+          (mouseleave)="onMouseLeave($event)"
+        >
+          <img
+            [src]="selectedLargeImageUrl"
+            alt="Large Product Image"
+            #imageElement
+          />
+        </div>
+      </div>
+      <div class="product-details">
+        <div class="product-breadcrumb">
+          Home / Rugs / Modern Rugs / {{ productDetails.name }}
+        </div>
+        <div class="product-price">${{ productDetails.price }}</div>
+        <div class="product-name">{{ productDetails.name }}</div>
+        <div
+          class="product-desc"
+          [innerHTML]="productDetails.description"
+        ></div>
+
+        <div class="product-features">
+          <div
+            class="product-feature"
+            *ngIf="productDetails.shape && productDetails.shape.length"
+          >
+            <div class="feature-head">Shape</div>
+            <div class="feature-desc">{{ productDetails.shape[0]?.name }}</div>
+          </div>
+          <div
+            class="product-feature"
+            *ngIf="productDetails.material && productDetails.material.length"
+          >
+            <div class="feature-head">Material</div>
+            <div class="feature-desc">
+              {{ productDetails.material[0]?.name }}
+            </div>
+          </div>
+          <div
+            class="product-feature"
+            *ngIf="
+              productDetails.weavingTechnique &&
+              productDetails.weavingTechnique.length
+            "
+          >
+            <div class="feature-head">Weaving</div>
+            <div class="feature-desc">
+              {{ productDetails.weavingTechnique[0]?.name }}
+            </div>
+          </div>
+          <div
+            class="product-feature"
+            *ngIf="productDetails.room && productDetails.room.length"
+          >
+            <div class="feature-head">Room</div>
+            <div class="feature-desc">{{ productDetails.room[0]?.name }}</div>
+          </div>
+        </div>
+
+        <div
+          class="product-colors"
+          *ngIf="productDetails.color && productDetails.color.length"
+        >
+          <span class="color-title">Color : </span>
+          <span class="color-names">
+            <ng-container
+              *ngFor="let color of productDetails.color; let i = index"
+            >
+              {{ color.name
+              }}<span *ngIf="i < productDetails.color.length - 1"> / </span>
+            </ng-container>
+          </span>
+        </div>
+
+        <div
+          class="product-sizes"
+          *ngIf="
+            productDetails.productSize && productDetails.productSize.length
+          "
+        >
+          <div class="size-title">Sizes</div>
+          <div class="product-size-container">
+            <div
+              class="product-size"
+              *ngFor="let size of productDetails.productSize"
+            >
+              {{ size.size }} ft
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-price-range"
+          *ngIf="productDetails.priceRange && productDetails.priceRange.length"
+        >
+          {{ productDetails.priceRange[0]?.range }}
+        </div>
+
+        <div class="product-actions-btns">
+          <div class="action-btn cart-btn">
+            <span class="material-icons-outlined bag-icon"> shopping_bag </span>
+            <span>Add To Cart</span>
+          </div>
+          <div class="action-btn wishlist-btn">
+            <span class="material-icons-outlined bag-icon">
+              favorite_border
+            </span>
+            Add To Wishlist
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-more-info">
+      <div class="product-info-sections">
+        <div
+          class="product-info-section active"
+          [class.active]="activeSection === 'Details'"
+          (click)="setActiveSection('Details')"
+        >
+          Details
+        </div>
+        <div
+          class="product-info-section"
+          [class.active]="activeSection === 'Design'"
+          (click)="setActiveSection('Design')"
+        >
+          Design Story
+        </div>
+        <div
+          class="product-info-section"
+          [class.active]="activeSection === 'Care'"
+          (click)="setActiveSection('Care')"
+        >
+          Care
+        </div>
+        <div
+          class="product-info-section"
+          [class.active]="activeSection === 'Shipping'"
+          (click)="setActiveSection('Shipping')"
+        >
+          Shipping Info
+        </div>
+      </div>
+      <div class="info-section-content" *ngIf="activeSection === 'Design'">
+        Our take on creating designs that perpetually oscillate between
+        complexity and simplicity, everything about the Sthir collection
+        indicates a state of equilibrium and harmony. From designs that draw the
+        perfect balance between symbols and their canvases to the phonetics of
+        their names that alternate between high and low syllables. Sthir is a
+        celebration of timeless craftsmanship and art. Woven by hand into knots
+        from the finest wool yarn, Sthir is sure to lend its calm nature and
+        minimal charm to whichever space that it will adorn.
+      </div>
+      <div class="info-section-content" *ngIf="activeSection === 'Details'">
+        <li class="m_title">100% wool</li>
+        <li class="m_title">aiwl-3010 - gold fusion / linen white</li>
+        <li class="m_title">modern</li>
+        <li class="m_title">hand knotted</li>
+        <li class="m_title">Handmade in Rural India</li>
+        <li class="m_title">24 months warranty</li>
+        <li class="m_title">indoor use only</li>
+      </div>
+      <div class="info-section-content" *ngIf="activeSection === 'Care'">
+        <li>DO NOT brush or scrub the rug.</li>
+        <li>
+          Only vacuum clean it periodically. Avoid using vacuum beater brush
+          mode
+        </li>
+        <li>If spills occur, blot immediately. Do not rub the stain.</li>
+        <li>Rotate occasionally to equalize wear.</li>
+        <li>
+          Use protectors under the legs of heavy furniture to avoid flattening
+          and piling.
+        </li>
+        <li>If thread comes out do not pull the yarn, trim with scissor.</li>
+        <li>Periodic professional cleaning recommended</li>
+      </div>
+      <div class="info-section-content" *ngIf="activeSection === 'Shipping'">
+        <li>
+          For in stock products - Free insured delivery worldwide. Duties and
+          Taxes excluded.
+        </li>
+        <li>
+          Delivery Estimates: 6-12 business days (In some cases custom clearance
+          might take longer)
+        </li>
+      </div>
+    </div>
+  </div>
+</div>

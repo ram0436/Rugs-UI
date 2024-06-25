@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { MasterService } from "../service/master.service";
 
 @Component({
   selector: "app-filters",
@@ -20,84 +21,25 @@ export class FiltersComponent implements OnInit {
   showAllSizes: boolean = false;
   showAllAvailabilities: boolean = false;
   showAllPrices: boolean = false;
+  showAllRooms: boolean = false;
 
   subCategoryId = 0;
 
-  colors = [
-    { id: 1, name: "Red", code: "#FF0000" },
-    { id: 2, name: "Green", code: "#00FF00" },
-    { id: 3, name: "Blue", code: "#0000FF" },
-    { id: 4, name: "Black", code: "#000000" },
-    { id: 5, name: "White", code: "#FFFFFF" },
-    // Add more as needed
-  ];
-
-  prices = [
-    { id: 1, range: "Under - $200" },
-    { id: 2, range: "$200 - $500" },
-    { id: 3, range: "$500 - $1000" },
-    { id: 4, range: "$1000 - $2000" },
-    { id: 5, range: "$2000 - $3000" },
-    // Add more as needed
-  ];
-
-  discount = [
-    { id: 1, percent: "10%" },
-    { id: 2, percent: "20%" },
-    { id: 3, percent: "30%" },
-    { id: 4, percent: "40%" },
-    { id: 5, percent: "50%" },
-    // Add more as needed
-  ];
+  colors: any[] = [];
+  prices: any[] = [];
+  discount: any = [];
+  sizes: any[] = [];
+  materials: any[] = [];
+  priceRanges: any[] = [];
+  shapes: any[] = [];
+  weavingTechniques: any[] = [];
+  patterns: any[] = [];
+  collections: any[] = [];
+  rooms: any[] = [];
 
   availabilities = [
     { id: 1, name: "Ready to Ship" },
     { id: 2, name: "Made to Order" },
-    // Add more as needed
-  ];
-
-  sizes = [
-    { id: 1, name: "60x90 cm" },
-    { id: 2, name: "90x150 cm" },
-    { id: 3, name: "120x180 cm" },
-    { id: 4, name: "150x240 cm" },
-    { id: 5, name: "180x270 cm" },
-    // Add more as needed
-  ];
-
-  materials = [
-    { id: 1, name: "Wool" },
-    { id: 2, name: "Wool and Bamboo Silk" },
-    { id: 3, name: "Wool and Viscose" },
-    { id: 4, name: "Wool and Silk" },
-    { id: 5, name: "Jute and Hemp" },
-    // Add more as needed
-  ];
-
-  priceRanges = [
-    { id: 1, name: "Under - $200" },
-    { id: 2, name: "$200 - $500" },
-    { id: 3, name: "$500 - $1,000" },
-    { id: 4, name: "$1,000 - $2,000" },
-    { id: 5, name: "$2,000 - $3,000" },
-    // Add more as needed
-  ];
-
-  shapes = [
-    { id: 1, name: "Rectangle" },
-    { id: 2, name: "Irregular" },
-    { id: 3, name: "Round" },
-    { id: 4, name: "Runner" },
-    { id: 5, name: "Oval" },
-    // Add more as needed
-  ];
-
-  weavingTechniques = [
-    { id: 1, name: "Hand Knotted" },
-    { id: 2, name: "Hand Tufted" },
-    { id: 3, name: "Hand Loom" },
-    { id: 4, name: "Flat Weaves" },
-    { id: 5, name: "Patchwork" },
     // Add more as needed
   ];
 
@@ -108,29 +50,12 @@ export class FiltersComponent implements OnInit {
     // Add more as needed
   ];
 
-  patterns = [
-    { id: 1, name: "Abstract" },
-    { id: 2, name: "Floral and Tropical" },
-    { id: 3, name: "Geometric and Stripes" },
-    { id: 4, name: "Graphic and Art Deco" },
-    { id: 5, name: "Moroccan and Tribal" },
-    // Add more as needed
-  ];
-
   designers = [
     { id: 1, name: "Abin Chaudhary" },
     { id: 2, name: "Amdl Circle" },
     { id: 3, name: "Artemis" },
     { id: 4, name: "Ashiesh Shah" },
     { id: 5, name: "Jocelyn Burton" },
-    // Add more as needed
-  ];
-
-  collections = [
-    { id: 1, name: "Aalam" },
-    { id: 2, name: "Abrash" },
-    { id: 3, name: "Acar" },
-    { id: 4, name: "Alhambra" },
     // Add more as needed
   ];
 
@@ -155,6 +80,7 @@ export class FiltersComponent implements OnInit {
   selectedDesigners: number[] = [];
   selectedCollections: number[] = [];
   selectedPrices: number[] = [];
+  selectedRooms: number[] = [];
 
   brandsExpanded: boolean = false;
   colorsExpanded: boolean = false;
@@ -185,9 +111,22 @@ export class FiltersComponent implements OnInit {
   fromPrice = 0;
   toPrice = 5000;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private masterService: MasterService
+  ) {}
 
   ngOnInit() {
+    this.getAllColors();
+    this.getAllProductSizes();
+    this.getAllDiscounts();
+    this.getAllMaterials();
+    this.getAllCollections();
+    this.getAllShapes();
+    this.getAllPatterns();
+    this.getAllPriceRanges();
+    this.getAllRooms();
+    this.getAllWeaingTechniques();
     this.route.queryParams.subscribe((params) => {
       this.parentId = params["parent"];
       if (params["category"] !== undefined)
@@ -198,6 +137,65 @@ export class FiltersComponent implements OnInit {
 
       if (params["category"] !== undefined)
         this.menuId = Number(params["category"]);
+    });
+  }
+  getAllColors() {
+    this.masterService.getAllColor().subscribe((res: any) => {
+      this.colors = res;
+    });
+  }
+
+  getAllProductSizes() {
+    this.masterService.getAllProductSize().subscribe((res: any) => {
+      this.sizes = res;
+    });
+  }
+
+  getAllDiscounts() {
+    this.masterService.getAllDiscount().subscribe((res: any) => {
+      this.discount = res;
+    });
+  }
+
+  getAllMaterials() {
+    this.masterService.getAllMaterial().subscribe((res: any) => {
+      this.materials = res;
+    });
+  }
+
+  getAllCollections() {
+    this.masterService.getAllCollection().subscribe((res: any) => {
+      this.collections = res;
+    });
+  }
+
+  getAllShapes() {
+    this.masterService.getAllShape().subscribe((res: any) => {
+      this.shapes = res;
+    });
+  }
+
+  getAllPatterns() {
+    this.masterService.getAllPattern().subscribe((res: any) => {
+      this.patterns = res;
+    });
+  }
+
+  getAllPriceRanges() {
+    this.masterService.getAllPriceRange().subscribe((res: any) => {
+      this.priceRanges = res;
+    });
+  }
+
+  getAllRooms() {
+    this.masterService.getAllRoom().subscribe((res: any) => {
+      this.rooms = res;
+    });
+  }
+
+  getAllWeaingTechniques() {
+    this.masterService.getAllWeavingTechnique().subscribe((res: any) => {
+      this.weavingTechniques = res;
     });
   }
 
@@ -307,6 +305,16 @@ export class FiltersComponent implements OnInit {
     this.applyFilters();
   }
 
+  toggleRoom(roomId: number) {
+    const index = this.selectedMaterials.indexOf(roomId);
+    if (index === -1) {
+      this.selectedRooms.push(roomId);
+    } else {
+      this.selectedRooms.splice(index, 1);
+    }
+    this.applyFilters();
+  }
+
   togglePriceRange(priceRangeId: number) {
     const index = this.selectedPriceRanges.indexOf(priceRangeId);
     if (index === -1) {
@@ -403,6 +411,9 @@ export class FiltersComponent implements OnInit {
       case "prices":
         this.showAllPrices = true;
         break;
+      case "rooms":
+        this.showAllRooms = true;
+        break;
       case "colors":
         this.showAllColors = true;
         break;
@@ -439,6 +450,9 @@ export class FiltersComponent implements OnInit {
     switch (filterType) {
       case "prices":
         this.showAllPrices = false;
+        break;
+      case "rooms":
+        this.showAllRooms = false;
         break;
       case "availabilities":
         this.showAllAvailabilities = false;
@@ -485,6 +499,8 @@ export class FiltersComponent implements OnInit {
         );
       case "colors":
         return !this.showAllColors && items.length > this.initialItemCount;
+      case "rooms":
+        return !this.showAllRooms && items.length > this.initialItemCount;
       case "sizes":
         return !this.showAllSizes && items.length > this.initialItemCount;
       case "materials":
@@ -514,6 +530,8 @@ export class FiltersComponent implements OnInit {
         return this.showAllAvailabilities;
       case "prices":
         return this.showAllPrices;
+      case "rooms":
+        return this.showAllRooms;
       case "colors":
         return this.showAllColors;
       case "sizes":
