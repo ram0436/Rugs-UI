@@ -3,20 +3,35 @@
     <div class="products-cotainer" [class.w-100]="filteredPostsRoute">
       <div class="products">
         <div class="product" *ngFor="let product of currentPageProducts">
-          <div class="image-container">
-            <img
-              [src]="product.productImageList[0].imageUrl"
-              class="product-img"
-            />
-          </div>
-          <div class="product-info">
-            <a>
-              <p class="product-name">{{ product.productName }}</p>
-              <p class="product-desc">{{ product.productDesc }}</p>
-              <p class="product-size">{{ product.productSize }}</p>
-              <p class="product-price">{{ product.productPrice }}</p>
-            </a>
-          </div>
+          <a [routerLink]="'/product-details/' + product.productCode">
+            <div class="image-container">
+              <img
+                [src]="product.productImageList[0].imageURL"
+                class="product-img"
+              />
+            </div>
+            <div class="product-info">
+              <a>
+                <p class="product-name">{{ product.name }}</p>
+                <p class="product-desc">{{ product.description }}</p>
+                <p class="product-size">
+                  <span
+                    *ngFor="
+                      let sizeDetail of product.productSizeDetails;
+                      let i = index
+                    "
+                    class="size"
+                  >
+                    {{ sizeDetail.size
+                    }}<span *ngIf="i < product.productSizeDetails.length - 1"
+                      >,
+                    </span>
+                  </span>
+                </p>
+                <p class="product-price">{{ product.price }}</p>
+              </a>
+            </div>
+          </a>
         </div>
       </div>
     </div>

@@ -69,10 +69,87 @@
               </div>
               <!-- <span class="counter-number">0</span> -->
             </div>
-            <div class="customer-account-menu js-customer-account-menu">
-              <span class="material-icons-outlined section-icon bag-icon">
+            <div
+              class="customer-account-menu js-customer-account-menu minicart-wrapper"
+            >
+              <span
+                class="material-icons-outlined section-icon bag-icon"
+                (click)="toggleAccount()"
+              >
                 person_outline
               </span>
+              <div
+                class="block block-minicart empty active"
+                [ngClass]="{ 'display-none': !isAccountActive }"
+              >
+                <div id="minicart-content-wrapper">
+                  <div class="block-content">
+                    <span
+                      class="material-icons-outlined section-icon close-icon"
+                      (click)="toggleAccount()"
+                    >
+                      close
+                    </span>
+                    <div class="user-actions-content">
+                      <div class="content-info" *ngIf="!isUserLogedIn">
+                        <div class="info-title">Welcome</div>
+                        <div class="info-email">
+                          To access account and manage actions
+                        </div>
+                      </div>
+                      <div class="content-info" *ngIf="isUserLogedIn">
+                        <div class="info-title">Hello {{ userName }}</div>
+                        <div class="info-email">{{ userMobile }}</div>
+                      </div>
+                      <div>
+                        <div
+                          class="get-user-in-links .get-in-links"
+                          *ngIf="!isUserLogedIn"
+                        >
+                          <a class="link-btn" (click)="openLoginModal()"
+                            >Login / Signup</a
+                          >
+                        </div>
+                        <div class="get-in-links">
+                          <div
+                            class="info"
+                            (click)="navigateToDashboard()"
+                            *ngIf="isAdmin"
+                          >
+                            <div class="info-section">Admin Dashboard</div>
+                          </div>
+                          <div class="info">
+                            <div class="info-section" routerLink="/user/orders">
+                              My Orders
+                            </div>
+                          </div>
+                          <div class="info">
+                            <div
+                              class="info-section"
+                              routerLink="/user/wishlist"
+                            >
+                              My Wishlist
+                            </div>
+                          </div>
+                          <div class="info">
+                            <div class="info-section">Contact Us</div>
+                          </div>
+                          <div
+                            class="info"
+                            (click)="logout()"
+                            *ngIf="isUserLogedIn"
+                          >
+                            <div class="info-section">Logout</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <strong class="subtitle empty"
+                      ><span>You have no items in your shopping cart.</span>
+                    </strong> -->
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="block block-search algolia-search-block">
               <span

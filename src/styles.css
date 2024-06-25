@@ -14,13 +14,13 @@ body {
 body {
   margin: 0;
   box-sizing: border-box;
-  color: #000;
   font-family: "AkziendGroteskBe", "Helvetica Neue", Helvetica, Arial,
     sans-serif;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.42857143;
   font-size: 1.4rem;
+  line-height: 1.5;
+  color: #212529;
 }
 
 a {
@@ -54,4 +54,14 @@ img {
 
 .d-block {
   display: block;
+}
+
+.spinner__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: var(--dynamic-app-color);
 }

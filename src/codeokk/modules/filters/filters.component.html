@@ -44,7 +44,7 @@
             [value]="size.id"
             (change)="toggleSize(size.id)"
           />
-          {{ size.name }}
+          {{ size.size }}
           <div class="checkbox-indicator"></div>
         </label>
       </li>
@@ -57,60 +57,11 @@
     </ul>
   </div>
 
-  <!-- Price Filter -->
-  <!-- <div class="slider-container">
-    <span class="filter-title price-title">Price</span>
-    <mat-slider
-      [min]="sliderMin"
-      [max]="sliderMax"
-      [(ngModel)]="sliderValue"
-      (input)="onSliderChange($event)"
-    >
-      <input matSliderStartThumb [(ngModel)]="minValue" />
-      <input matSliderEndThumb [(ngModel)]="maxValue" />
-    </mat-slider>
-    <div class="price-fields">
-      <mat-form-field>
-        <mat-label for="minValue">Min Value: </mat-label>
-        <input
-          matInput
-          type="number"
-          id="minValue"
-          [(ngModel)]="minValue"
-          (change)="updateSlider()"
-          min="sliderMin"
-          max="maxValue"
-        />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label for="maxValue">Max Value: </mat-label>
-        <input
-          matInput
-          type="number"
-          id="maxValue"
-          [(ngModel)]="maxValue"
-          (change)="updateSlider()"
-          min="minValue"
-          max="sliderMax"
-        />
-      </mat-form-field>
-    </div>
-    <button
-      mat-raised-button
-      color="primary"
-      class="set-price-btn"
-      (click)="applyFilters()"
-    >
-      Apply
-    </button>
-  </div> -->
-
   <div class="filter-collection filter-main">
     <span class="filter-title">Prices</span>
     <ul class="color-list">
       <li
-        *ngFor="let price of prices; let i = index"
+        *ngFor="let price of priceRanges; let i = index"
         [ngClass]="{ hidden: !showAllPrices && i >= initialItemCount }"
       >
         <label class="custom-checkbox">
@@ -161,6 +112,33 @@
       </li>
       <li *ngIf="shouldShowShowLessLink('colors')">
         <a class="show-less" (click)="showLessItems('colors')"> Show Less </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Rooms -->
+  <div class="filter-material filter-main">
+    <span class="filter-title">Room</span>
+    <ul class="room-list">
+      <li
+        *ngFor="let room of rooms; let i = index"
+        [ngClass]="{ hidden: !showAllRooms && i >= initialItemCount }"
+      >
+        <label class="custom-checkbox">
+          <input
+            type="checkbox"
+            [value]="room.id"
+            (change)="toggleRoom(room.id)"
+          />
+          {{ room.name }}
+          <div class="checkbox-indicator"></div>
+        </label>
+      </li>
+      <li *ngIf="shouldShowShowMoreLink(rooms, 'rooms')">
+        <a class="show-more" (click)="showMoreItems('rooms')"> Show More </a>
+      </li>
+      <li *ngIf="shouldShowShowLessLink('rooms')">
+        <a class="show-less" (click)="showLessItems('rooms')"> Show Less </a>
       </li>
     </ul>
   </div>

@@ -11,4 +11,44 @@ export class MasterService {
   constructor(private http: HttpClient) {}
 
   private baseUrl = environment.baseUrl;
+
+  getAllColor() {
+    return this.http.get(`${this.baseUrl}/Master/GetAllColor`);
+  }
+
+  getAllDiscount() {
+    return this.http.get(`${this.baseUrl}/Master/GetAllDiscount`);
+  }
+
+  getAllProductSize() {
+    return this.http.get(`${this.baseUrl}/Master/GetAllProductSize`);
+  }
+
+  getAllMaterial() {
+    return this.http.get(`${this.baseUrl}/Master/GetAllMaterial`);
+  }
+
+  getAllShape() {
+    return this.http.get(`${this.baseUrl}/Master/GetAllShape`);
+  }
+
+  getAllWeavingTechnique() {
+    return this.http.get(`${this.baseUrl}/Master/GetAllWeavingTechnique`);
+  }
+
+  getAllCollection() {
+    return this.http.get(`${this.baseUrl}/Master/GetAllCollection`);
+  }
+
+  getAllPattern() {
+    return this.http.get(`${this.baseUrl}/Master/GetAllPattern`);
+  }
+
+  getAllRoom() {
+    return this.http.get(`${this.baseUrl}/Master/GetAllRoom`);
+  }
+
+  getAllPriceRange() {
+    return this.http.get(`${this.baseUrl}/Master/GetAllPriceRange`);
+  }
 }

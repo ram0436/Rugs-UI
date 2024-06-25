@@ -510,6 +510,90 @@ nav .megamenu-dropdown-container:after {
   display: table;
 }
 
+.content-info {
+  display: block;
+  padding-bottom: 2px;
+}
+
+.info-title {
+  font-size: 14px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 15px;
+  height: 20px;
+  font-weight: 700;
+}
+
+.info-email {
+  height: 18px;
+  color: #282c3f;
+}
+
+.info-email,
+.info-title {
+  font-size: 14px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 15px;
+}
+
+.get-user-in-links {
+  border: none;
+}
+
+.get-in-links {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+  padding-bottom: 0px;
+  border-top: 1px solid #eaeaec;
+}
+
+.link-btn:first-child {
+  margin: 0 5px 6px 0;
+}
+
+.link-btn {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px 10px 0 0;
+  border: 1px solid #eaeaec;
+  border-radius: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--dynamic-app-color);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  border: 1px solid var(--dynamic-app-color);
+}
+
+.info {
+  font-weight: 400;
+  font-size: 14px;
+  color: #3e4152;
+}
+
+.info-section {
+  margin: 0;
+  cursor: pointer;
+  padding: 7px 0 10px !important;
+}
+
+.info-section:hover {
+  color: #000;
+  font-weight: 700;
+}
+
 .nn--content-wrapper {
   overflow: hidden;
   width: 97%;
@@ -709,6 +793,10 @@ nav .megamenu-dropdown-container:after {
   padding: 50px 25px 25px;
   display: block;
   transition: all 0.2s ease;
+}
+
+.customer-account-menu .block-minicart {
+  padding-top: 25px;
 }
 
 .minicart-wrapper .block-minicart {
