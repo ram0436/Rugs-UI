@@ -148,10 +148,105 @@ export class FilteredPostsComponent {
       // this.getProducts();
     });
     this.getProducts();
+    this.masterService.getData().subscribe((filters: any) => {
+      this.filterProducts(filters);
+    });
+  }
+
+  filterProducts(filters: any) {
+    let filteredProducts = [...this.originalProducts];
+
+    // Filter by color
+    if (filters.selectedColors.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.color.some((c: any) => filters.selectedColors.includes(c.id))
+      );
+    }
+
+    // Filter by discount
+    if (filters.selectedDiscounts.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.discount.some((d: any) =>
+          filters.selectedDiscounts.includes(d.id)
+        )
+      );
+    }
+
+    // Filter by sizes
+    if (filters.selectedSizes.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.productSizeDetails.some((size: any) =>
+          filters.selectedSizes.includes(size.id)
+        )
+      );
+    }
+
+    // Filter by price range
+    if (filters.selectedPriceRanges.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.priceRange.some((d: any) =>
+          filters.selectedPriceRanges.includes(d.id)
+        )
+      );
+    }
+
+    // Filter by room
+    if (filters.selectedRooms.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.room.some((d: any) => filters.selectedRooms.includes(d.id))
+      );
+    }
+
+    // Filter by pattern
+    if (filters.selectedPatterns.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.pattern.some((d: any) =>
+          filters.selectedPatterns.includes(d.id)
+        )
+      );
+    }
+
+    // Filter by collection
+    if (filters.selectedCollections.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.collection.some((d: any) =>
+          filters.selectedCollections.includes(d.id)
+        )
+      );
+    }
+
+    // Filter by weaving technique
+    if (filters.selectedWeavingTechniques.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.weavingTechnique.some((d: any) =>
+          filters.selectedWeavingTechniques.includes(d.id)
+        )
+      );
+    }
+
+    // Filter by shape
+    if (filters.selectedShapes.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.shape.some((d: any) => filters.selectedShapes.includes(d.id))
+      );
+    }
+
+    // Filter by materials
+    if (filters.selectedMaterials.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.material.some((d: any) =>
+          filters.selectedMaterials.includes(d.id)
+        )
+      );
+    }
+
+    this.products = filteredProducts;
+    this.isLoading = false;
   }
 
   getProducts() {
     this.productService.getAllProducts().subscribe((res) => {
+      this.originalProducts = [...res];
       this.products = res;
       this.products.forEach((product) => {
         this.fetchSizeDetails(product);

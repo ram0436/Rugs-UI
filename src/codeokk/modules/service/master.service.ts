@@ -8,9 +8,19 @@ import { environment } from "src/environments/environment";
   providedIn: "root",
 })
 export class MasterService {
+  private dataSubject = new Subject<any>();
+
   constructor(private http: HttpClient) {}
 
   private baseUrl = environment.baseUrl;
+
+  setData(data: any) {
+    this.dataSubject.next(data);
+  }
+
+  getData() {
+    return this.dataSubject.asObservable();
+  }
 
   getAllColor() {
     return this.http.get(`${this.baseUrl}/Master/GetAllColor`);

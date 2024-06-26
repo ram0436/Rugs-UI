@@ -1,6 +1,6 @@
 <div class="filters">
   <!-- Availability -->
-  <div class="filter-availability filter-main">
+  <!-- <div class="filter-availability filter-main">
     <span class="filter-title">Availability</span>
     <ul class="availability-list">
       <li
@@ -28,7 +28,7 @@
         </a>
       </li>
     </ul>
-  </div>
+  </div> -->
 
   <!-- Size -->
   <div class="filter-sizes filter-main">
@@ -237,7 +237,7 @@
   </div>
 
   <!-- Style -->
-  <div class="filter-style filter-main">
+  <!-- <div class="filter-style filter-main">
     <span class="filter-title">Style</span>
     <ul class="style-list">
       <li
@@ -261,7 +261,7 @@
         <a class="show-less" (click)="showLessItems('styles')"> Show Less </a>
       </li>
     </ul>
-  </div>
+  </div> -->
 
   <!-- Pattern -->
   <div class="filter-pattern filter-main">
@@ -291,7 +291,7 @@
   </div>
 
   <!-- Designer -->
-  <div class="filter-designer filter-main">
+  <!-- <div class="filter-designer filter-main">
     <span class="filter-title">Designer</span>
     <ul class="designer-list">
       <li
@@ -319,12 +319,15 @@
         </a>
       </li>
     </ul>
-  </div>
+  </div> -->
   <!-- Collection -->
   <div class="filter-collection filter-main">
     <span class="filter-title">Collection</span>
     <ul class="collection-list">
-      <li *ngFor="let collection of collections">
+      <li
+        *ngFor="let collection of collections; let i = index"
+        [ngClass]="{ hidden: !showAllCollections && i >= initialItemCount }"
+      >
         <label class="custom-checkbox">
           <input
             type="checkbox"
