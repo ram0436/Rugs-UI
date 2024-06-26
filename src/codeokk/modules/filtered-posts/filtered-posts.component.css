@@ -80,6 +80,7 @@
   background-color: #fff;
   border: 1px solid #d4d5d9;
   cursor: pointer;
+  margin-left: auto;
 }
 
 .sort-options:hover .more-sort-options {

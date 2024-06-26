@@ -10,7 +10,7 @@ import { MasterService } from "../service/master.service";
 export class FiltersComponent implements OnInit {
   products: any[] = [];
 
-  initialItemCount: number = 3;
+  initialItemCount: number = 5;
   showAllMaterials: boolean = false;
   showAllShapes: boolean = false;
   showAllWeavingTechniques: boolean = false;
@@ -246,11 +246,11 @@ export class FiltersComponent implements OnInit {
   }
 
   togglePrice(priceId: number) {
-    const index = this.selectedPrices.indexOf(priceId);
+    const index = this.selectedPriceRanges.indexOf(priceId);
     if (index === -1) {
-      this.selectedPrices.push(priceId);
+      this.selectedPriceRanges.push(priceId);
     } else {
-      this.selectedPrices.splice(index, 1);
+      this.selectedPriceRanges.splice(index, 1);
     }
     this.applyFilters();
   }
@@ -306,7 +306,7 @@ export class FiltersComponent implements OnInit {
   }
 
   toggleRoom(roomId: number) {
-    const index = this.selectedMaterials.indexOf(roomId);
+    const index = this.selectedRooms.indexOf(roomId);
     if (index === -1) {
       this.selectedRooms.push(roomId);
     } else {
@@ -556,24 +556,17 @@ export class FiltersComponent implements OnInit {
   }
 
   applyFilters() {
-    // this.productService.getFilteredProducts({
-    //   categories: this.selectedCategories,
-    //   colors: this.selectedColors,
-    //   brands: this.selectedBrands,
-    //   discounts: this.selectedDiscount,
-    //   availability: this.selectedAvailability,
-    //   sizes: this.selectedSizes,
-    //   materials: this.selectedMaterials,
-    //   priceRanges: this.selectedPriceRanges,
-    //   shapes: this.selectedShapes,
-    //   weavingTechniques: this.selectedWeavingTechniques,
-    //   styles: this.selectedStyles,
-    //   patterns: this.selectedPatterns,
-    //   designers: this.selectedDesigners,
-    //   collections: this.selectedCollections,
-    // }).subscribe((data) => {
-    //   this.products = data;
-    //   // Additional logic after fetching filtered products
-    // });
+    this.masterService.setData({
+      selectedColors: this.selectedColors,
+      selectedDiscounts: this.selectedDiscount,
+      selectedSizes: this.selectedSizes,
+      selectedMaterials: this.selectedMaterials,
+      selectedPriceRanges: this.selectedPriceRanges,
+      selectedShapes: this.selectedShapes,
+      selectedWeavingTechniques: this.selectedWeavingTechniques,
+      selectedPatterns: this.selectedPatterns,
+      selectedCollections: this.selectedCollections,
+      selectedRooms: this.selectedRooms,
+    });
   }
 }
