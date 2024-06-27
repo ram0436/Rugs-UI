@@ -80,9 +80,13 @@ img {
 
 .page-footer .footer-static-links .column {
   /* float: left; */
-  width: 15%;
+  width: 18%;
   margin-bottom: 35px;
   margin-right: 7%;
+}
+
+.page-footer .footer-social-links .column.no-margin {
+  margin-right: 0% !important;
 }
 
 .page-footer .footer-static-links .column .title {
@@ -188,6 +192,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
 .footer-logo {
@@ -209,7 +214,6 @@ img {
   }
 
   .page-footer .footer-social-links {
-    margin-top: 50px;
     width: 32%;
     clear: both;
   }
@@ -246,7 +250,6 @@ img {
   }
 
   .page-footer .footer-social-links {
-    margin-top: 46px;
     width: 25%;
     clear: none;
   }

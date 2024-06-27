@@ -39,8 +39,22 @@ export class HeaderComponent {
     private router: Router,
     private dialog: MatDialog,
     private productService: ProductService,
-    private snackBar: MatSnackBar
-  ) {}
+    private snackBar: MatSnackBar,
+    private elementRef: ElementRef
+  ) {
+    this.renderer.listen("window", "click", this.handleClickOutside.bind(this));
+  }
+
+  handleClickOutside(event: Event) {
+    const clickedInside = this.elementRef.nativeElement.contains(event.target);
+    if (!clickedInside) {
+      this.isSearchActive = false;
+    }
+  }
+
+  ngOnDestroy() {
+    this.renderer.destroy();
+  }
 
   @HostListener("window:scroll", [])
   onWindowScroll() {

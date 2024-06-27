@@ -27,7 +27,6 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  justify-content: flex-end;
 }
 
 .product-img-container .small-images .small-image {
@@ -203,6 +202,24 @@
   border: 1px solid #c0c0c0;
 }
 
+.product-details-desc {
+  margin: 1.5rem 0;
+}
+
+.product-details-desc .desc-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-top: 5px;
+}
+
+.product-details-desc .desc-details {
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin-top: 5px;
+}
+
 .product-more-info {
   width: 70%;
   margin: 80px auto;
@@ -238,4 +255,99 @@
   font-size: 13px;
   letter-spacing: 1px;
   font-weight: 300;
+}
+
+.similar-products-container {
+  margin: 80px auto 0 auto;
+}
+
+.main-content {
+  position: relative;
+  padding-bottom: 30px;
+  overflow-x: hidden;
+}
+
+.main-row {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  transition: transform 0.5s ease;
+}
+
+.main-row::-webkit-scrollbar {
+  display: none;
+}
+
+.main-item {
+  min-width: 318px;
+  height: 470px;
+  margin-right: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.main-content {
+  user-select: none;
+}
+
+.arrow {
+  cursor: pointer;
+  font-size: 2rem;
+  color: #333;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  top: 25%;
+  padding: 10px;
+  position: absolute;
+  z-index: 10;
+  user-select: none;
+}
+
+.left-arrow {
+  left: 80px;
+}
+
+.right-arrow {
+  right: 40px;
+}
+
+.collection .inner h3,
+.main-item .inner h3 {
+  font-family: Crimson Text;
+  text-transform: none;
+  letter-spacing: -0.2px;
+  font-size: 26px;
+  line-height: 36px;
+  font-weight: 400;
+}
+
+.main-item-inner {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.main-item-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  transition: transform 0.5s ease;
+}
+
+.main-item:hover .main-item-image {
+  transform: scale(1.1);
+}
+
+.similar-products-head {
+  font-size: 2rem;
+  text-align: center;
+  text-transform: capitalize;
+  padding-bottom: 30px;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
