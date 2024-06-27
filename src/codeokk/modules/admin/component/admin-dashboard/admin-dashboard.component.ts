@@ -360,8 +360,8 @@ export class AdminDashboardComponent {
     let flag = false;
     if (payload.name == "") {
       this.showNotification("Name is required");
-    } else if (payload.name.length < 5 || payload.name.length > 50) {
-      this.showNotification("Title should be between 5 and 50 characters");
+    } else if (payload.name.length < 3 || payload.name.length > 50) {
+      this.showNotification("Name should be between 5 and 50 characters");
     } else if (payload.description == "") {
       this.showNotification("Description is required");
     } else if (

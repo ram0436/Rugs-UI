@@ -752,6 +752,13 @@ nav .megamenu-dropdown-container:after {
   width: 700px;
 }
 
+.phone-img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  margin-top: -3px;
+}
+
 .algolia-search-block #algolia-searchbox .algolia-autocomplete #search {
   display: inline-block;
   border: 0;
