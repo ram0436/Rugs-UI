@@ -132,10 +132,40 @@
             Add To Wishlist
           </div>
         </div>
+
+        <div class="product-details-desc">
+          <div class="desc-title">Product Details</div>
+          <div
+            class="desc-details"
+            [innerHTML]="productDetails?.description"
+          ></div>
+        </div>
       </div>
     </div>
 
-    <div class="product-more-info">
+    <div class="similar-products-container">
+      <div class="similar-products">
+        <div class="similar-products-head">Similar Products</div>
+        <div
+          class="main-content"
+          (mousedown)="startDrag($event)"
+          (mouseup)="stopDrag()"
+          (mousemove)="onDrag($event)"
+        >
+          <div class="arrow left-arrow" (click)="scrollToLeft()">
+            <span class="material-icons-outlined"> arrow_back</span>
+          </div>
+          <div class="main-row" #scrollContainer>
+            <app-post-cards [products]="similarProducts"></app-post-cards>
+          </div>
+          <div class="arrow right-arrow" (click)="scrollToRight()">
+            <span class="material-icons-outlined"> arrow_forward </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="product-more-info">
       <div class="product-info-sections">
         <div
           class="product-info-section active"
@@ -210,6 +240,6 @@
           might take longer)
         </li>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

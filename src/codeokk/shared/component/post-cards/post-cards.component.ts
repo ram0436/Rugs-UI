@@ -1,4 +1,9 @@
-import { Component, Input } from "@angular/core";
+import { Component, ElementRef, Input, Renderer2 } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ActivatedRoute, Router } from "@angular/router";
+import { UserService } from "src/codeokk/modules/user/service/user.service";
+import { ProductService } from "../../service/product.service";
 @Component({
   selector: "app-post-cards",
   templateUrl: "./post-cards.component.html",
@@ -6,11 +11,35 @@ import { Component, Input } from "@angular/core";
 })
 export class PostCardsComponent {
   @Input() products: any;
-  filteredPostsRoute: boolean = false;
+  productDetailsRoute: boolean = false;
+  wishlistRoute: boolean = false;
 
   // Pagination properties
   currentPage: number = 1;
   productsPerPage: number = 24;
+
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private renderer: Renderer2,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private elementRef: ElementRef
+  ) {
+    this.route.queryParams.subscribe((params) => {
+      const routeName = this.router.url.split("?")[0];
+      this.productsPerPage = routeName === "/filtered-posts" ? 25 : 24;
+    });
+
+    this.route.url.subscribe((urlSegments) => {
+      this.wishlistRoute =
+        urlSegments.length > 0 && urlSegments[0].path === "wishlist";
+      this.productDetailsRoute =
+        urlSegments.length > 0 && urlSegments[0].path === "product-details";
+    });
+  }
 
   get startIndex(): number {
     return (this.currentPage - 1) * this.productsPerPage;

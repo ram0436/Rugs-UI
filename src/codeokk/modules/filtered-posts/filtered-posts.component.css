@@ -4,7 +4,7 @@
 }
 
 .breadcrumb {
-  margin: 95px 10px 10px 25px;
+  margin: 95px 0px 10px 0px;
 }
 
 .filter-head {
@@ -16,7 +16,7 @@
 }
 
 .filter-head .left {
-  flex: 1.65;
+  flex: 1.5;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,11 +27,11 @@
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .filter-head .right {
   flex: 8;
-  padding: 0 40px;
   display: flex;
   flex-direction: column;
   gap: 0px;

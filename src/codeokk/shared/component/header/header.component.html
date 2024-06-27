@@ -8,37 +8,16 @@
     <div class="panel wrapper">
       <div class="panel header">
         <div class="header--panel-left">
-          <div class="sections nav-sections">
-            <div class="section-items nav-sections-items"></div>
-          </div>
           <div class="nav-block block-showrooms">
             <div class="nav-block-item nav-icon nav-icon-locator">
-              <span class="material-icons-outlined section-icon">
-                location_on
-              </span>
-              <span class="nav-icon-label">Showrooms</span>
-            </div>
-          </div>
-          <div class="nav-block block-phone" style="display: none">
-            <div class="nav-block-item nav-icon nav-icon-phone">
-              <span class="material-icons-outlined section-icon">
-                location_on
-              </span>
-              <span class="nav-icon-label">+1 (646) 490-1614</span>
-            </div>
-          </div>
-          <div class="nav-block block-catalog">
-            <div class="nav-block-item nav-icon nav-icon-catalog">
-              <span class="material-icons-outlined section-icon">
-                collections
-              </span>
-              <span class="nav-icon-label">View Our Catalog</span>
+              <span class="material-icons-outlined section-icon"> call </span>
+              <span class="nav-icon-label">Sales Enquiry</span>
             </div>
           </div>
         </div>
         <div class="header--panel-right">
           <div class="trade-join">
-            <a class="trade-button"><span>Trade</span> Login</a>
+            <a class="trade-button">Login</a>
           </div>
 
           <div class="header-actions-section">
@@ -167,53 +146,23 @@
                     <span
                       class="algolia-autocomplete"
                       [ngClass]="{ active: isSearchActive }"
-                      style="
-                        position: relative;
-                        display: inline-block;
-                        direction: ltr;
-                      "
                       id="algolia-autocomplete-tt"
-                      ><input
+                    >
+                      <input
                         id="search"
                         type="text"
                         name="query"
                         class="input-text algolia-search-input aa-input"
                         placeholder="Search for products, categories, ..."
-                        dir="auto"
-                        style="position: relative; vertical-align: top"
                       />
-                      <pre
-                        aria-hidden="true"
-                        style="
-                          position: absolute;
-                          visibility: hidden;
-                          white-space: pre;
-                          font-family: AkziendGroteskBe, 'Helvetica Neue',
-                            Helvetica, Arial, sans-serif;
-                          font-size: 18px;
-                          font-style: normal;
-                          font-variant: normal;
-                          font-weight: 400;
-                          word-spacing: 0px;
-                          letter-spacing: 0.75px;
-                          text-indent: 0px;
-                          text-rendering: auto;
-                          text-transform: none;
-                        "
-                      ></pre>
                     </span>
-
                     <span class="clear-cross clear-query-autocomplete"></span>
-                    <span
-                      id="algolia-glass"
-                      class="magnifying-glass"
-                      width="24"
-                      height="24"
-                    ></span>
+                    <span id="algolia-glass" class="magnifying-glass"></span>
                   </div>
                 </form>
               </div>
             </div>
+
             <!-- <div class="nav-block block-catalog">
               <a
                 class="nav-block-item nav-icon nav-icon-catalog"
@@ -1937,77 +1886,6 @@
                                 title="Style: Categories: Geometric"
                               >
                                 <span class="nn--caption">Geometric</span>
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Style: Categories: Ombré"
-                              >
-                                <span class="nn--caption">Ombré</span>
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                aria-label="View rugs designed by Farrow and Ball"
-                                class="nn--link"
-                                title="Style: Categories: Farrow &amp; Ball"
-                              >
-                                <span class="nn--caption"
-                                  >Farrow &amp; Ball</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Style: Categories: Classical"
-                              >
-                                <span class="nn--caption">Classical</span>
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Style: Categories: Monochrome"
-                              >
-                                <span class="nn--caption">Monochrome</span>
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Style: Categories: Vintage &amp; Traditional"
-                              >
-                                <span class="nn--caption"
-                                  >Vintage &amp; Traditional</span
-                                >
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Style: Categories: Neutral"
-                              >
-                                <span class="nn--caption">Neutral</span>
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Style: Categories: Bordered"
-                              >
-                                <span class="nn--caption">Bordered</span>
-                              </a>
-                            </li>
-                            <li class="nn--submenu-item">
-                              <a
-                                class="nn--link"
-                                title="Style: Categories: All Contemporary Rugs"
-                              >
-                                <span class="nn--caption"
-                                  >All Contemporary Rugs</span
-                                >
                               </a>
                             </li>
                           </ul>

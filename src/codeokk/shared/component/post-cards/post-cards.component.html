@@ -1,7 +1,7 @@
 <div class="products-container row-base">
   <section style="width: 98%">
-    <div class="products-cotainer" [class.w-100]="filteredPostsRoute">
-      <div class="products">
+    <div class="products-cotainer">
+      <div class="products" [ngClass]="{ 'no-wrap': productDetailsRoute }">
         <div class="product" *ngFor="let product of currentPageProducts">
           <a [routerLink]="'/product-details/' + product.productCode">
             <div class="image-container">
@@ -9,6 +9,12 @@
                 [src]="product.productImageList[0].imageURL"
                 class="product-img"
               />
+              <span class="ribbon-featured" *ngIf="product.isNewLaunch">
+                <strong [class.ribbon]="true" class="stock-status">
+                  <span class="hide-visually">This ad is</span>
+                  New
+                </strong>
+              </span>
             </div>
             <div class="product-info">
               <a>
@@ -35,7 +41,10 @@
         </div>
       </div>
     </div>
-    <div class="pagination-btns" *ngIf="products.length !== 0">
+    <div
+      class="pagination-btns"
+      *ngIf="products.length !== 0 && !productDetailsRoute"
+    >
       <div
         class="prev-btn pgn-btn"
         (click)="previousPage()"
