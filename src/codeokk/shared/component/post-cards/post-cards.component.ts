@@ -30,7 +30,7 @@ export class PostCardsComponent {
   ) {
     this.route.queryParams.subscribe((params) => {
       const routeName = this.router.url.split("?")[0];
-      this.productsPerPage = routeName === "/filtered-posts" ? 25 : 24;
+      this.productsPerPage = routeName === "/filtered-posts" ? 20 : 20;
     });
 
     this.route.url.subscribe((urlSegments) => {
