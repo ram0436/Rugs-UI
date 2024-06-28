@@ -172,11 +172,10 @@ export class FilteredPostsComponent {
       );
     }
 
-    // Filter by sizes
     if (filters.selectedSizes.length > 0) {
       filteredProducts = filteredProducts.filter((product) =>
-        product.productSizeDetails.some((size: any) =>
-          filters.selectedSizes.includes(size.id)
+        product.productSizeList.some((size: any) =>
+          filters.selectedSizes.includes(size.size)
         )
       );
     }
@@ -248,9 +247,9 @@ export class FilteredPostsComponent {
     this.productService.getAllProducts().subscribe((res) => {
       this.originalProducts = [...res];
       this.products = res;
-      this.products.forEach((product) => {
-        this.fetchSizeDetails(product);
-      });
+      // this.products.forEach((product) => {
+      //   this.fetchSizeDetails(product);
+      // });
       this.isLoading = false;
     });
   }

@@ -16,7 +16,7 @@ export class PostCardsComponent {
 
   // Pagination properties
   currentPage: number = 1;
-  productsPerPage: number = 24;
+  productsPerPage: number = 20;
 
   constructor(
     private router: Router,

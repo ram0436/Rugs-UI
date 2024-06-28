@@ -34,6 +34,8 @@ export class ProductDetailsComponent {
 
   isHovered: boolean = false;
 
+  similarProductsLoaded: boolean = false;
+
   @ViewChild("scrollContainer", { static: false }) scrollContainer!: ElementRef;
 
   isDragging: boolean = false;
@@ -75,9 +77,9 @@ export class ProductDetailsComponent {
     this.isDragging = false;
   }
 
-  ngAfterViewInit(): void {
-    this.checkArrows();
-  }
+  // ngAfterViewInit(): void {
+  //   this.checkArrows();
+  // }
 
   scrollToRight(): void {
     const container = this.scrollContainer.nativeElement;
@@ -140,10 +142,12 @@ export class ProductDetailsComponent {
   getProducts() {
     this.productService.getAllProducts().subscribe((res) => {
       this.similarProducts = res;
-      this.similarProducts.forEach((product) => {
-        this.fetchSimilarSizeDetails(product);
-      });
+      // this.similarProducts.forEach((product) => {
+      // this.fetchSimilarSizeDetails(product);
+      // });
       this.isLoading = false;
+      this.similarProductsLoaded = true;
+      // this.checkArrows();
     });
   }
 
@@ -249,7 +253,7 @@ export class ProductDetailsComponent {
 
       // Ensure all sizes are fetched before proceeding
       this.getAllProductSizes();
-      this.fetchSizeDetails(this.productDetails.productSizeMappingList);
+      // this.fetchSizeDetails(this.productDetails.productSizeMappingList);
     });
   }
 
@@ -279,42 +283,6 @@ export class ProductDetailsComponent {
     );
   }
 
-  // fetchSizeDetails(sizeMappingList: any[]) {
-  //   if (sizeMappingList) {
-  //     const sizeDetailRequests = sizeMappingList.map((mapping) =>
-  //       this.productService.getProductSizebyProductId(mapping.productId)
-  //     );
-
-  //     forkJoin(sizeDetailRequests).subscribe((responses: any[]) => {
-  //       this.productDetails.productSize = [];
-
-  //       responses.forEach((sizeDetailsArray, index) => {
-  //         const productId = sizeMappingList[index].productId;
-  //         const productSizeId = sizeMappingList[index].productSizeId;
-
-  //         const sizes = sizeDetailsArray.map((sizeDetail: any) => {
-  //           const sizeId = this.findSizeIdBySize(sizeDetail.size);
-  //           return {
-  //             size: sizeDetail.size,
-  //             price: sizeDetail.price,
-  //             id: sizeId || null,
-  //           };
-  //         });
-
-  //         this.productDetails.productSize = [
-  //           ...this.productDetails.productSize,
-  //           ...sizes,
-  //         ];
-  //       });
-
-  //       this.productDetails.productSize = this.removeDuplicateSizes(
-  //         this.productDetails.productSize
-  //       );
-  //     });
-  //   }
-  // }
-
-  // Utility function to find size ID by size description
   findSizeIdBySize(size: string) {
     for (let [id, sizeDescription] of this.sizesMap.entries()) {
       if (sizeDescription === size) {

@@ -42,7 +42,7 @@
           <input
             type="checkbox"
             [value]="size.id"
-            (change)="toggleSize(size.id)"
+            (change)="toggleSize(size.size, $event)"
           />
           {{ size.size }}
           <div class="checkbox-indicator"></div>
