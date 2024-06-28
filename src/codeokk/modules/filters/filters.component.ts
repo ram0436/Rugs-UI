@@ -70,7 +70,7 @@ export class FiltersComponent implements OnInit {
   selectedBrands: number[] = [];
   selectedDiscount: number[] = [];
   selectedAvailability: number[] = [];
-  selectedSizes: number[] = [];
+  selectedSizes: any[] = [];
   selectedMaterials: number[] = [];
   selectedPriceRanges: number[] = [];
   selectedShapes: number[] = [];
@@ -285,12 +285,18 @@ export class FiltersComponent implements OnInit {
     this.applyFilters();
   }
 
-  toggleSize(sizeId: number) {
-    const index = this.selectedSizes.indexOf(sizeId);
-    if (index === -1) {
-      this.selectedSizes.push(sizeId);
+  toggleSize(size: string, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+
+    if (isChecked) {
+      if (!this.selectedSizes.includes(size)) {
+        this.selectedSizes.push(size);
+      }
     } else {
-      this.selectedSizes.splice(index, 1);
+      const index = this.selectedSizes.indexOf(size);
+      if (index !== -1) {
+        this.selectedSizes.splice(index, 1);
+      }
     }
     this.applyFilters();
   }

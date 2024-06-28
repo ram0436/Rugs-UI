@@ -99,14 +99,15 @@
         <div
           class="product-sizes"
           *ngIf="
-            productDetails.productSize && productDetails.productSize.length
+            productDetails.productSizeList &&
+            productDetails.productSizeList.length
           "
         >
           <div class="size-title">Sizes</div>
           <div class="product-size-container">
             <div
               class="product-size"
-              *ngFor="let size of productDetails.productSize"
+              *ngFor="let size of productDetails.productSizeList"
             >
               {{ size.size }} ft
             </div>
@@ -144,7 +145,7 @@
     </div>
 
     <div class="similar-products-container">
-      <div class="similar-products">
+      <div class="similar-products" *ngIf="similarProductsLoaded">
         <div class="similar-products-head">Similar Products</div>
         <div
           class="main-content"

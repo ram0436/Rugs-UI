@@ -18,23 +18,25 @@
             </div>
             <div class="product-info">
               <a>
-                <p class="product-name">{{ product.name }}</p>
-                <p class="product-desc">{{ product.description }}</p>
+                <p class="product-name">{{ product?.name }}</p>
+                <p class="product-desc">
+                  {{ product?.weavingTechnique[0].name }}
+                </p>
                 <p class="product-size">
                   <span
                     *ngFor="
-                      let sizeDetail of product.productSizeDetails;
+                      let sizeDetail of product.productSizeList;
                       let i = index
                     "
                     class="size"
                   >
                     {{ sizeDetail.size
-                    }}<span *ngIf="i < product.productSizeDetails.length - 1"
+                    }}<span *ngIf="i < product.productSizeList.length - 1"
                       >,
                     </span>
                   </span>
                 </p>
-                <p class="product-price">{{ product.price }}</p>
+                <p class="product-price">{{ product?.price }}</p>
               </a>
             </div>
           </a>
