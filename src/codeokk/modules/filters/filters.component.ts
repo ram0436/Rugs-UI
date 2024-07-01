@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MasterService } from "../service/master.service";
+import { ProductService } from "src/codeokk/shared/service/product.service";
 
 @Component({
   selector: "app-filters",
@@ -113,20 +114,22 @@ export class FiltersComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private masterService: MasterService
+    private masterService: MasterService,
+    private productService: ProductService
   ) {}
 
   ngOnInit() {
-    this.getAllColors();
-    this.getAllProductSizes();
-    this.getAllDiscounts();
-    this.getAllMaterials();
-    this.getAllCollections();
-    this.getAllShapes();
-    this.getAllPatterns();
-    this.getAllPriceRanges();
-    this.getAllRooms();
-    this.getAllWeaingTechniques();
+    // this.getAllColors();
+    // this.getAllProductSizes();
+    // this.getAllDiscounts();
+    // this.getAllMaterials();
+    // this.getAllCollections();
+    // this.getAllShapes();
+    // this.getAllPatterns();
+    // this.getAllPriceRanges();
+    // this.getAllRooms();
+    // this.getAllWeaingTechniques();
+    this.getAllProducts();
     this.route.queryParams.subscribe((params) => {
       this.parentId = params["parent"];
       if (params["category"] !== undefined)
@@ -139,6 +142,127 @@ export class FiltersComponent implements OnInit {
         this.menuId = Number(params["category"]);
     });
   }
+
+  updateFiltersBasedOnProducts() {
+    const uniqueColors = this.getUniqueAttributes("color", "name");
+    const uniqueSizes = this.getUniqueAttributes("productSizeList", "size");
+    const uniqueDiscounts = this.getUniqueAttributes("discount", "percent");
+    const uniqueMaterials = this.getUniqueAttributes("material", "name");
+    const uniqueCollections = this.getUniqueAttributes("collection", "name");
+    const uniqueShapes = this.getUniqueAttributes("shape", "name");
+    const uniquePatterns = this.getUniqueAttributes("pattern", "name");
+    const uniquePriceRanges = this.getUniqueAttributes("priceRange", "range");
+    const uniqueRooms = this.getUniqueAttributes("room", "name");
+    const uniqueWeavingTechniques = this.getUniqueAttributes(
+      "weavingTechnique",
+      "name"
+    );
+
+    this.getFilteredColors(uniqueColors);
+    this.getFilteredSizes(uniqueSizes);
+    this.getFilteredDiscounts(uniqueDiscounts);
+    this.getFilteredMaterials(uniqueMaterials);
+    this.getFilteredCollections(uniqueCollections);
+    this.getFilteredShapes(uniqueShapes);
+    this.getFilteredPatterns(uniquePatterns);
+    this.getFilteredPriceRanges(uniquePriceRanges);
+    this.getFilteredRooms(uniqueRooms);
+    this.getFilteredWeavingTechniques(uniqueWeavingTechniques);
+  }
+
+  getUniqueAttributes(attribute: string, key: string) {
+    return Array.from(
+      new Set(
+        this.products.flatMap((product) =>
+          product[attribute]?.map((item: any) => item[key])
+        )
+      )
+    );
+  }
+
+  getFilteredColors(uniqueColors: string[]) {
+    this.masterService.getAllColor().subscribe((res: any) => {
+      this.colors = res.filter((color: any) =>
+        uniqueColors.includes(color.name)
+      );
+    });
+  }
+
+  getFilteredSizes(uniqueSizes: string[]) {
+    this.masterService.getAllProductSize().subscribe((res: any) => {
+      this.sizes = res.filter((size: any) => uniqueSizes.includes(size.size));
+    });
+  }
+
+  getFilteredDiscounts(uniqueDiscounts: string[]) {
+    this.masterService.getAllDiscount().subscribe((res: any) => {
+      this.discount = res.filter((discount: any) =>
+        uniqueDiscounts.includes(discount.percent)
+      );
+    });
+  }
+
+  getFilteredMaterials(uniqueMaterials: string[]) {
+    this.masterService.getAllMaterial().subscribe((res: any) => {
+      this.materials = res.filter((material: any) =>
+        uniqueMaterials.includes(material.name)
+      );
+    });
+  }
+
+  getFilteredCollections(uniqueCollections: string[]) {
+    this.masterService.getAllCollection().subscribe((res: any) => {
+      this.collections = res.filter((collection: any) =>
+        uniqueCollections.includes(collection.name)
+      );
+    });
+  }
+
+  getFilteredShapes(uniqueShapes: string[]) {
+    this.masterService.getAllShape().subscribe((res: any) => {
+      this.shapes = res.filter((shape: any) =>
+        uniqueShapes.includes(shape.name)
+      );
+    });
+  }
+
+  getFilteredPatterns(uniquePatterns: string[]) {
+    this.masterService.getAllPattern().subscribe((res: any) => {
+      this.patterns = res.filter((pattern: any) =>
+        uniquePatterns.includes(pattern.name)
+      );
+    });
+  }
+
+  getFilteredPriceRanges(uniquePriceRanges: string[]) {
+    this.masterService.getAllPriceRange().subscribe((res: any) => {
+      this.priceRanges = res.filter((priceRange: any) =>
+        uniquePriceRanges.includes(priceRange.range)
+      );
+    });
+  }
+
+  getFilteredRooms(uniqueRooms: string[]) {
+    this.masterService.getAllRoom().subscribe((res: any) => {
+      this.rooms = res.filter((room: any) => uniqueRooms.includes(room.name));
+    });
+  }
+
+  getFilteredWeavingTechniques(uniqueWeavingTechniques: string[]) {
+    this.masterService.getAllWeavingTechnique().subscribe((res: any) => {
+      this.weavingTechniques = res.filter((weavingTechnique: any) =>
+        uniqueWeavingTechniques.includes(weavingTechnique.name)
+      );
+    });
+  }
+
+  getAllProducts() {
+    this.productService.getAllProducts().subscribe((res) => {
+      this.products = res;
+      this.updateFiltersBasedOnProducts();
+    });
+  }
+
   getAllColors() {
     this.masterService.getAllColor().subscribe((res: any) => {
       this.colors = res;
