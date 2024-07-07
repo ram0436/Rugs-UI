@@ -38,6 +38,9 @@ export class ProductDetailsComponent {
 
   @ViewChild("scrollContainer", { static: false }) scrollContainer!: ElementRef;
 
+  @ViewChild("entryPointContainer", { static: false })
+  entryPointContainer!: ElementRef;
+
   isDragging: boolean = false;
   startX: number = 0;
   scrollLeft: number = 0;
@@ -53,7 +56,8 @@ export class ProductDetailsComponent {
     private dialog: MatDialog,
     private masterService: MasterService,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private elementRef: ElementRef
   ) {}
 
   ngOnInit() {
@@ -65,6 +69,62 @@ export class ProductDetailsComponent {
     if (productCode != null) {
       this.getPostDetails(productCode);
     }
+  }
+
+  // ngAfterViewInit(): void {
+  //   this.loadWizartScript();
+  // }
+
+  loadWizartScript() {
+    // Create a script element
+    // const script = this.renderer.createElement("script");
+    // script.type = "text/javascript";
+
+    // // Add the content of the script
+    // script.text = `
+    //   const entryPoint = new window.WEntryPoint({
+    //     token: "sFtovpPoKR6Ze90x8WfF7lfHnaQamKhj6Uf72oAfgMwjgVS63orcEBxunNSr",
+    //     element: document.getElementById("entry-point-container"),
+    //     vendorCode: "rug1",
+    //     articleQuery: JSON.stringify({
+    //       vendor_code: "rug1",
+    //       collection_name: "Rug"
+    //     }),
+    //   });
+    //   entryPoint.render({ title: "Try in Your Room" });
+    // `;
+
+    // // Append the script to the entry point container
+    // // this.renderer.appendChild(this.entryPointContainer.nativeElement, script);
+    // document.getElementById("entry-point-container")?.appendChild(script);
+
+    this.productService
+      .loadScript(
+        "https://d35so7k19vd0fx.cloudfront.net/production/integration/entry-point.min.js"
+      )
+      .then(() => {
+        const entryPoint = new (window as any).WEntryPoint({
+          token: "your token for wizart",
+          element: document.getElementById("wizart-btn"),
+          vendorCode: "Rug1",
+          articleQuery: JSON.stringify({
+            vendor_code: "Rug1",
+            collection_name: "Rug",
+          }),
+        });
+        entryPoint.render({
+          title: "Try in Your Room",
+          fontSize: "16px",
+          className: "wizart-main-page",
+          background: "#f8f8f8",
+          color: "#000",
+          width: "230px",
+          height: "50px",
+        });
+      })
+      .catch((err) => {
+        console.error("Error loading script:", err);
+      });
   }
 
   startDrag(event: MouseEvent): void {
@@ -147,6 +207,7 @@ export class ProductDetailsComponent {
       // });
       this.isLoading = false;
       this.similarProductsLoaded = true;
+
       // this.checkArrows();
     });
   }
@@ -253,6 +314,7 @@ export class ProductDetailsComponent {
 
       // Ensure all sizes are fetched before proceeding
       this.getAllProductSizes();
+      this.loadWizartScript();
       // this.fetchSizeDetails(this.productDetails.productSizeMappingList);
     });
   }
