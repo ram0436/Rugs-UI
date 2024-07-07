@@ -68,4 +68,15 @@ export class ProductService {
       `${this.BaseURL}Product/GetProductSizeByProductId?productId=${productId}`
     );
   }
+
+  loadScript(src: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.type = "application/javascript";
+      script.onload = () => resolve();
+      script.onerror = () => reject();
+      document.body.appendChild(script);
+    });
+  }
 }

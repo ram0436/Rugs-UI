@@ -351,3 +351,27 @@
   font-weight: 300;
   letter-spacing: 1px;
 }
+
+.wizart-main-page {
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  box-shadow: none !important;
+  width: 230px !important;
+}
+
+::ng-deep .w-entry-point {
+  box-shadow: none !important;
+  position: absolute !important;
+  bottom: 20px !important;
+  right: 29%;
+  border-radius: 32px !important;
+}
+
+::ng-deep .w-entry-point div {
+  display: none !important;
+}
+
+::ng-deep .w-entry-point .w-entry-point__title {
+  padding-left: 0px !important;
+}
