@@ -18,13 +18,13 @@ export class ProductService {
   }
   private BaseURL = environment.baseUrl;
 
-  getAllProducts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.BaseURL}Product/GetAllProduct`).pipe(
-      tap((results) => {
-        this.getAllItemsSubject.next(results);
-      })
-    );
-  }
+  // getAllProducts(): Observable<any[]> {
+  //   return this.http.get<any[]>(`${this.BaseURL}Product/GetAllProduct`).pipe(
+  //     tap((results) => {
+  //       this.getAllItemsSubject.next(results);
+  //     })
+  //   );
+  // }
 
   getProductByProductCode(code: any) {
     return this.http.get(
@@ -78,5 +78,26 @@ export class ProductService {
       script.onerror = () => reject();
       document.body.appendChild(script);
     });
+  }
+
+  getProductDashboard(
+    pageIndex: number,
+    pageSize: number,
+    sizeId: number,
+    priceRangeId: number,
+    colorId: number,
+    roomId: number,
+    materialId: number,
+    shapeId: number,
+    weavingTechniqueId: number,
+    patternId: number,
+    collectionId: number
+  ): Observable<any> {
+    const apiUrl = `${this.BaseURL}Product/GetProductDashboard?pageIndex=${pageIndex}&pageSize=${pageSize}&sizeId=${sizeId}&priceRangeId=${priceRangeId}&colorId=${colorId}&roomId=${roomId}&materialId=${materialId}&shapeId=${shapeId}&weavingTechniqueId=${weavingTechniqueId}&patternId=${patternId}&collectionId=${collectionId}`;
+    return this.http.get<any>(apiUrl).pipe(
+      tap((results) => {
+        this.getAllItemsSubject.next(results);
+      })
+    );
   }
 }

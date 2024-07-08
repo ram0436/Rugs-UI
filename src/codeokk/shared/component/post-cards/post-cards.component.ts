@@ -1,4 +1,11 @@
-import { Component, ElementRef, Input, Renderer2 } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+} from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -11,11 +18,13 @@ import { ProductService } from "../../service/product.service";
 })
 export class PostCardsComponent {
   @Input() products: any;
+  @Input() currentPage: number = 1;
+  @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   productDetailsRoute: boolean = false;
   wishlistRoute: boolean = false;
 
   // Pagination properties
-  currentPage: number = 1;
+  // currentPage: number = 1;
   productsPerPage: number = 20;
 
   constructor(
@@ -41,6 +50,29 @@ export class PostCardsComponent {
     });
   }
 
+  goToPage(page: number) {
+    if (page >= 1) {
+      this.currentPage = page;
+      this.pageChange.emit(this.currentPage);
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.pageChange.emit(this.currentPage);
+    }
+  }
+
+  nextPage() {
+    if (
+      this.currentPage < Math.ceil(this.products.length / this.productsPerPage)
+    ) {
+      this.currentPage++;
+      this.pageChange.emit(this.currentPage);
+    }
+  }
+
   get startIndex(): number {
     return (this.currentPage - 1) * this.productsPerPage;
   }
@@ -52,32 +84,19 @@ export class PostCardsComponent {
     );
   }
 
-  goToPage(page: number) {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-    }
-  }
-
-  // get pageNumbers(): number[] {
-  //   return Array.from({ length: this.totalPages }, (_, i) => i + 1);
-  // }
-
   get pageNumbers(): (number | string)[] {
-    const totalPages = this.totalPages;
+    const totalPages = Math.ceil(this.products.length / this.productsPerPage);
     const currentPage = this.currentPage;
 
     if (totalPages <= 5) {
-      // Show all pages if there are 5 or fewer
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
 
     let pages: (number | string)[] = [];
 
     if (currentPage <= 2) {
-      // If on one of the first three pages, show 1, 2, 3, 4, ..., totalPages
       pages = [1, 2, 3, "...", totalPages];
     } else if (currentPage >= 3 && currentPage < totalPages - 2) {
-      // If in the middle somewhere, show 1, ..., currentPage-1, currentPage, currentPage+1, ..., totalPages
       pages = [
         1,
         "...",
@@ -88,7 +107,6 @@ export class PostCardsComponent {
         totalPages,
       ];
     } else {
-      // If near the end, show 1, ..., totalPages-3, totalPages-2, totalPages-1, totalPages
       pages = [1, "...", totalPages - 2, totalPages - 1, totalPages];
     }
 
@@ -107,16 +125,11 @@ export class PostCardsComponent {
     return this.products.slice(this.startIndex, this.endIndex);
   }
 
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-    }
+  previousPageDisabled(): boolean {
+    return this.currentPage === 1;
   }
 
-  nextPage() {
-    const totalPages = Math.ceil(this.products.length / this.productsPerPage);
-    if (this.currentPage < totalPages) {
-      this.currentPage++;
-    }
+  nextPageDisabled(): boolean {
+    return this.currentPage >= this.totalPages;
   }
 }

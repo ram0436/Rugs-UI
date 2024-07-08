@@ -65,7 +65,7 @@ export class ProductDetailsComponent {
     this.route.paramMap.subscribe((params) => {
       productCode = params.get("id");
     });
-    this.getProducts();
+    // this.getProducts();
     if (productCode != null) {
       this.getPostDetails(productCode);
     }
@@ -199,18 +199,13 @@ export class ProductDetailsComponent {
     this.selectedLargeImageUrl = imageUrl;
   }
 
-  getProducts() {
-    this.productService.getAllProducts().subscribe((res) => {
-      this.similarProducts = res;
-      // this.similarProducts.forEach((product) => {
-      // this.fetchSimilarSizeDetails(product);
-      // });
-      this.isLoading = false;
-      this.similarProductsLoaded = true;
-
-      // this.checkArrows();
-    });
-  }
+  // getProducts() {
+  //   this.productService.getAllProducts().subscribe((res) => {
+  //     this.similarProducts = res;
+  //     this.isLoading = false;
+  //     this.similarProductsLoaded = true;
+  //   });
+  // }
 
   fetchSizeDetailsGeneral(
     sizeMappingList: any[],

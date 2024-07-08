@@ -13,79 +13,6 @@ import { map } from "rxjs/operators";
 export class FilteredPostsComponent {
   products: any[] = [];
 
-  // products = [
-  //   {
-  //     id: 1,
-  //     productName: "Product 1",
-  //     productDesc: "Hand knotted - wool",
-  //     productSize: "120x180 cm",
-  //     productPrice: "$1,380",
-  //     productImageList: [
-  //       {
-  //         id: 0,
-  //         imageUrl:
-  //           "https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-1.png",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 2,
-  //     productName: "Product 2",
-  //     productDesc: "Hand knotted - wool",
-  //     productSize: "120x180 cm",
-  //     productPrice: "$1,380",
-  //     productImageList: [
-  //       {
-  //         id: 0,
-  //         imageUrl:
-  //           "https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-2.png",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 3,
-  //     productName: "Product 3",
-  //     productDesc: "Hand knotted - wool",
-  //     productSize: "120x180 cm",
-  //     productPrice: "$1,380",
-  //     productImageList: [
-  //       {
-  //         id: 0,
-  //         imageUrl:
-  //           "https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 4,
-  //     productName: "Product 4",
-  //     productDesc: "Hand knotted - wool",
-  //     productSize: "120x180 cm",
-  //     productPrice: "$1,380",
-  //     productImageList: [
-  //       {
-  //         id: 0,
-  //         imageUrl:
-  //           "https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-4.png",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 5,
-  //     productName: "Product 5",
-  //     productDesc: "Hand knotted - wool",
-  //     productSize: "120x180 cm",
-  //     productPrice: "$1,380",
-  //     productImageList: [
-  //       {
-  //         id: 0,
-  //         imageUrl:
-  //           "https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-5.png",
-  //       },
-  //     ],
-  //   },
-  // ];
-
   originalProducts: any[] = [];
 
   brands: any[] = [];
@@ -116,6 +43,15 @@ export class FilteredPostsComponent {
   isLoading: boolean = true;
 
   sizesMap: Map<number, string> = new Map();
+
+  filters: any = [];
+
+  currentPage: number = 1;
+  productsPerPage: number = 20;
+  totalPages: number = 0;
+  totalProducts: number = 0;
+
+  hasMoreProductsFetched: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -149,8 +85,78 @@ export class FilteredPostsComponent {
     });
     this.getProducts();
     this.masterService.getData().subscribe((filters: any) => {
-      this.filterProducts(filters);
+      // this.filterProducts(filters);
+      this.filters = filters;
+      this.getProducts();
     });
+  }
+
+  isLastPage(): boolean {
+    const totalPages = Math.ceil(this.products.length / this.productsPerPage);
+    return this.currentPage === totalPages;
+  }
+
+  handlePageChange(pageIndex: number) {
+    if (this.isLastPage() && this.hasMoreProductsFetched) {
+      return; // Skip fetching if already fetched on the last page
+    }
+    this.currentPage = pageIndex;
+    const nextPageIndex = Math.ceil(
+      this.products.length / this.productsPerPage
+    );
+    if (pageIndex >= nextPageIndex) {
+      this.isLoading = true;
+      // Fetch next set of products
+      this.productService
+        .getProductDashboard(
+          nextPageIndex,
+          this.productsPerPage,
+          this.filters.selectedSizes?.[0] || 0,
+          this.filters.selectedPriceRanges?.[0] || 1,
+          this.filters.selectedColors?.[0] || 0,
+          this.filters.selectedRooms?.[0] || 0,
+          this.filters.selectedMaterials?.[0] || 0,
+          this.filters.selectedShapes?.[0] || 0,
+          this.filters.selectedWeavingTechniques?.[0] || 0,
+          this.filters.selectedPatterns?.[0] || 0,
+          this.filters.selectedCollections?.[0] || 0
+        )
+        .subscribe((res: any) => {
+          if (this.isLastPage()) {
+            this.hasMoreProductsFetched = true;
+          }
+          if (res.length > 0) {
+            this.products.push(...res);
+            this.totalProducts = this.products.length;
+            this.totalPages = Math.ceil(
+              this.totalProducts / this.productsPerPage
+            );
+          }
+          this.isLoading = false;
+        });
+    }
+  }
+
+  getProducts(pageIndex?: number) {
+    this.productService
+      .getProductDashboard(
+        1,
+        this.productsPerPage * 2,
+        this.filters.selectedSizes?.[0] || 0,
+        this.filters.selectedPriceRanges?.[0] || 1,
+        this.filters.selectedColors?.[0] || 0,
+        this.filters.selectedRooms?.[0] || 0,
+        this.filters.selectedMaterials?.[0] || 0,
+        this.filters.selectedShapes?.[0] || 0,
+        this.filters.selectedWeavingTechniques?.[0] || 0,
+        this.filters.selectedPatterns?.[0] || 0,
+        this.filters.selectedCollections?.[0] || 0
+      )
+      .subscribe((res: any) => {
+        this.products = res;
+        this.currentPage = 1;
+        this.isLoading = false;
+      });
   }
 
   filterProducts(filters: any) {
@@ -241,17 +247,6 @@ export class FilteredPostsComponent {
 
     this.products = filteredProducts;
     this.isLoading = false;
-  }
-
-  getProducts() {
-    this.productService.getAllProducts().subscribe((res) => {
-      this.originalProducts = [...res];
-      this.products = res;
-      // this.products.forEach((product) => {
-      //   this.fetchSizeDetails(product);
-      // });
-      this.isLoading = false;
-    });
   }
 
   getAllProductSizes() {
