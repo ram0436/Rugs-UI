@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit, SimpleChanges } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MasterService } from "../service/master.service";
 import { ProductService } from "src/codeokk/shared/service/product.service";
@@ -9,7 +9,7 @@ import { ProductService } from "src/codeokk/shared/service/product.service";
   styleUrls: ["./filters.component.css"],
 })
 export class FiltersComponent implements OnInit {
-  products: any[] = [];
+  @Input() products: any[] = [];
 
   initialItemCount: number = 5;
   showAllMaterials: boolean = false;
@@ -118,18 +118,14 @@ export class FiltersComponent implements OnInit {
     private productService: ProductService
   ) {}
 
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes["products"]) {
+  //     this.updateFiltersBasedOnProducts();
+  //   }
+  // }
+
   ngOnInit() {
-    // this.getAllColors();
-    // this.getAllProductSizes();
-    // this.getAllDiscounts();
-    // this.getAllMaterials();
-    // this.getAllCollections();
-    // this.getAllShapes();
-    // this.getAllPatterns();
-    // this.getAllPriceRanges();
-    // this.getAllRooms();
-    // this.getAllWeaingTechniques();
-    this.getAllProducts();
+    this.updateFiltersBasedOnProducts();
     this.route.queryParams.subscribe((params) => {
       this.parentId = params["parent"];
       if (params["category"] !== undefined)
@@ -144,41 +140,52 @@ export class FiltersComponent implements OnInit {
   }
 
   updateFiltersBasedOnProducts() {
-    const uniqueColors = this.getUniqueAttributes("color", "name");
-    const uniqueSizes = this.getUniqueAttributes("productSizeList", "size");
-    const uniqueDiscounts = this.getUniqueAttributes("discount", "percent");
-    const uniqueMaterials = this.getUniqueAttributes("material", "name");
-    const uniqueCollections = this.getUniqueAttributes("collection", "name");
-    const uniqueShapes = this.getUniqueAttributes("shape", "name");
-    const uniquePatterns = this.getUniqueAttributes("pattern", "name");
-    const uniquePriceRanges = this.getUniqueAttributes("priceRange", "range");
-    const uniqueRooms = this.getUniqueAttributes("room", "name");
-    const uniqueWeavingTechniques = this.getUniqueAttributes(
-      "weavingTechnique",
-      "name"
-    );
+    this.getAllColors();
+    this.getAllProductSizes();
+    this.getAllDiscounts();
+    this.getAllMaterials();
+    this.getAllCollections();
+    this.getAllShapes();
+    this.getAllPatterns();
+    this.getAllPriceRanges();
+    this.getAllRooms();
+    this.getAllWeaingTechniques();
 
-    this.getFilteredColors(uniqueColors);
-    this.getFilteredSizes(uniqueSizes);
-    this.getFilteredDiscounts(uniqueDiscounts);
-    this.getFilteredMaterials(uniqueMaterials);
-    this.getFilteredCollections(uniqueCollections);
-    this.getFilteredShapes(uniqueShapes);
-    this.getFilteredPatterns(uniquePatterns);
-    this.getFilteredPriceRanges(uniquePriceRanges);
-    this.getFilteredRooms(uniqueRooms);
-    this.getFilteredWeavingTechniques(uniqueWeavingTechniques);
+    // const uniqueColors = this.getUniqueAttributes("color", "name");
+    // const uniqueSizes = this.getUniqueAttributes("productSizeList", "size");
+    // const uniqueDiscounts = this.getUniqueAttributes("discount", "percent");
+    // const uniqueMaterials = this.getUniqueAttributes("material", "name");
+    // const uniqueCollections = this.getUniqueAttributes("collection", "name");
+    // const uniqueShapes = this.getUniqueAttributes("shape", "name");
+    // const uniquePatterns = this.getUniqueAttributes("pattern", "name");
+    // const uniquePriceRanges = this.getUniqueAttributes("priceRange", "range");
+    // const uniqueRooms = this.getUniqueAttributes("room", "name");
+    // const uniqueWeavingTechniques = this.getUniqueAttributes(
+    //   "weavingTechnique",
+    //   "name"
+    // );
+
+    // this.getFilteredColors(uniqueColors);
+    // this.getFilteredSizes(uniqueSizes);
+    // this.getFilteredDiscounts(uniqueDiscounts);
+    // this.getFilteredMaterials(uniqueMaterials);
+    // this.getFilteredCollections(uniqueCollections);
+    // this.getFilteredShapes(uniqueShapes);
+    // this.getFilteredPatterns(uniquePatterns);
+    // this.getFilteredPriceRanges(uniquePriceRanges);
+    // this.getFilteredRooms(uniqueRooms);
+    // this.getFilteredWeavingTechniques(uniqueWeavingTechniques);
   }
 
-  getUniqueAttributes(attribute: string, key: string) {
-    return Array.from(
-      new Set(
-        this.products.flatMap((product) =>
-          product[attribute]?.map((item: any) => item[key])
-        )
-      )
-    );
-  }
+  // getUniqueAttributes(attribute: string, key: string) {
+  //   return Array.from(
+  //     new Set(
+  //       this.products.flatMap((product) =>
+  //         product[attribute]?.map((item: any) => item[key])
+  //       )
+  //     )
+  //   );
+  // }
 
   getFilteredColors(uniqueColors: string[]) {
     this.masterService.getAllColor().subscribe((res: any) => {
@@ -256,12 +263,12 @@ export class FiltersComponent implements OnInit {
     });
   }
 
-  getAllProducts() {
-    this.productService.getAllProducts().subscribe((res) => {
-      this.products = res;
-      this.updateFiltersBasedOnProducts();
-    });
-  }
+  // getAllProducts() {
+  //   this.productService.getAllProducts().subscribe((res) => {
+  //     this.products = res;
+  //     this.updateFiltersBasedOnProducts();
+  //   });
+  // }
 
   getAllColors() {
     this.masterService.getAllColor().subscribe((res: any) => {
@@ -409,20 +416,27 @@ export class FiltersComponent implements OnInit {
     this.applyFilters();
   }
 
-  toggleSize(size: string, event: Event) {
+  toggleSize(sizeId: number, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
-
-    if (isChecked) {
-      if (!this.selectedSizes.includes(size)) {
-        this.selectedSizes.push(size);
-      }
+    const index = this.selectedSizes.indexOf(sizeId);
+    if (index === -1) {
+      this.selectedSizes.push(sizeId);
     } else {
-      const index = this.selectedSizes.indexOf(size);
-      if (index !== -1) {
-        this.selectedSizes.splice(index, 1);
-      }
+      this.selectedSizes.splice(index, 1);
     }
     this.applyFilters();
+
+    // if (isChecked) {
+    //   if (!this.selectedSizes.includes(size)) {
+    //     this.selectedSizes.push(size);
+    //   }
+    // } else {
+    //   const index = this.selectedSizes.indexOf(size);
+    //   if (index !== -1) {
+    //     this.selectedSizes.splice(index, 1);
+    //   }
+    // }
+    // this.applyFilters();
   }
 
   toggleMaterial(materialId: number) {
