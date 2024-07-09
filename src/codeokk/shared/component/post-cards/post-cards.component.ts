@@ -25,7 +25,7 @@ export class PostCardsComponent {
 
   // Pagination properties
   // currentPage: number = 1;
-  productsPerPage: number = 20;
+  productsPerPage: number = 16;
 
   constructor(
     private router: Router,
@@ -39,7 +39,7 @@ export class PostCardsComponent {
   ) {
     this.route.queryParams.subscribe((params) => {
       const routeName = this.router.url.split("?")[0];
-      this.productsPerPage = routeName === "/filtered-posts" ? 20 : 20;
+      this.productsPerPage = routeName === "/filtered-posts" ? 16 : 16;
     });
 
     this.route.url.subscribe((urlSegments) => {
