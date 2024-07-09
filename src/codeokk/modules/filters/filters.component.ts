@@ -353,11 +353,16 @@ export class FiltersComponent implements OnInit {
   }
 
   toggleBrand(brandId: number) {
-    const index = this.selectedBrands.indexOf(brandId);
-    if (index === -1) {
-      this.selectedBrands.push(brandId);
+    // const index = this.selectedBrands.indexOf(brandId);
+    // if (index === -1) {
+    //   this.selectedBrands.push(brandId);
+    // } else {
+    //   this.selectedBrands.splice(index, 1);
+    // }
+    if (this.selectedBrands.includes(brandId)) {
+      this.selectedBrands = [];
     } else {
-      this.selectedBrands.splice(index, 1);
+      this.selectedBrands = [brandId];
     }
     this.applyFilters();
   }
@@ -367,62 +372,92 @@ export class FiltersComponent implements OnInit {
   }
 
   toggleColor(colorId: number) {
-    const index = this.selectedColors.indexOf(colorId);
-    if (index === -1) {
-      this.selectedColors.push(colorId);
+    // const index = this.selectedColors.indexOf(colorId);
+    // if (index === -1) {
+    //   this.selectedColors.push(colorId);
+    // } else {
+    //   this.selectedColors.splice(index, 1);
+    // }
+    if (this.selectedColors.includes(colorId)) {
+      this.selectedColors = [];
     } else {
-      this.selectedColors.splice(index, 1);
+      this.selectedColors = [colorId];
     }
     this.applyFilters();
   }
 
   togglePrice(priceId: number) {
-    const index = this.selectedPriceRanges.indexOf(priceId);
-    if (index === -1) {
-      this.selectedPriceRanges.push(priceId);
+    // const index = this.selectedPriceRanges.indexOf(priceId);
+    // if (index === -1) {
+    //   this.selectedPriceRanges.push(priceId);
+    // } else {
+    //   this.selectedPriceRanges.splice(index, 1);
+    // }
+    if (this.selectedPriceRanges.includes(priceId)) {
+      this.selectedPriceRanges = [];
     } else {
-      this.selectedPriceRanges.splice(index, 1);
+      this.selectedPriceRanges = [priceId];
     }
     this.applyFilters();
   }
 
   toggleDiscount(discountId: number) {
-    const index = this.selectedDiscount.indexOf(discountId);
-    if (index === -1) {
-      this.selectedDiscount.push(discountId);
+    // const index = this.selectedDiscount.indexOf(discountId);
+    // if (index === -1) {
+    //   this.selectedDiscount.push(discountId);
+    // } else {
+    //   this.selectedDiscount.splice(index, 1);
+    // }
+    if (this.selectedDiscount.includes(discountId)) {
+      this.selectedDiscount = [];
     } else {
-      this.selectedDiscount.splice(index, 1);
+      this.selectedDiscount = [discountId];
     }
     this.applyFilters();
   }
 
   toggleCategory(categoryId: number) {
-    const index = this.selectedCategories.indexOf(categoryId);
-    if (index === -1) {
-      this.selectedCategories.push(categoryId);
+    // const index = this.selectedCategories.indexOf(categoryId);
+    // if (index === -1) {
+    //   this.selectedCategories.push(categoryId);
+    // } else {
+    //   this.selectedCategories.splice(index, 1);
+    // }
+    if (this.selectedCategories.includes(categoryId)) {
+      this.selectedCategories = [];
     } else {
-      this.selectedCategories.splice(index, 1);
+      this.selectedCategories = [categoryId];
     }
     this.applyFilters();
   }
 
   toggleAvailability(availabilityId: number) {
-    const index = this.selectedAvailability.indexOf(availabilityId);
-    if (index === -1) {
-      this.selectedAvailability.push(availabilityId);
+    // const index = this.selectedAvailability.indexOf(availabilityId);
+    // if (index === -1) {
+    //   this.selectedAvailability.push(availabilityId);
+    // } else {
+    //   this.selectedAvailability.splice(index, 1);
+    // }
+    if (this.selectedAvailability.includes(availabilityId)) {
+      this.selectedAvailability = [];
     } else {
-      this.selectedAvailability.splice(index, 1);
+      this.selectedAvailability = [availabilityId];
     }
     this.applyFilters();
   }
 
   toggleSize(sizeId: number, event: Event) {
-    const isChecked = (event.target as HTMLInputElement).checked;
-    const index = this.selectedSizes.indexOf(sizeId);
-    if (index === -1) {
-      this.selectedSizes.push(sizeId);
+    // const isChecked = (event.target as HTMLInputElement).checked;
+    // const index = this.selectedSizes.indexOf(sizeId);
+    // if (index === -1) {
+    //   this.selectedSizes.push(sizeId);
+    // } else {
+    //   this.selectedSizes.splice(index, 1);
+    // }
+    if (this.selectedSizes.includes(sizeId)) {
+      this.selectedSizes = [];
     } else {
-      this.selectedSizes.splice(index, 1);
+      this.selectedSizes = [sizeId];
     }
     this.applyFilters();
 
@@ -440,91 +475,136 @@ export class FiltersComponent implements OnInit {
   }
 
   toggleMaterial(materialId: number) {
-    const index = this.selectedMaterials.indexOf(materialId);
-    if (index === -1) {
-      this.selectedMaterials.push(materialId);
+    // const index = this.selectedMaterials.indexOf(materialId);
+    // if (index === -1) {
+    //   this.selectedMaterials.push(materialId);
+    // } else {
+    //   this.selectedMaterials.splice(index, 1);
+    // }
+    if (this.selectedMaterials.includes(materialId)) {
+      this.selectedMaterials = [];
     } else {
-      this.selectedMaterials.splice(index, 1);
+      this.selectedMaterials = [materialId];
     }
     this.applyFilters();
   }
 
   toggleRoom(roomId: number) {
-    const index = this.selectedRooms.indexOf(roomId);
-    if (index === -1) {
-      this.selectedRooms.push(roomId);
+    // const index = this.selectedRooms.indexOf(roomId);
+    // if (index === -1) {
+    //   this.selectedRooms.push(roomId);
+    // } else {
+    //   this.selectedRooms.splice(index, 1);
+    // }
+    if (this.selectedRooms.includes(roomId)) {
+      this.selectedRooms = [];
     } else {
-      this.selectedRooms.splice(index, 1);
+      this.selectedRooms = [roomId];
     }
     this.applyFilters();
   }
 
   togglePriceRange(priceRangeId: number) {
-    const index = this.selectedPriceRanges.indexOf(priceRangeId);
-    if (index === -1) {
-      this.selectedPriceRanges.push(priceRangeId);
+    // const index = this.selectedPriceRanges.indexOf(priceRangeId);
+    // if (index === -1) {
+    //   this.selectedPriceRanges.push(priceRangeId);
+    // } else {
+    //   this.selectedPriceRanges.splice(index, 1);
+    // }
+    if (this.selectedPriceRanges.includes(priceRangeId)) {
+      this.selectedPriceRanges = [];
     } else {
-      this.selectedPriceRanges.splice(index, 1);
+      this.selectedPriceRanges = [priceRangeId];
     }
     this.applyFilters();
   }
 
   toggleShape(shapeId: number) {
-    const index = this.selectedShapes.indexOf(shapeId);
-    if (index === -1) {
-      this.selectedShapes.push(shapeId);
+    // const index = this.selectedShapes.indexOf(shapeId);
+    // if (index === -1) {
+    //   this.selectedShapes.push(shapeId);
+    // } else {
+    //   this.selectedShapes.splice(index, 1);
+    // }
+    if (this.selectedShapes.includes(shapeId)) {
+      this.selectedShapes = [];
     } else {
-      this.selectedShapes.splice(index, 1);
+      this.selectedShapes = [shapeId];
     }
     this.applyFilters();
   }
 
   toggleWeavingTechnique(techniqueId: number) {
-    const index = this.selectedWeavingTechniques.indexOf(techniqueId);
-    if (index === -1) {
-      this.selectedWeavingTechniques.push(techniqueId);
+    // const index = this.selectedWeavingTechniques.indexOf(techniqueId);
+    // if (index === -1) {
+    //   this.selectedWeavingTechniques.push(techniqueId);
+    // } else {
+    //   this.selectedWeavingTechniques.splice(index, 1);
+    // }
+    if (this.selectedWeavingTechniques.includes(techniqueId)) {
+      this.selectedWeavingTechniques = [];
     } else {
-      this.selectedWeavingTechniques.splice(index, 1);
+      this.selectedWeavingTechniques = [techniqueId];
     }
     this.applyFilters();
   }
 
   toggleStyle(styleId: number) {
-    const index = this.selectedStyles.indexOf(styleId);
-    if (index === -1) {
-      this.selectedStyles.push(styleId);
+    // const index = this.selectedStyles.indexOf(styleId);
+    // if (index === -1) {
+    //   this.selectedStyles.push(styleId);
+    // } else {
+    //   this.selectedStyles.splice(index, 1);
+    // }
+    if (this.selectedStyles.includes(styleId)) {
+      this.selectedStyles = [];
     } else {
-      this.selectedStyles.splice(index, 1);
+      this.selectedStyles = [styleId];
     }
     this.applyFilters();
   }
 
   togglePattern(patternId: number) {
-    const index = this.selectedPatterns.indexOf(patternId);
-    if (index === -1) {
-      this.selectedPatterns.push(patternId);
+    // const index = this.selectedPatterns.indexOf(patternId);
+    // if (index === -1) {
+    //   this.selectedPatterns.push(patternId);
+    // } else {
+    //   this.selectedPatterns.splice(index, 1);
+    // }
+    if (this.selectedPatterns.includes(patternId)) {
+      this.selectedPatterns = [];
     } else {
-      this.selectedPatterns.splice(index, 1);
+      this.selectedPatterns = [patternId];
     }
     this.applyFilters();
   }
 
   toggleDesigner(designerId: number) {
-    const index = this.selectedDesigners.indexOf(designerId);
-    if (index === -1) {
-      this.selectedDesigners.push(designerId);
+    // const index = this.selectedDesigners.indexOf(designerId);
+    // if (index === -1) {
+    //   this.selectedDesigners.push(designerId);
+    // } else {
+    //   this.selectedDesigners.splice(index, 1);
+    // }
+    if (this.selectedDesigners.includes(designerId)) {
+      this.selectedDesigners = [];
     } else {
-      this.selectedDesigners.splice(index, 1);
+      this.selectedDesigners = [designerId];
     }
     this.applyFilters();
   }
 
   toggleCollection(collectionId: number) {
-    const index = this.selectedCollections.indexOf(collectionId);
-    if (index === -1) {
-      this.selectedCollections.push(collectionId);
+    // const index = this.selectedCollections.indexOf(collectionId);
+    // if (index === -1) {
+    //   this.selectedCollections.push(collectionId);
+    // } else {
+    //   this.selectedCollections.splice(index, 1);
+    // }
+    if (this.selectedCollections.includes(collectionId)) {
+      this.selectedCollections = [];
     } else {
-      this.selectedCollections.splice(index, 1);
+      this.selectedCollections = [collectionId];
     }
     this.applyFilters();
   }

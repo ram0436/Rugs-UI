@@ -47,7 +47,7 @@ export class FilteredPostsComponent {
   filters: any = [];
 
   currentPage: number = 1;
-  productsPerPage: number = 20;
+  productsPerPage: number = 16;
   totalPages: number = 0;
   totalProducts: number = 0;
 
@@ -97,6 +97,7 @@ export class FilteredPostsComponent {
   }
 
   handlePageChange(pageIndex: number) {
+    this.isLoading = true;
     if (this.isLastPage() && this.hasMoreProductsFetched) {
       return; // Skip fetching if already fetched on the last page
     }
@@ -112,14 +113,14 @@ export class FilteredPostsComponent {
           nextPageIndex,
           this.productsPerPage,
           this.filters.selectedSizes?.[0] || 0,
-          this.filters.selectedPriceRanges?.[0] || 1,
-          this.filters.selectedColors?.[0] || 0,
-          this.filters.selectedRooms?.[0] || 0,
-          this.filters.selectedMaterials?.[0] || 0,
-          this.filters.selectedShapes?.[0] || 0,
-          this.filters.selectedWeavingTechniques?.[0] || 0,
-          this.filters.selectedPatterns?.[0] || 0,
-          this.filters.selectedCollections?.[0] || 0
+          this.filters.selectedPriceRanges?.[0] || 0,
+          this.filters.selectedColors?.[0] || 0
+          // this.filters.selectedRooms?.[0] || 0,
+          // this.filters.selectedMaterials?.[0] || 0,
+          // this.filters.selectedShapes?.[0] || 0,
+          // this.filters.selectedWeavingTechniques?.[0] || 0,
+          // this.filters.selectedPatterns?.[0] || 0,
+          // this.filters.selectedCollections?.[0] || 0
         )
         .subscribe((res: any) => {
           if (this.isLastPage()) {
@@ -138,24 +139,25 @@ export class FilteredPostsComponent {
   }
 
   getProducts(pageIndex?: number) {
+    this.isLoading = true;
     this.productService
       .getProductDashboard(
         1,
         this.productsPerPage * 2,
         this.filters.selectedSizes?.[0] || 0,
-        this.filters.selectedPriceRanges?.[0] || 1,
-        this.filters.selectedColors?.[0] || 0,
-        this.filters.selectedRooms?.[0] || 0,
-        this.filters.selectedMaterials?.[0] || 0,
-        this.filters.selectedShapes?.[0] || 0,
-        this.filters.selectedWeavingTechniques?.[0] || 0,
-        this.filters.selectedPatterns?.[0] || 0,
-        this.filters.selectedCollections?.[0] || 0
+        this.filters.selectedPriceRanges?.[0] || 0,
+        this.filters.selectedColors?.[0] || 0
+        // this.filters.selectedRooms?.[0] || 0,
+        // this.filters.selectedMaterials?.[0] || 0,
+        // this.filters.selectedShapes?.[0] || 0,
+        // this.filters.selectedWeavingTechniques?.[0] || 0,
+        // this.filters.selectedPatterns?.[0] || 0,
+        // this.filters.selectedCollections?.[0] || 0
       )
       .subscribe((res: any) => {
+        this.isLoading = false;
         this.products = res;
         this.currentPage = 1;
-        this.isLoading = false;
       });
   }
 

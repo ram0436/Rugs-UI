@@ -42,6 +42,7 @@
           <input
             type="checkbox"
             [value]="size.id"
+            [checked]="selectedSizes.includes(size.id)"
             (change)="toggleSize(size.id, $event)"
           />
           {{ size.size }}
@@ -68,6 +69,7 @@
           <input
             type="checkbox"
             [value]="price.id"
+            [checked]="selectedPriceRanges.includes(price.id)"
             (change)="togglePrice(price.id)"
           />
           {{ price.range }}
@@ -94,6 +96,7 @@
           <input
             type="checkbox"
             [value]="color.id"
+            [checked]="selectedColors.includes(color.id)"
             (change)="toggleColor(color.id)"
           />
           <span
@@ -128,6 +131,7 @@
           <input
             type="checkbox"
             [value]="room.id"
+            [checked]="selectedRooms.includes(room.id)"
             (change)="toggleRoom(room.id)"
           />
           {{ room.name }}
@@ -155,6 +159,7 @@
           <input
             type="checkbox"
             [value]="material.id"
+            [checked]="selectedMaterials.includes(material.id)"
             (change)="toggleMaterial(material.id)"
           />
           {{ material.name }}
@@ -186,6 +191,7 @@
           <input
             type="checkbox"
             [value]="shape.id"
+            [checked]="selectedShapes.includes(shape.id)"
             (change)="toggleShape(shape.id)"
           />
           {{ shape.name }}
@@ -215,6 +221,7 @@
           <input
             type="checkbox"
             [value]="technique.id"
+            [checked]="selectedWeavingTechniques.includes(technique.id)"
             (change)="toggleWeavingTechnique(technique.id)"
           />
           {{ technique.name }}
@@ -275,6 +282,7 @@
           <input
             type="checkbox"
             [value]="pattern.id"
+            [checked]="selectedPatterns.includes(pattern.id)"
             (change)="togglePattern(pattern.id)"
           />
           {{ pattern.name }}
@@ -332,6 +340,7 @@
           <input
             type="checkbox"
             [value]="collection.id"
+            [checked]="selectedCollections.includes(collection.id)"
             (change)="toggleCollection(collection.id)"
           />
           {{ collection.name }}
