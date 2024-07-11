@@ -223,6 +223,14 @@
   border: 1px solid #e6e6e6;
 }
 
+.load-more-btn {
+  text-decoration: underline;
+  font-weight: 600;
+  margin-top: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
 @media (max-width: 1034px) {
   .products-cotainer {
     margin-left: auto;

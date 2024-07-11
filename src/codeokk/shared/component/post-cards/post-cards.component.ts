@@ -18,13 +18,15 @@ import { ProductService } from "../../service/product.service";
 })
 export class PostCardsComponent {
   @Input() products: any;
-  @Input() currentPage: number = 1;
+  @Input() isMoreProductsLoading: boolean = false;
+  @Input() noMoreProducts: boolean = false;
+  // @Input() currentPage: number = 1;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   productDetailsRoute: boolean = false;
   wishlistRoute: boolean = false;
 
   // Pagination properties
-  // currentPage: number = 1;
+  currentPage: number = 1;
   productsPerPage: number = 16;
 
   constructor(
@@ -48,6 +50,11 @@ export class PostCardsComponent {
       this.productDetailsRoute =
         urlSegments.length > 0 && urlSegments[0].path === "product-details";
     });
+  }
+
+  loadMore() {
+    this.currentPage = this.currentPage + 1;
+    this.pageChange.emit(this.currentPage);
   }
 
   goToPage(page: number) {
