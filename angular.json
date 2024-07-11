@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Rug-UI:build:production"
+              "buildTarget": "Rug-UI:build:production"
             },
             "development": {
-              "browserTarget": "Rug-UI:build:development"
+              "buildTarget": "Rug-UI:build:development"
             }
           },
           "options": {
@@ -77,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Rug-UI:build"
+            "buildTarget": "Rug-UI:build"
           }
         },
         "test": {

@@ -105,8 +105,9 @@
       </div>
       <div class="products-posts" *ngIf="!isLoading">
         <app-post-cards
-          [currentPage]="currentPage"
           [products]="products"
+          [isMoreProductsLoading]="isMoreProductsLoading"
+          [noMoreProducts]="noMoreProducts"
           (pageChange)="handlePageChange($event)"
         ></app-post-cards>
       </div>

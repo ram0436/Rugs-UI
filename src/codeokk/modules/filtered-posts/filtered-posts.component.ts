@@ -53,6 +53,10 @@ export class FilteredPostsComponent {
 
   hasMoreProductsFetched: boolean = false;
 
+  isMoreProductsLoading: boolean = false;
+
+  noMoreProducts: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -97,67 +101,64 @@ export class FilteredPostsComponent {
   }
 
   handlePageChange(pageIndex: number) {
-    this.isLoading = true;
-    if (this.isLastPage() && this.hasMoreProductsFetched) {
-      return; // Skip fetching if already fetched on the last page
-    }
     this.currentPage = pageIndex;
-    const nextPageIndex = Math.ceil(
-      this.products.length / this.productsPerPage
-    );
-    if (pageIndex >= nextPageIndex) {
-      this.isLoading = true;
-      // Fetch next set of products
-      this.productService
-        .getProductDashboard(
-          nextPageIndex,
-          this.productsPerPage,
-          this.filters.selectedSizes?.[0] || 0,
-          this.filters.selectedPriceRanges?.[0] || 0,
-          this.filters.selectedColors?.[0] || 0
-          // this.filters.selectedRooms?.[0] || 0,
-          // this.filters.selectedMaterials?.[0] || 0,
-          // this.filters.selectedShapes?.[0] || 0,
-          // this.filters.selectedWeavingTechniques?.[0] || 0,
-          // this.filters.selectedPatterns?.[0] || 0,
-          // this.filters.selectedCollections?.[0] || 0
-        )
-        .subscribe((res: any) => {
-          if (this.isLastPage()) {
-            this.hasMoreProductsFetched = true;
-          }
-          if (res.length > 0) {
-            this.products.push(...res);
-            this.totalProducts = this.products.length;
-            this.totalPages = Math.ceil(
-              this.totalProducts / this.productsPerPage
-            );
-          }
-          this.isLoading = false;
-        });
-    }
+    this.isMoreProductsLoading = true;
+    this.productService
+      .getProductDashboard(
+        this.currentPage,
+        this.productsPerPage,
+        this.filters.selectedSizes?.[0] || 0,
+        this.filters.selectedPriceRanges?.[0] || 0,
+        this.filters.selectedColors?.[0] || 0,
+        this.filters.selectedRooms?.[0] || 0,
+        this.filters.selectedMaterials?.[0] || 0,
+        this.filters.selectedShapes?.[0] || 0,
+        this.filters.selectedWeavingTechniques?.[0] || 0,
+        this.filters.selectedPatterns?.[0] || 0,
+        this.filters.selectedCollections?.[0] || 0
+      )
+      .subscribe((res: any) => {
+        if (this.isLastPage()) {
+          this.hasMoreProductsFetched = true;
+        }
+        if (res.length <= 0 || res.length < this.productsPerPage) {
+          this.noMoreProducts = true;
+        }
+        if (res.length > 0) {
+          this.products.push(...res);
+          this.totalProducts = this.products.length;
+          this.totalPages = Math.ceil(
+            this.totalProducts / this.productsPerPage
+          );
+        }
+        this.isMoreProductsLoading = false;
+      });
   }
 
   getProducts(pageIndex?: number) {
     this.isLoading = true;
+    this.noMoreProducts = false;
     this.productService
       .getProductDashboard(
         1,
-        this.productsPerPage * 2,
+        this.productsPerPage,
         this.filters.selectedSizes?.[0] || 0,
         this.filters.selectedPriceRanges?.[0] || 0,
-        this.filters.selectedColors?.[0] || 0
-        // this.filters.selectedRooms?.[0] || 0,
-        // this.filters.selectedMaterials?.[0] || 0,
-        // this.filters.selectedShapes?.[0] || 0,
-        // this.filters.selectedWeavingTechniques?.[0] || 0,
-        // this.filters.selectedPatterns?.[0] || 0,
-        // this.filters.selectedCollections?.[0] || 0
+        this.filters.selectedColors?.[0] || 0,
+        this.filters.selectedRooms?.[0] || 0,
+        this.filters.selectedMaterials?.[0] || 0,
+        this.filters.selectedShapes?.[0] || 0,
+        this.filters.selectedWeavingTechniques?.[0] || 0,
+        this.filters.selectedPatterns?.[0] || 0,
+        this.filters.selectedCollections?.[0] || 0
       )
       .subscribe((res: any) => {
         this.isLoading = false;
         this.products = res;
         this.currentPage = 1;
+        if (res.length <= 0 || res.length < this.productsPerPage) {
+          this.noMoreProducts = true;
+        }
       });
   }
 
