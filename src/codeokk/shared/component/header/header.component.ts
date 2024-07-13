@@ -31,6 +31,190 @@ export class HeaderComponent {
 
   dialogRef: MatDialogRef<any> | null = null;
 
+  colors: any[] = [];
+  prices: any[] = [];
+  discount: any = [];
+  sizes: any[] = [];
+  materials: any[] = [];
+  priceRanges: any[] = [];
+  shapes: any[] = [];
+  weavingTechniques: any[] = [];
+  patterns: any[] = [];
+  collections: any[] = [];
+  rooms: any[] = [];
+
+  newest: any[] = [
+    {
+      title: "Bestsellers: Channels Indigo by Kelly Wearstler",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-5.png",
+      alt: "Bestsellers: Channels Indigo by Kelly Wearstler",
+      first: "Channels Indigo",
+      second: "by Kelly Wearstler",
+    },
+    {
+      title: "Bestsellers: Channels Copper by Kelly Wearstler",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-1.png",
+      alt: "Bestsellers: Channels Copper by Kelly Wearstler",
+      first: "Channels Copper",
+      second: "by Kelly Wearstler",
+    },
+    {
+      title: "Bestsellers: Monarch Fire by Alexander McQueen",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png",
+      alt: "Bestsellers: Monarch Fire by Alexander McQueen",
+      first: "Monarch Fire",
+      second: "by Alexander McQueen",
+    },
+    {
+      title: "Bestsellers: Carnival by Paul Smith",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png",
+      alt: "Bestsellers: Carnival by Paul Smith",
+      first: "Carnival",
+      second: "by Paul Smith",
+    },
+    {
+      title: "Bestsellers: Glasswings by Alexander McQueen",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/khushi-enterprises/Rugs-3.png",
+      alt: "Bestsellers: Glasswings by Alexander McQueen",
+      first: "Glasswings",
+      second: "by Alexander McQueen",
+    },
+  ];
+
+  stories: any[] = [
+    {
+      title: "Bestsellers: Channels Indigo by Kelly Wearstler",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk436294.PNG",
+      alt: "Bestsellers: Channels Indigo by Kelly Wearstler",
+      first: "Channels Indigo",
+      second: "by Kelly Wearstler",
+    },
+    {
+      title: "Bestsellers: Channels Copper by Kelly Wearstler",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk354414.PNG",
+      alt: "Bestsellers: Channels Copper by Kelly Wearstler",
+      first: "Channels Copper",
+      second: "by Kelly Wearstler",
+    },
+    {
+      title: "Bestsellers: Monarch Fire by Alexander McQueen",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk598059.PNG",
+      alt: "Bestsellers: Monarch Fire by Alexander McQueen",
+      first: "Monarch Fire",
+      second: "by Alexander McQueen",
+    },
+    {
+      title: "Bestsellers: Carnival by Paul Smith",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk830980.PNG",
+      alt: "Bestsellers: Carnival by Paul Smith",
+      first: "Carnival",
+      second: "by Paul Smith",
+    },
+    {
+      title: "Bestsellers: Glasswings by Alexander McQueen",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk728555.PNG",
+      alt: "Bestsellers: Glasswings by Alexander McQueen",
+      first: "Glasswings",
+      second: "by Alexander McQueen",
+    },
+  ];
+
+  bestSellers: any[] = [
+    {
+      title: "Bestsellers: Channels Indigo by Kelly Wearstler",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk830980.PNG",
+      alt: "Bestsellers: Channels Indigo by Kelly Wearstler",
+      first: "Channels Indigo",
+      second: "by Kelly Wearstler",
+    },
+    {
+      title: "Bestsellers: Channels Copper by Kelly Wearstler",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk318327.PNG",
+      alt: "Bestsellers: Channels Copper by Kelly Wearstler",
+      first: "Channels Copper",
+      second: "by Kelly Wearstler",
+    },
+    {
+      title: "Bestsellers: Monarch Fire by Alexander McQueen",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk728555.PNG",
+      alt: "Bestsellers: Monarch Fire by Alexander McQueen",
+      first: "Monarch Fire",
+      second: "by Alexander McQueen",
+    },
+    {
+      title: "Bestsellers: Carnival by Paul Smith",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk862338.PNG",
+      alt: "Bestsellers: Carnival by Paul Smith",
+      first: "Carnival",
+      second: "by Paul Smith",
+    },
+    {
+      title: "Bestsellers: Glasswings by Alexander McQueen",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk980717.jpg",
+      alt: "Bestsellers: Glasswings by Alexander McQueen",
+      first: "Glasswings",
+      second: "by Alexander McQueen",
+    },
+  ];
+
+  custom: any[] = [
+    {
+      title: "Bestsellers: Channels Indigo by Kelly Wearstler",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk82324.PNG",
+      alt: "Bestsellers: Channels Indigo by Kelly Wearstler",
+      first: "Channels Indigo",
+      second: "by Kelly Wearstler",
+    },
+    {
+      title: "Bestsellers: Channels Copper by Kelly Wearstler",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk421383.PNG",
+      alt: "Bestsellers: Channels Copper by Kelly Wearstler",
+      first: "Channels Copper",
+      second: "by Kelly Wearstler",
+    },
+    {
+      title: "Bestsellers: Monarch Fire by Alexander McQueen",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk643150.PNG",
+      alt: "Bestsellers: Monarch Fire by Alexander McQueen",
+      first: "Monarch Fire",
+      second: "by Alexander McQueen",
+    },
+    {
+      title: "Bestsellers: Carnival by Paul Smith",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk343725.PNG",
+      alt: "Bestsellers: Carnival by Paul Smith",
+      first: "Carnival",
+      second: "by Paul Smith",
+    },
+    {
+      title: "Bestsellers: Glasswings by Alexander McQueen",
+      imgSrc:
+        "https://cfdblob.blob.core.windows.net/clothwear/Codeokk164115.PNG",
+      alt: "Bestsellers: Glasswings by Alexander McQueen",
+      first: "Glasswings",
+      second: "by Alexander McQueen",
+    },
+  ];
+
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
@@ -77,6 +261,76 @@ export class HeaderComponent {
     var role = localStorage.getItem("role");
     if (role != null && role == "Admin") this.isAdmin = true;
     else this.isAdmin = false;
+    this.getAllColors();
+    this.getAllProductSizes();
+    this.getAllDiscounts();
+    this.getAllMaterials();
+    this.getAllCollections();
+    this.getAllShapes();
+    this.getAllPatterns();
+    this.getAllPriceRanges();
+    this.getAllRooms();
+    this.getAllWeaingTechniques();
+  }
+
+  getAllColors() {
+    this.masterService.getAllColor().subscribe((res: any) => {
+      this.colors = res;
+    });
+  }
+
+  getAllProductSizes() {
+    this.masterService.getAllProductSize().subscribe((res: any) => {
+      this.sizes = res;
+    });
+  }
+
+  getAllDiscounts() {
+    this.masterService.getAllDiscount().subscribe((res: any) => {
+      this.discount = res;
+    });
+  }
+
+  getAllMaterials() {
+    this.masterService.getAllMaterial().subscribe((res: any) => {
+      this.materials = res;
+    });
+  }
+
+  getAllCollections() {
+    this.masterService.getAllCollection().subscribe((res: any) => {
+      this.collections = res;
+    });
+  }
+
+  getAllShapes() {
+    this.masterService.getAllShape().subscribe((res: any) => {
+      this.shapes = res;
+    });
+  }
+
+  getAllPatterns() {
+    this.masterService.getAllPattern().subscribe((res: any) => {
+      this.patterns = res;
+    });
+  }
+
+  getAllPriceRanges() {
+    this.masterService.getAllPriceRange().subscribe((res: any) => {
+      this.priceRanges = res;
+    });
+  }
+
+  getAllRooms() {
+    this.masterService.getAllRoom().subscribe((res: any) => {
+      this.rooms = res;
+    });
+  }
+
+  getAllWeaingTechniques() {
+    this.masterService.getAllWeavingTechnique().subscribe((res: any) => {
+      this.weavingTechniques = res;
+    });
   }
 
   navigateToWishlist() {

@@ -78,16 +78,40 @@ export class FilteredPostsComponent {
   ngOnInit() {
     this.checkScreenWidth();
     this.getAllProductSizes();
+
     this.route.queryParams.subscribe((params) => {
-      this.parentId = params["parent"];
-      if (params["category"] != undefined)
-        this.categoryId = Number(params["category"]);
-      if (params["subCategory"] != undefined)
-        this.subCategoryId = Number(params["subCategory"]);
-      else this.subCategoryId = 0;
-      // this.getProducts();
+      if (params["priceRange"]) {
+        this.filters.selectedPriceRanges = [Number(params["priceRange"])];
+      }
+      if (params["room"]) {
+        this.filters.selectedRooms = [Number(params["room"])];
+      }
+      if (params["material"]) {
+        this.filters.selectedMaterials = [Number(params["material"])];
+      }
+      if (params["weavingTechnique"]) {
+        this.filters.selectedWeavingTechniques = [
+          Number(params["weavingTechnique"]),
+        ];
+      }
+      if (params["patternRange"]) {
+        this.filters.selectedPatterns = [Number(params["patternRange"])];
+      }
+      if (params["color"]) {
+        this.filters.selectedColors = [Number(params["color"])];
+      }
+      if (params["shape"]) {
+        this.filters.selectedShapes = [Number(params["shape"])];
+      }
+      if (params["size"]) {
+        this.filters.selectedSizes = [Number(params["size"])];
+      }
+      if (params["collection"]) {
+        this.filters.selectedCollections = [Number(params["collection"])];
+      }
+      this.getProducts();
     });
-    this.getProducts();
+    // this.getProducts();
     this.masterService.getData().subscribe((filters: any) => {
       // this.filterProducts(filters);
       this.filters = filters;

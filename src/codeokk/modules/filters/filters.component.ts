@@ -127,15 +127,51 @@ export class FiltersComponent implements OnInit {
   ngOnInit() {
     this.updateFiltersBasedOnProducts();
     this.route.queryParams.subscribe((params) => {
-      this.parentId = params["parent"];
-      if (params["category"] !== undefined)
-        this.categoryId = Number(params["category"]);
-      if (params["subCategory"] !== undefined)
-        this.subCategoryId = Number(params["subCategory"]);
-      else this.subCategoryId = 0;
-
-      if (params["category"] !== undefined)
-        this.menuId = Number(params["category"]);
+      if (params["priceRange"]) {
+        this.selectedPriceRanges = [Number(params["priceRange"])];
+      } else {
+        this.selectedPriceRanges = [];
+      }
+      if (params["room"]) {
+        this.selectedRooms = [Number(params["room"])];
+      } else {
+        this.selectedRooms = [];
+      }
+      if (params["material"]) {
+        this.selectedMaterials = [Number(params["material"])];
+      } else {
+        this.selectedMaterials = [];
+      }
+      if (params["weavingTechnique"]) {
+        this.selectedWeavingTechniques = [Number(params["weavingTechnique"])];
+      } else {
+        this.selectedWeavingTechniques = [];
+      }
+      if (params["patternRange"]) {
+        this.selectedPatterns = [Number(params["patternRange"])];
+      } else {
+        this.selectedPatterns = [];
+      }
+      if (params["color"]) {
+        this.selectedColors = [Number(params["color"])];
+      } else {
+        this.selectedColors = [];
+      }
+      if (params["shape"]) {
+        this.selectedShapes = [Number(params["shape"])];
+      } else {
+        this.selectedShapes = [];
+      }
+      if (params["size"]) {
+        this.selectedSizes = [Number(params["size"])];
+      } else {
+        this.selectedSizes = [];
+      }
+      if (params["collection"]) {
+        this.selectedCollections = [Number(params["collection"])];
+      } else {
+        this.selectedCollections = [];
+      }
     });
   }
 

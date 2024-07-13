@@ -4,10 +4,12 @@ import { HomeComponent } from "./modules/home/home.component";
 import { FilteredPostsComponent } from "./modules/filtered-posts/filtered-posts.component";
 import { ProductDetailsComponent } from "./modules/product-details/product-details.component";
 import { AuthGuard } from "./modules/auth/authguard/authguard";
+import { StoriesComponent } from "./modules/stories/stories.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "filtered-posts", component: FilteredPostsComponent },
+  { path: "stories", component: StoriesComponent },
   { path: "product-details/:id", component: ProductDetailsComponent },
   {
     path: "admin",
