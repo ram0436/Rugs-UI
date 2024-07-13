@@ -1,0 +1,35 @@
+.stories-section {
+  max-width: 1160px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.stories-section .stories-head {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.stories-section .stories-desc {
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 0px;
+  line-height: 2;
+}
+
+.stories-section .img-container {
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.stories-section .img-container .image {
+  flex: 1;
+}
+
+.stories-section .img-container .image img {
+  width: 100%;
+  height: 500px;
+}
