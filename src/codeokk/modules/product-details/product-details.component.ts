@@ -76,28 +76,6 @@ export class ProductDetailsComponent {
   // }
 
   loadWizartScript() {
-    // Create a script element
-    // const script = this.renderer.createElement("script");
-    // script.type = "text/javascript";
-
-    // // Add the content of the script
-    // script.text = `
-    //   const entryPoint = new window.WEntryPoint({
-    //     token: "sFtovpPoKR6Ze90x8WfF7lfHnaQamKhj6Uf72oAfgMwjgVS63orcEBxunNSr",
-    //     element: document.getElementById("entry-point-container"),
-    //     vendorCode: "rug1",
-    //     articleQuery: JSON.stringify({
-    //       vendor_code: "rug1",
-    //       collection_name: "Rug"
-    //     }),
-    //   });
-    //   entryPoint.render({ title: "Try in Your Room" });
-    // `;
-
-    // // Append the script to the entry point container
-    // // this.renderer.appendChild(this.entryPointContainer.nativeElement, script);
-    // document.getElementById("entry-point-container")?.appendChild(script);
-
     this.productService
       .loadScript(
         "https://d35so7k19vd0fx.cloudfront.net/production/integration/entry-point.min.js"
@@ -199,97 +177,6 @@ export class ProductDetailsComponent {
     this.selectedLargeImageUrl = imageUrl;
   }
 
-  // getProducts() {
-  //   this.productService.getAllProducts().subscribe((res) => {
-  //     this.similarProducts = res;
-  //     this.isLoading = false;
-  //     this.similarProductsLoaded = true;
-  //   });
-  // }
-
-  fetchSizeDetailsGeneral(
-    sizeMappingList: any[],
-    updateProductDetailsCallback: (
-      productDetails: any,
-      sizeDetails: any
-    ) => void,
-    productDetails: any
-  ) {
-    if (sizeMappingList) {
-      const sizeDetailRequests = sizeMappingList.map((mapping) =>
-        this.productService.getProductSizebyProductId(mapping.productId)
-      );
-
-      forkJoin(sizeDetailRequests).subscribe((responses: any[]) => {
-        const allSizeDetails: any[] = [];
-
-        responses.forEach((sizeDetailsArray, index) => {
-          const mapping = sizeMappingList[index];
-
-          const sizes = sizeDetailsArray.map((sizeDetail: any) => {
-            const sizeId = this.findSizeIdBySize(sizeDetail.size);
-            return {
-              size: sizeDetail.size,
-              price: sizeDetail.price,
-              id: sizeId || null,
-            };
-          });
-
-          allSizeDetails.push(...sizes);
-        });
-
-        const uniqueSizeDetails = this.removeDuplicateSizes(allSizeDetails);
-
-        updateProductDetailsCallback(productDetails, uniqueSizeDetails);
-      });
-    }
-  }
-
-  fetchSimilarSizeDetails(productDetails: any) {
-    this.fetchSizeDetailsGeneral(
-      productDetails.productSizeMappingList,
-      (productDetails, sizeDetails) => {
-        productDetails.productSizeDetails = sizeDetails;
-      },
-      productDetails
-    );
-  }
-
-  // fetchSimilarSizeDetails(productDetails: any) {
-  //   const sizeDetailRequests: Observable<any[]>[] =
-  //     productDetails.productSizeMappingList.map((mapping: any) =>
-  //       this.productService.getProductSizebyProductId(mapping.productId)
-  //     );
-
-  //   forkJoin(sizeDetailRequests).subscribe((responses: any[]) => {
-  //     let productSizeDetails: any[] = [];
-
-  //     responses.forEach((sizeDetailsArray, index) => {
-  //       const mapping = productDetails.productSizeMappingList[index];
-  //       sizeDetailsArray.forEach((sizeDetail: any) => {
-  //         const sizeId = this.findSizeIdBySize(sizeDetail.size);
-
-  //         const existingSize = productSizeDetails.find(
-  //           (item) => item.size === sizeDetail.size
-  //         );
-
-  //         if (!existingSize) {
-  //           productSizeDetails.push({
-  //             id: sizeId,
-  //             size: sizeDetail.size,
-  //             price: sizeDetail.price,
-  //           });
-  //           productSizeDetails = this.removeDuplicateSizes(productSizeDetails);
-  //         }
-  //       });
-  //     });
-
-  //     productDetails.productSizeDetails = productSizeDetails;
-
-  //     this.isLoading = false;
-  //   });
-  // }
-
   getPostDetails(code: any) {
     this.productService.getProductByProductCode(code).subscribe((res: any) => {
       if (res && res.description) {
@@ -308,58 +195,8 @@ export class ProductDetailsComponent {
       }
 
       // Ensure all sizes are fetched before proceeding
-      this.getAllProductSizes();
       this.loadWizartScript();
-      // this.fetchSizeDetails(this.productDetails.productSizeMappingList);
     });
-  }
-
-  getAllProductSizes() {
-    this.masterService.getAllProductSize().subscribe((res: any) => {
-      this.sizes = res;
-      this.sizesMap = this.createSizeMap(res);
-    });
-  }
-
-  createSizeMap(sizes: any[]) {
-    const map = new Map();
-    sizes.forEach((size: any) => {
-      map.set(size.id, size.size);
-    });
-    return map;
-  }
-
-  // Refactored fetchSizeDetails function
-  fetchSizeDetails(sizeMappingList: any[]) {
-    this.fetchSizeDetailsGeneral(
-      sizeMappingList,
-      (productDetails, sizeDetails) => {
-        productDetails.productSize = sizeDetails;
-      },
-      this.productDetails
-    );
-  }
-
-  findSizeIdBySize(size: string) {
-    for (let [id, sizeDescription] of this.sizesMap.entries()) {
-      if (sizeDescription === size) {
-        return id;
-      }
-    }
-    return null;
-  }
-
-  // Utility function to remove duplicate sizes
-  removeDuplicateSizes(sizes: any[]) {
-    const uniqueSizes = sizes.reduce((acc, current) => {
-      const x = acc.find((item: any) => item.size === current.size);
-      if (!x) {
-        return acc.concat([current]);
-      } else {
-        return acc;
-      }
-    }, []);
-    return uniqueSizes;
   }
 
   setActiveSection(section: string) {

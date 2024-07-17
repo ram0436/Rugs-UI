@@ -261,76 +261,25 @@ export class HeaderComponent {
     var role = localStorage.getItem("role");
     if (role != null && role == "Admin") this.isAdmin = true;
     else this.isAdmin = false;
-    this.getAllColors();
-    this.getAllProductSizes();
-    this.getAllDiscounts();
-    this.getAllMaterials();
-    this.getAllCollections();
-    this.getAllShapes();
-    this.getAllPatterns();
-    this.getAllPriceRanges();
-    this.getAllRooms();
-    this.getAllWeaingTechniques();
-  }
 
-  getAllColors() {
-    this.masterService.getAllColor().subscribe((res: any) => {
-      this.colors = res;
-    });
-  }
+    this.masterService.colors$.subscribe((data) => (this.colors = data));
+    this.masterService.sizes$.subscribe((data) => (this.sizes = data));
+    this.masterService.discounts$.subscribe((data) => (this.discount = data));
+    this.masterService.materials$.subscribe((data) => (this.materials = data));
+    this.masterService.collections$.subscribe(
+      (data) => (this.collections = data)
+    );
+    this.masterService.shapes$.subscribe((data) => (this.shapes = data));
+    this.masterService.patterns$.subscribe((data) => (this.patterns = data));
+    this.masterService.priceRanges$.subscribe(
+      (data) => (this.priceRanges = data)
+    );
+    this.masterService.rooms$.subscribe((data) => (this.rooms = data));
+    this.masterService.weavingTechniques$.subscribe(
+      (data) => (this.weavingTechniques = data)
+    );
 
-  getAllProductSizes() {
-    this.masterService.getAllProductSize().subscribe((res: any) => {
-      this.sizes = res;
-    });
-  }
-
-  getAllDiscounts() {
-    this.masterService.getAllDiscount().subscribe((res: any) => {
-      this.discount = res;
-    });
-  }
-
-  getAllMaterials() {
-    this.masterService.getAllMaterial().subscribe((res: any) => {
-      this.materials = res;
-    });
-  }
-
-  getAllCollections() {
-    this.masterService.getAllCollection().subscribe((res: any) => {
-      this.collections = res;
-    });
-  }
-
-  getAllShapes() {
-    this.masterService.getAllShape().subscribe((res: any) => {
-      this.shapes = res;
-    });
-  }
-
-  getAllPatterns() {
-    this.masterService.getAllPattern().subscribe((res: any) => {
-      this.patterns = res;
-    });
-  }
-
-  getAllPriceRanges() {
-    this.masterService.getAllPriceRange().subscribe((res: any) => {
-      this.priceRanges = res;
-    });
-  }
-
-  getAllRooms() {
-    this.masterService.getAllRoom().subscribe((res: any) => {
-      this.rooms = res;
-    });
-  }
-
-  getAllWeaingTechniques() {
-    this.masterService.getAllWeavingTechnique().subscribe((res: any) => {
-      this.weavingTechniques = res;
-    });
+    this.masterService.fetchData();
   }
 
   navigateToWishlist() {
