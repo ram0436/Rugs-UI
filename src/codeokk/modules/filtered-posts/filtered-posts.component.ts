@@ -2,7 +2,7 @@ import { Component, HostListener } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { ProductService } from "src/codeokk/shared/service/product.service";
 import { MasterService } from "../service/master.service";
-import { Observable, filter, forkJoin } from "rxjs";
+import { Observable, filter, firstValueFrom, forkJoin } from "rxjs";
 import { map } from "rxjs/operators";
 
 @Component({
@@ -124,11 +124,11 @@ export class FilteredPostsComponent {
     return this.currentPage === totalPages;
   }
 
-  handlePageChange(pageIndex: number) {
+  async handlePageChange(pageIndex: number) {
     this.currentPage = pageIndex;
     this.isMoreProductsLoading = true;
-    this.productService
-      .getProductDashboard(
+    const res = await firstValueFrom(
+      this.productService.getProductDashboard(
         this.currentPage,
         this.productsPerPage,
         this.filters.selectedSizes?.[0] || 0,
@@ -141,29 +141,27 @@ export class FilteredPostsComponent {
         this.filters.selectedPatterns?.[0] || 0,
         this.filters.selectedCollections?.[0] || 0
       )
-      .subscribe((res: any) => {
-        if (this.isLastPage()) {
-          this.hasMoreProductsFetched = true;
-        }
-        if (res.length <= 0 || res.length < this.productsPerPage) {
-          this.noMoreProducts = true;
-        }
-        if (res.length > 0) {
-          this.products.push(...res);
-          this.totalProducts = this.products.length;
-          this.totalPages = Math.ceil(
-            this.totalProducts / this.productsPerPage
-          );
-        }
-        this.isMoreProductsLoading = false;
-      });
+    );
+
+    if (this.isLastPage()) {
+      this.hasMoreProductsFetched = true;
+    }
+    if (res.length <= 0 || res.length < this.productsPerPage) {
+      this.noMoreProducts = true;
+    }
+    if (res.length > 0) {
+      this.products.push(...res);
+      this.totalProducts = this.products.length;
+      this.totalPages = Math.ceil(this.totalProducts / this.productsPerPage);
+    }
+    this.isMoreProductsLoading = false;
   }
 
-  getProducts(pageIndex?: number) {
+  async getProducts(pageIndex?: number) {
     this.isLoading = true;
     this.noMoreProducts = false;
-    this.productService
-      .getProductDashboard(
+    const res = await firstValueFrom(
+      this.productService.getProductDashboard(
         1,
         this.productsPerPage,
         this.filters.selectedSizes?.[0] || 0,
@@ -176,14 +174,13 @@ export class FilteredPostsComponent {
         this.filters.selectedPatterns?.[0] || 0,
         this.filters.selectedCollections?.[0] || 0
       )
-      .subscribe((res: any) => {
-        this.isLoading = false;
-        this.products = res;
-        this.currentPage = 1;
-        if (res.length <= 0 || res.length < this.productsPerPage) {
-          this.noMoreProducts = true;
-        }
-      });
+    );
+    this.isLoading = false;
+    this.products = res;
+    this.currentPage = 1;
+    if (res.length <= 0 || res.length < this.productsPerPage) {
+      this.noMoreProducts = true;
+    }
   }
 
   filterProducts(filters: any) {
